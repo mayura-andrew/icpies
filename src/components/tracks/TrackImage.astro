@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+
+// Import all images from the tracks directory
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/tracks/*.{jpg,jpeg,png,webp,avif,gif}"
+);
+
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+}
+
+const { src, alt, class: className = "", width = 400, height = 200 } = Astro.props;
+
+// Extract image name from path (e.g., '@/assets/tracks/track1.jpeg' -> 'track1.jpeg')
+const imageFile = src.split('/').pop();
+const imagePath = imageFile ? `/src/assets/tracks/${imageFile}` : null;
+
+// Check if image exists in our imported images
+const hasImage = imagePath ? !!images[imagePath] : false;
+---
+
+{hasImage ? (
+  <Image
+    src={images[imagePath!]()}
+    alt={alt}
+    class={className}
+    width={width}
+    height={height}
+  />
+) : (
+  <div class={`bg-gray-200 flex items-center justify-center ${className}`}>
+    <span class="text-gray-500">Image not found</span>
+  </div>
+)}

@@ -1,0 +1,304 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/primitives/Container.astro";
+
+
+
+
+
+
+// Define your conference dates directly in the page
+const conferenceDates = [
+  {event: "Call for Abstracts", date: "2025-03-15", isPassed: false, isHighlighted: true, isCurrent: true}, // Marked as current
+  {event: "Deadline for Abstracts Submission", date: "2025-05-20", isPassed: false, isHighlighted: false},
+  {event: "Notification of Acceptance", date: "2025-06-30", isPassed: false},
+  {event: "Deadline for Selected Full Papers Submission", date: "2025-07-07", isPassed: false, isHighlighted: false},
+  {event: "Camera-ready Copy Submission", date: "2025-07-20", isPassed: false, isHighlighted: false},
+  {event: "Early Bird Registration", date: "2025-08-06", isPassed: false, isHighlighted: false},
+  {event: "Registration Deadline", date: "2025-08-18", isPassed: false, isHighlighted: false},
+  {event: "Conference Day 01", date: "2025-09-17", isPassed: false, isHighlighted: false, eventType: "hybrid"},
+  {event: "Conference Day 02", date: "2025-09-18", isPassed: false, isHighlighted: false, eventType: "hybrid"},
+
+];
+
+// Helper to check if a date has passed
+const isDatePassed = (dateStr: string) => {
+  const today = new Date();
+  const itemDate = new Date(dateStr);
+  return today > itemDate;
+};
+
+// Process dates and add status
+const processedDates = conferenceDates.map(date => ({
+  ...date,
+  isPassed: date.isPassed !== undefined ? date.isPassed : isDatePassed(date.date)
+}));
+
+// Sort dates chronologically
+const sortedDates = [...processedDates].sort((a, b) => {
+  return new Date(a.date).getTime() - new Date(b.date).getTime();
+});
+
+// Format date for display
+const formatDateWithSuffix = (dateStr: string) => {
+  try {
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return dateStr;
+
+    const day = date.getDate();
+    const suffix = day % 10 === 1 && day !== 11 ? 'st' : day % 10 === 2 && day !== 12 ? 'nd' : day % 10 === 3 && day !== 13 ? 'rd' : 'th';
+    return date.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).replace(/\d+/, day + suffix);
+  } catch (e) {
+    console.error("Error formatting date:", e);
+    return dateStr;
+  }
+};
+
+// Find current event (if not already marked)
+const findCurrentEventIndex = () => {
+  // First check if any event is explicitly marked as current
+  const explicitCurrent = sortedDates.findIndex(date => date.isCurrent === true);
+  if (explicitCurrent >= 0) return explicitCurrent;
+
+  // Otherwise, use date-based logic
+  const today = new Date().getTime();
+  for (let i = 0; i < sortedDates.length; i++) {
+    if (new Date(sortedDates[i].date).getTime() > today) {
+      return i;
+    }
+  }
+  return -1;
+};
+
+const currentEventIndex = findCurrentEventIndex();
+
+// SEO props for the page
+const seo = {
+  title: "Important Dates | ICPIES Conference",
+  description: "Important dates and deadlines for ICPIES 2025 conference submissions and registration."
+};
+---
+
+<BaseLayout seo={seo}>
+  <div class="py-16 pb-32">
+    <Container>
+      <section class="py-16 bg-gradient-to-b from-[#1A7A64]/5 to-white rounded-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+            Important Conference Dates
+          </h1>
+          <div class="w-32 h-1 bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] rounded-full mx-auto mb-8"></div>
+          <p class="text-lg text-[#2C3E50]/80 max-w-2xl mx-auto">
+            Mark your calendar for these key deadlines to ensure you don't miss any important submission dates.
+          </p>
+        </div>
+      </section>
+      {/* Enhanced Visual Timeline for Desktop - with arrows and better visibility */}
+      <div class="hidden lg:block mb-48 relative px-4">
+        {/* Main timeline line */}
+        <div class="absolute left-0 right-0 top-28 h-2 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-full shadow-sm"></div>
+
+        <div class="flex justify-between relative">
+          {sortedDates.map((dateItem, index) => {
+            const isPassed = dateItem.isPassed;
+            const isCurrent = index === currentEventIndex || dateItem.isCurrent;
+            const isHighlighted = dateItem.isHighlighted;
+            const isEven = index % 2 === 0;
+
+            // Calculate colors based on status
+            const nodeColor = isPassed
+              ? 'bg-[#1A7A64]'
+              : isCurrent
+                ? 'bg-[#FF9F1C]'
+                : isHighlighted
+                  ? 'bg-[#4ECDC4]'
+                  : 'bg-gray-300';
+
+            const textColor = isPassed
+              ? 'text-[#1A7A64]'
+              : isCurrent
+                ? 'text-[#FF9F1C]'
+                : isHighlighted
+                  ? 'text-[#4ECDC4]'
+                  : 'text-gray-500';
+
+            const ringColor = isPassed
+              ? 'ring-[#1A7A64]/20'
+              : isCurrent
+                ? 'ring-[#FF9F1C]/20'
+                : isHighlighted
+                  ? 'ring-[#4ECDC4]/20'
+                  : 'ring-gray-200';
+
+            return (
+              <div class="relative" style={`flex-basis: ${100/sortedDates.length}%; max-width: ${100/sortedDates.length}%`}>
+                {/* Timeline node */}
+                <div class={`absolute left-1/2 top-28 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full ${nodeColor} ring-4 ${ringColor} shadow-md z-10 ${isCurrent ? 'animate-pulse' : ''}`}></div>
+
+                {/* Card wrapper with arrow connector */}
+                <div class={`absolute ${isEven ? '-top-2' : 'top-40'} left-1/2 -translate-x-1/2 w-40`}>
+                  {/* Arrow connecting to timeline */}
+                  <div class={`absolute left-1/2 -translate-x-1/2 ${isEven ? 'bottom-0 top-[calc(100%+4px)]' : 'bottom-[calc(100%+4px)]'} w-px h-8 ${nodeColor}`}></div>
+                  <div class={`absolute left-1/2 -translate-x-1/2 ${isEven ? 'top-[calc(100%+4px)]' : 'bottom-[calc(100%+4px)]'} border-l-[6px] border-r-[6px] border-t-[6px] border-b-0 border-t-${nodeColor.replace('bg-', 'border-')} border-l-transparent border-r-transparent ${isEven ? 'rotate-180' : ''}`}></div>
+
+                  {/* Date card */}
+                  <div class={`bg-white p-3 rounded-lg shadow-md border-l-4 ${
+                    isPassed ? 'border-[#1A7A64]' : isCurrent ? 'border-[#FF9F1C]' : isHighlighted ? 'border-[#4ECDC4]' : 'border-gray-300'
+                  } transition-transform duration-300 hover:scale-105`}>
+                    <p class={`text-xs font-bold mb-1 ${textColor}`}>
+                      {formatDateWithSuffix(dateItem.date)}
+                    </p>
+                    <p class="text-sm font-semibold text-[#2C3E50]">{dateItem.event}</p>
+
+                    {/* Status indicator */}
+                    <div class={`mt-2 inline-block px-2 py-0.5 text-[10px] font-medium rounded-full ${
+                      isPassed
+                        ? 'bg-[#1A7A64]/10 text-[#1A7A64]'
+                        : isCurrent
+                          ? 'bg-[#FF9F1C]/20 text-[#FF9F1C]'
+                          : 'bg-gray-100 text-gray-500'
+                    }`}>
+                      {isPassed ? 'Completed' : isCurrent ? 'Current' : 'Upcoming'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Tablet Timeline - Simplified but still visually appealing */}
+      <div class="hidden md:block lg:hidden mb-32 relative px-4"> <!-- Increased bottom margin -->
+        <div class="absolute left-0 right-0 top-20 h-1.5 bg-gray-200 rounded-full"></div>
+        <div class="flex justify-between relative">
+          {sortedDates.map((dateItem, index) => {
+            const isPassed = dateItem.isPassed;
+            const isCurrent = index === currentEventIndex || dateItem.isCurrent;
+            const isHighlighted = dateItem.isHighlighted;
+            const isEven = index % 2 === 0;
+
+            return (
+              <div class="relative" style={`flex-basis: ${100/sortedDates.length}%; max-width: ${100/sortedDates.length}%`}>
+                <div class={`absolute left-1/2 top-[5rem] -translate-x-1/2 w-4 h-4 rounded-full ${
+                  isPassed
+                    ? 'bg-[#1A7A64]'
+                    : isCurrent
+                      ? 'bg-[#FF9F1C] ring-4 ring-[#FF9F1C]/20'
+                      : isHighlighted
+                        ? 'bg-[#4ECDC4] ring-4 ring-[#4ECDC4]/20'
+                        : 'bg-gray-300'
+                }`}></div>
+
+                <div class={`absolute w-36 text-center ${
+                  isEven ? '-top-20' : 'top-28'
+                } left-1/2 -translate-x-1/2 transition-all duration-300`}>
+                  <p class={`text-xs font-medium mb-1 ${
+                    isPassed
+                      ? 'text-[#1A7A64]'
+                      : isCurrent
+                        ? 'text-[#FF9F1C]'
+                        : isHighlighted
+                          ? 'text-[#4ECDC4]'
+                          : 'text-gray-500'
+                  }`}>
+                    {formatDateWithSuffix(dateItem.date)}
+                  </p>
+                  <p class="text-sm font-medium text-[#2C3E50]">{dateItem.event}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile View - Vertical Timeline */}
+      <div class="md:hidden mb-24"> <!-- Increased bottom margin -->
+        <div class="relative pl-10">
+          {/* Vertical timeline line */}
+          <div class="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#1A7A64]/50 to-gray-200 rounded-full"></div>
+
+          <div class="space-y-8">
+            {sortedDates.map((dateItem, index) => {
+              const isPassed = dateItem.isPassed;
+              const isCurrent = index === currentEventIndex || dateItem.isCurrent;
+              const isHighlighted = dateItem.isHighlighted;
+
+              return (
+                <div class="relative">
+                  {/* Node on vertical line */}
+                  <div class={`absolute -left-6 top-1 w-4 h-4 rounded-full z-10 ${
+                    isPassed
+                      ? 'bg-[#1A7A64]'
+                      : isCurrent
+                        ? 'bg-[#FF9F1C] ring-2 ring-[#FF9F1C]/20'
+                        : isHighlighted
+                          ? 'bg-[#4ECDC4] ring-2 ring-[#4ECDC4]/20'
+                          : 'bg-gray-300'
+                  } ${isCurrent ? 'animate-pulse' : ''}`}></div>
+
+                  {/* Connector line */}
+                  <div class={`absolute -left-2 top-3 w-5 h-0.5 ${
+                    isPassed
+                      ? 'bg-[#1A7A64]'
+                      : isCurrent
+                        ? 'bg-[#FF9F1C]'
+                        : isHighlighted
+                          ? 'bg-[#4ECDC4]'
+                          : 'bg-gray-300'
+                  }`}></div>
+
+                  {/* Event card */}
+                  <div class={`pl-4 pb-2 border-l-2 ${
+                    isPassed
+                      ? 'border-[#1A7A64] text-[#1A7A64]'
+                      : isCurrent
+                        ? 'border-[#FF9F1C] text-[#FF9F1C]'
+                        : isHighlighted
+                          ? 'border-[#4ECDC4] text-[#4ECDC4]'
+                          : 'border-gray-300 text-gray-500'
+                  }`}>
+                    <p class="text-xs font-semibold">
+                      {formatDateWithSuffix(dateItem.date)}
+                    </p>
+                    <h3 class="text-base font-semibold text-[#2C3E50] mt-1">
+                      {dateItem.event}
+                    </h3>
+
+                    {/* Status tag */}
+                    <div class={`mt-1 inline-block px-2 py-0.5 text-xs font-medium rounded-full ${
+                      isPassed
+                        ? 'bg-[#1A7A64]/10 text-[#1A7A64]'
+                        : isCurrent
+                          ? 'bg-[#FF9F1C]/20 text-[#FF9F1C]'
+                          : isHighlighted
+                            ? 'bg-[#4ECDC4]/20 text-[#4ECDC4]'
+                            : 'bg-gray-100 text-gray-500'
+                    }`}>
+                      {isPassed ? 'Completed' : isCurrent ? 'Active' : 'Upcoming'}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </Container>
+  </div>
+</BaseLayout>
+
+<style>
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(255, 159, 28, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(255, 159, 28, 0);
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s infinite;
+  }
+</style>

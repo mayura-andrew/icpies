@@ -1,0 +1,922 @@
+---
+import Container from "@/components/primitives/Container.astro";
+import CommitteeMemberCard, {
+  type Member,
+} from "@/components/sections/CommitteeMemberCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+const categories = [
+  "Conference Chairs",
+  "Conference Co-Chairs",
+  "Technical Programme Committee (TPC) Chair",
+  "Technical Program Committee (TPC) Co-Chairs",
+  "Advisory Board",
+  "Organizing Committee Chairs",
+  "Publication Chairs",
+  "Publication Co-Chairs",
+  "Financial & Registration Chair",
+  "Financial & Registration Co-Chairs",
+  "International Relations Chairs",
+  "Publicity Chair",
+  "Special Session Chair",
+  "Special Session Co-Chair",
+  "CMT Chair",
+  "Workshop Chair",
+  "Indexing Committee Chair",
+  "Awards Chair",
+  "Awards Co-Chair",
+  "Local Organizing Chairs",
+  "Publicity Committee",
+  "Conference Secretaries",
+  "Web Committee Chair",
+  "Web Master",
+  "Conference Coordinator"
+
+];
+import { Image } from "astro:assets";
+import defaultAvatar from "@/assets/committee/default-avatar.png";
+import drUdugama from "@/assets/committee/Dr. L.S.K. Udugama.svg";
+import profIndika from "@/assets/committee/Prof. Indika Perera.svg";
+import drJayawardana from "@/assets/committee/Dr-G.M.C.P.-Jayawardana.svg";
+import drCaldera from "@/assets/committee/Dr.-H.M.M.CALDERA.svg";
+import profUditha from "@/assets/committee/Prof. Uditha Ratnayake.svg";
+import profVasanthapriyan from "@/assets/committee/Prof. S Vasanthapriyan.svg";
+import profMetththika from "@/assets/committee/Prof.Meththika Vithanage.svg";
+import drUthpala from "@/assets/committee/Dr. Uthpala Jayawardena.svg";
+import drRukshima from "@/assets/committee/Dr. Rukshima dabare.svg";
+import drSupunmalie from "@/assets/committee/Dr. Supunmalie.svg";
+import engSampath from "@/assets/committee/Eng. Sampath Wickramasinghe.svg";
+import profDamith from "@/assets/committee/Prof. Damith Wickramanayake.svg";
+import drMenaka from "@/assets/committee/Dr. Menaka Ranasinghe.svg";
+import drParanavithana from "@/assets/committee/Dr.-G.-N.-Paranavithana.svg";
+import engHemali from "@/assets/committee/Mrs. Hemalie Pasquel.svg";
+import mrSiyad from "@/assets/committee/N.M. Siyad.svg";
+import drUdayakumar from "@/assets/committee/Dr.Udayakumar.svg";
+import mrKasun from "@/assets/committee/Mr. Kasun-Aratthanage.svg";
+import msKirushika from "@/assets/committee/Ms.-J.-Kirushika.svg";
+import mrSaliya from "@/assets/committee/Saliya Wickramasinghe.svg";
+import engHimanujahn from "@/assets/committee/Eng. S Himanujahn.svg";
+import engJanaka from "@/assets/committee/Eng.-CJ-Basnayakege.svg";
+import mrMayura from "@/assets/committee/Mayura.svg";
+import drChamila from "@/assets/committee/Dr.-Chamila-Dias.svg";
+import proBandulee from "@/assets/committee/drBandulee.svg"
+import proMadu from "@/assets/committee/Madhubashini.svg"
+import mrPriyankara from "@/assets/committee/priyankara.svg"
+import mrshalindu from "@/assets/committee/Shalindu.svg"
+import mszeena from "@/assets/committee/msZeena.svg"
+import mrManoj from "@/assets/committee/mrManoj.svg"
+import drRuminda from "@/assets/committee/drRuminda.svg"
+import drThushara from "@/assets/committee/drThushara.svg"
+import drSachithra from "@/assets/committee/drSachithra.svg"
+import drGehan from "@/assets/committee/Anthonys.svg"
+import drAchintha from "@/assets/committee/drAchintha.svg"
+
+const members: Member[] = [
+  // Conference Chairs
+  {
+    name: "Prof. Bandunee Athapattu",
+    title: "Conference Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Conference Chair",
+    image: proBandulee,
+    country: "LK",
+    email: "bcliy@ou.ac.lk",
+    category: "Conference Chairs",
+  },
+  {
+    name: "Prof. Jagath Manatunge",
+    title: "Conference Chair",
+    affiliation: "University of Moratuwa",
+    role: "Conference Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "manatunge@uom.lk",
+    category: "Conference Chairs",
+  },
+
+  {
+    name: "Prof. Uditha Ratnayake",
+    title: "Conference Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Conference Co-Chair",
+    image: profUditha,
+    country: "LK",
+    email: "udithaw@ou.ac.lk",
+    category: "Conference Co-Chairs",
+  },
+  {
+    name: "Prof. S Vasanthapriyan",
+    title: "Conference Co-Chair",
+    affiliation: "Sabaragamuwa University of Sri Lanka",
+    role: "Conference Co-Chair",
+    image: profVasanthapriyan,
+    country: "LK",
+    email: "priyan@foc.sab.ac.lk",
+    category: "Conference Co-Chairs",
+  },
+  {
+    name: "Dr. Menaka Ranasinghe",
+    title: "Conference Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Conference Co-Chair",
+    image: drMenaka,
+    country: "LK",
+    email: "ddran@ou.ac.lk",
+    category: "Conference Co-Chairs",
+  },
+  {
+    name: "Dr. Lochandaka Ranathunga",
+    title: "Conference Co-Chair",
+    affiliation: "University of Moratuwa",
+    role: "Conference Co-Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "lochandaka@uom.lk",
+    category: "Conference Co-Chairs",
+  },
+  {
+    name: "Dr. Yohan Mahagamage",
+    title: "Conference Co-Chairs",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Conference Co-Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "mgyma@ou.ac.lk",
+    category: "Conference Co-Chairs",
+  },
+  //TPC Chair
+  {
+    name: "Dr. L.S.K. Udugama",
+    title: "TPC Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Technical Program Committee Chair",
+    image: drUdugama,
+    country: "LK",
+    email: "lsudu@ou.ac.lk",
+    category: "Technical Programme Committee (TPC) Chair",
+  },
+  {
+    name: "Prof. Indika Perera",
+    title: "TPC Co-Chair",
+    affiliation: "University of Moratuwa",
+    role: "Technical Program Committee Co-Chair",
+    image: profIndika,
+    country: "LK",
+    email: "indikaperera@uom.lk",
+    category: "Technical Program Committee (TPC) Co-Chairs",
+  },
+  {
+    name: "Dr. Gehan Anthonys",
+    title: "TPC Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "TPC Co-Chair",
+    image: drGehan,
+    country: "LK",
+    email: "ganth@ou.ac.lk",
+    category: "Technical Program Committee (TPC) Co-Chairs",
+  },
+  {
+    name: "Prof. Shiromi Karunaratne",
+    title: "TPC Co-Chair",
+    affiliation: "SLIIT",
+    role: "TPC Co-Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "meththika@sjp.ac.lk",
+    category: "Technical Program Committee (TPC) Co-Chairs",
+  },
+  {
+    name: "Dr. Sachithra Imbulana ",
+    title: "TPC Co-Chair",
+    affiliation: "University of Moratuwa",
+    role: "TPC Co-Chair",
+    image: drSachithra,
+    country: "LK",
+    email: "ganth@ou.ac.lk",
+    category: "Technical Program Committee (TPC) Co-Chairs"
+  },
+  {
+    name: "Dr. Achintha Madushanka",
+    title: "Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Organizing Committee Chair",
+    image: drAchintha,
+    country: "LK",
+    email: "gmjay@ou.ac.lk",
+    category: "Organizing Committee Chairs",
+  },
+  {
+    name: "Dr. Maneesha Caldera",
+    title: "Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Organizing Committee Chair",
+    image: drCaldera,
+    country: "LK",
+    email: "hmcal@ou.ac.lk",
+    category: "Organizing Committee Chairs",
+  },
+//   {
+//     name: "Dr. Rukshima Dabare",
+//     title: "Co-Chair",
+//     affiliation: "The Open University of Sri Lanka",
+//     role: "Organizing Committee Chair",
+//     image: drRukshima,
+//     country: "LK",
+//     email: "hmcal@ou.ac.lk",
+//     category: "Organizing Committee Chairs",
+//   },
+
+  {
+    name: "Dr. Buddika Aruggoda",
+    title: "TPC Member",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Technical Program Committee Member",
+    image: defaultAvatar,
+    country: "LK",
+    email: "lsudu@ou.ac.lk",
+    category: "Technical Program Committee",
+  },
+  {
+    name: "Dr.(Eng.) A.M.L.N. Gunathilaka",
+    title: "TPC Member",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Technical Program Committee Member",
+    image: defaultAvatar,
+    country: "LK",
+    email: "lsudu@ou.ac.lk",
+    category: "Technical Program Committee",
+  },
+  {
+    name: "Dr. I.S.K. Wijayawardane",
+    title: "TPC Member",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Technical Program Committee Member",
+    image: defaultAvatar,
+    country: "LK",
+    email: "lsudu@ou.ac.lk",
+    category: "Technical Program Committee",
+  },
+  {
+    name: "Dr. Nadeera Meedin",
+    title: "TPC Member",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Technical Program Committee Member",
+    image: defaultAvatar,
+    country: "LK",
+    email: "lsudu@ou.ac.lk",
+    category: "Technical Program Committee",
+  },
+  {
+    name: "Mrs. Miwka Ranasinghe",
+    title: "TPC Member",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Technical Program Committee Member",
+    image: defaultAvatar,
+    country: "LK",
+    email: "lsudu@ou.ac.lk",
+    category: "Technical Program Committee",
+  },
+  {
+    name: "Eng. Indika Fernando",
+    title: "TPC Member",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Technical Program Committee Member",
+    image: defaultAvatar,
+    country: "LK",
+    email: "lsudu@ou.ac.lk",
+    category: "Technical Program Committee",
+  },
+
+  {
+    name: "Dr. Ayomi Irugalbandara",
+    title: "Organizing Committee Member",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Organizing Committee Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "hmcal@ou.ac.lk",
+    category: "Organizing Committee",
+  },
+  // Programme Co-Chairs
+  {
+    name: "Dr. Lochandaka Ranathunga",
+    title: "Programme Co-Chair",
+    affiliation: "University of Moratuwa",
+    role: "Programme Co-Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "lochandaka@uom.lk",
+    category: "Programme Committee",
+  },
+  // Publication Chair & Co-Chairs
+  {
+    name: "Prof. Meththika Vithanage",
+    title: "Publication Chair",
+    affiliation: "University of Sri Jayewardenepura",
+    role: "Publication Chair",
+    image: profMetththika,
+    country: "LK",
+    email: "meththika@sjp.ac.lk",
+    category: "Publication Chairs",
+  },
+  {
+    name: "Prof. Shiromi Karunaratne",
+    title: "Publication Chair",
+    affiliation: "SLIIT",
+    role: "Publication Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "meththika@sjp.ac.lk",
+    category: "Publication Chairs",
+  },
+  {
+    name: "Dr. Uthpala Jayawardena",
+    title: "Publication Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Publication Co-Chair",
+    image: drUthpala,
+    country: "LK",
+    email: "uajay@ou.ac.lk",
+    category: "Publication Co-Chairs",
+  },
+  {
+    name: "Prof. Pradeep Kalansooriya",
+    title: "Publication Co-Chair",
+    affiliation: "General Sir John Kotelawala Defence University",
+    role: "Publication Co-Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "pradeepkalansooriya@kdu.ac.lk",
+    category: "Publication Co-Chairs",
+  },
+  {
+    name: "Dr. Hasintha Wijesekara",
+    title: "Publication Co-Chair",
+    affiliation: "University of Sabaragamuwa",
+    role: "Publication Co-Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "pradeepkalansooriya@kdu.ac.lk",
+    category: "Publication Co-Chairs",
+  },
+  {
+    name: "Dr. Pradeep Gajanayake",
+    title: "Publication Co-Chair",
+    affiliation: "University of Sri Jayewardenepura",
+    role: "Publication Co-Chair",
+    image: defaultAvatar,
+    country: "LK",
+    email: "pradeepkalansooriya@kdu.ac.lk",
+    category: "Publication Co-Chairs",
+  },
+  {
+    name: "Dr. Supunmalie Ahangama",
+    title: "Publication Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Publication Co-Chair",
+    image: drSupunmalie,
+    country: "LK",
+    email: "supunmali@ou.ac.lk",
+    category: "Publication Co-Chairs",
+  },
+  {
+    name: "Dr. Ganila Paranavitana",
+    title: "Publication Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Publication Co-Chair",
+    image: drParanavithana,
+    country: "LK",
+    email: "gnpar@ou.ac.lk",
+    category: "Publication Co-Chairs",
+  },
+
+  // Financial & Registration Chair
+  {
+    name: "Mr. W.D. Manoj",
+    title: "Financial & Registration Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Chair",
+    image: mrManoj,
+    country: "LK",
+    email: "dswic@ou.ac.lk",
+    category: "Financial & Registration Chair",
+  },
+  {
+	name: "Mr. Saliya Wickramasinghe",
+	title: "Financial & Registration Co-Chair",
+	affiliation: "The Open University of Sri Lanka",
+	role: "Financial & Registration Co-Chair",
+	image: mrSaliya,
+	country: "LK",
+	email: "bmwic@ou.ac.lk",
+	category: "Financial & Registration Co-Chairs",
+  },
+  {
+    name: "Ms. J. Kirushika",
+    title: "Financial & Registration Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Local Organizing Chair",
+    image: msKirushika,
+    country: "LK",
+    email: "jkiru@ou.ac.lk",
+    category: "Financial & Registration Co-Chairs",
+  },
+  // International Relation Chair
+  {
+    name: "Dr. Chamila Dias",
+    title: "International Relations Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "International Relation Chair",
+    image: drChamila,
+    country: "LK",
+    email: "sndia@ou.ac.lk",
+    category: "International Relations Chairs",
+  },
+	{
+    name: "Dr. Chandana Jayawardena",
+    title: "International Relation Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "International Relation Chair",
+    image: drJayawardana,
+    country: "LK",
+    email: "dawic@ou.ac.lk",
+    category: "International Relations Chairs",
+  },
+  {
+    name: "Prof. Madhubashini Hewage",
+    title: "Publicity Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Publicity Chair",
+    image: proMadu,
+    country: "LK",
+    email: "sndia@ou.ac.lk",
+    category: "Publicity Chair",
+  },
+
+  // Special Session Chair
+
+  {
+    name: "Dr. Thushara Priyadarshana",
+    title: "Special Session Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Special Session Chair",
+    image: drThushara,
+    country: "LK",
+    email: "sndia@ou.ac.lk",
+    category: "Special Session Chair",
+  },
+   // Special Session Chair
+  {
+    name: "Eng. Shalindu Andradi",
+    title: "Special Session Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Special Session Chair",
+    image: mrshalindu,
+    country: "LK",
+    email: "ddran@ou.ac.lk",
+    category: "Special Session Co-Chair",
+  },
+
+  {
+    name: "Dr. Chamila Dias",
+    title: "CMT Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "CMT Chair",
+    image: drChamila,
+    country: "LK",
+    email: "sndia@ou.ac.lk",
+    category: "CMT Chair",
+  },
+// workshop chair
+    {
+    name: "Mr. N.M. Siyad",
+    title: "Workshop Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Workshop Chair",
+    image: mrSiyad,
+    country: "LK",
+    email: "nmsiy@ou.ac.lk",
+    category: "Workshop Chair",
+  },
+
+  // Indexing Committe chair
+   {
+    name: "Dr. Ganila Paranavitana",
+    title: "Indexing Committee Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Indexing Committee Chair",
+    image: drParanavithana,
+    country: "LK",
+    email: "gnpar@ou.ac.lk",
+    category: "Indexing Committee Chair",
+  },
+
+   // Awards Chair
+  {
+    name: "Eng. (Mrs.) Hemali Pasquel",
+    title: "Awards Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Awards Chair",
+    image: engHemali,
+    country: "LK",
+    email: "hpasq@ou.ac.lk",
+    category: "Awards Chair",
+  },
+
+  {
+    name: "Eng. Nelaka Priyankara",
+    title: "Awards Co-Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Technical Program Committee Member",
+    image: mrPriyankara,
+    country: "LK",
+    email: "lsudu@ou.ac.lk",
+    category: "Awards Co-Chair",
+  },
+
+// Local Organizing Chairs
+
+  {
+    name: "Dr. K.A.C. Udayakumar",
+    title: "Local Organizing Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Local Organizing Chair",
+    image: drUdayakumar,
+    country: "LK",
+    email: "kauda@ou.ac.lk",
+    category: "Local Organizing Chairs",
+  },
+  {
+    name: "Dr. Ruminda Wimalasiri",
+    title: "Local Organizing Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Local Organizing Chair",
+    image: drRuminda,
+    country: "LK",
+    email: "kdara@ou.ac.lk",
+    category: "Local Organizing Chairs",
+  },
+  {
+    name: "Mr. Kasun Araththanage",
+    title: "Local Organizing Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Local Organizing Chair",
+    image: mrKasun,
+    country: "LK",
+    email: "kdara@ou.ac.lk",
+    category: "Local Organizing Chairs",
+  },
+
+   // Conference Secretaries
+  {
+    name: "Eng. S. Himanujahn",
+    title: "Conference Secretary",
+    affiliation: "University of Sri Jayewardenepura",
+    role: "Conference Secretary",
+    image: engHimanujahn,
+    country: "LK",
+    email: "himanujahn@sjp.ac.lk",
+    category: "Conference Secretaries",
+  },
+  {
+    name: "Eng. Zeena Weerabangsa",
+    title: "Conference Secretary",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Conference Secretary",
+    image: mszeena,
+    country: "LK",
+    email: "mzwee@ou.ac.lk",
+    category: "Conference Secretaries",
+  },
+
+
+  {
+    name: "Eng. Sampath Wickramasinghe",
+    title: "Registration Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Registration Chair",
+    image: engSampath,
+    country: "LK",
+    email: "dswic@ou.ac.lk",
+    category: "Registration Chair",
+  },
+
+  // Publicity Chair
+  {
+    name: "Mr. Janaka Wijesekera",
+    title: "Track Chair (Plastics)",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Track Chair (Plastics)",
+    image: defaultAvatar,
+    country: "LK",
+    email: "ganth@ou.ac.lk",
+    category: "Conference Tracks Committee",
+  },
+
+
+
+
+
+  // Web Committee
+
+   {
+    name: "Eng. Sampath Wickramasinghe",
+    title: "Web Committee Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Web Committee Member",
+    image: engSampath,
+    country: "LK",
+    email: "dswic@ou.ac.lk",
+    category: "Web Committee Chair",
+  },
+
+{
+    name: "Mr. Mayura Alahakoon",
+    title: "Deputy Web Committee Lead",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Deputy Web Committee Lead",
+    image: mrMayura,
+    country: "LK",
+    category: "Web Master",
+  },
+
+  {
+    name: "Eng. Zeena Weerabangsa",
+    title: "Conference Secretary",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Conference Secretary",
+    image: mszeena,
+    country: "LK",
+    email: "mzwee@ou.ac.lk",
+    category: "Conference Coordinator",
+  },
+
+
+  {
+    name: "Eng. Janaka Basnayake",
+    title: "Web Committee Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Web Committee Chair",
+    image: engJanaka,
+    country: "LK",
+    email: "cjbas@ou.ac.lk",
+    category: "Web Committee",
+  },
+
+  {
+    name: "Mr. Chanaka Weerasekara",
+    title: "Web Committee Member",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Web Committee Member",
+    image: defaultAvatar,
+    country: "LK",
+    email: "wpcha@ou.ac.lk",
+    category: "Web Committee",
+  },
+
+];
+---
+
+<BaseLayout
+  title="Organizing Committee | ICPIES 2025"
+  description="Meet the organizing committee of the International Conference on Plastics, Innovations and Environmental Sustainability"
+>
+  <div class="relative bg-gradient-to-b from-[#1A7A64]/5 to-white rounded-2xl">
+    <div class="absolute inset-0">
+      <div class="absolute inset-y-0 left-0 w-1/2"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-8 sm:px-6 lg:px-8">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-[#2C3E50] text-center mb-4"
+      >
+        Organizing Committee
+      </h1>
+      <div class="mt-8 flex justify-center">
+        <div
+          class="h-1 w-32 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+  <section>
+  <div class="space-y-16">
+    {categories.map((category) => {
+      const categoryMembers = members.filter(
+        (member) => member.category === category
+      );
+      if (categoryMembers.length === 0) return null;
+
+      return (
+        <div
+          id={category.toLowerCase().replace(/\s+/g, "-")}
+          class="scroll-mt-24"
+        >
+          <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center after:content-[''] after:block after:w-24 after:h-1 after:bg-emerald-500 after:mt-4 after:mx-auto">
+            {category}
+          </h2>
+
+          <div class="flex justify-center">
+            <div
+              class={`grid gap-8 ${
+                categoryMembers.length === 1
+                  ? "grid-cols-1 max-w-lg"
+                  : categoryMembers.length === 2
+                    ? "grid-cols-1 sm:grid-cols-2 max-w-3xl"
+                    : categoryMembers.length === 3
+                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl"
+                      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 max-w-7xl"
+              }`}
+            >
+              {categoryMembers.map((member) => (
+                <div
+                  class="card-container w-full h-full"
+                  style="max-width: 300px;"
+                >
+                  <div
+                    class="group relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform transition duration-300 hover:-translate-y-2 h-full flex flex-col items-center text-center"
+                    style="background-color: #f9f9f9;"
+                  >
+                    <!-- Decorative top accent -->
+                    <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-400 to-teal-500"></div>
+
+                    <div class="relative h-64 w-full flex-shrink-0">
+                      <div class="w-full h-full overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          class="w-full h-full object-cover"
+                          width={300}
+                          height={300}
+                        />
+                        <!-- Subtle overlay gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="p-5 flex flex-col flex-grow"
+                      style="background-color: #f0fdfa"
+                    >
+                      <h3 class="text-lg font-bold text-gray-800 mb-1 relative inline-block">
+                        {member.name}
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
+                      </h3>
+
+                      {member.affiliation && (
+                        <div class="mt-2 flex items-center justify-center text-sm text-gray-600 group-hover:text-gray-800 transition-colors">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 mr-2 text-emerald-500 flex-shrink-0 mt-0.5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                            />
+                          </svg>
+                          <span class="line-clamp-3">{member.affiliation}</span>
+                        </div>
+                      )}
+
+                      <div class="flex-grow"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>
+
+  <!-- Back to top button -->
+  <div class="fixed bottom-8 right-8 z-30">
+    <button
+      id="backToTop"
+      class="bg-emerald-600 text-white rounded-full p-3 shadow-lg hover:bg-emerald-700 transition-all"
+      aria-label="Back to top"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+      </svg>
+    </button>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Committee card hover effects */
+  .committee-card {
+    transition: all 0.3s ease;
+  }
+
+  .committee-card:hover {
+    transform: translateY(-5px);
+  }
+</style>
+
+<script>
+  // Back to top button functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const backToTopButton = document.getElementById("backToTop");
+
+    // Show/hide button based on scroll position
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add("opacity-100");
+        backToTopButton.classList.remove("opacity-0");
+      } else {
+        backToTopButton.classList.add("opacity-0");
+        backToTopButton.classList.remove("opacity-100");
+      }
+    });
+
+    // Equal height cards function
+    document.addEventListener("DOMContentLoaded", function () {
+      // Function to equalize card heights within each category
+      function equalizeCardHeights() {
+        document
+          .querySelectorAll('[id^="conference-chair"], [id^="advisory-board"]')
+          .forEach((category) => {
+            const cards = category.querySelectorAll(".group");
+            if (cards.length === 0) return;
+
+            // Reset heights
+            cards.forEach((card) => (card.style.height = ""));
+
+            // Find max height
+            let maxHeight = 0;
+            cards.forEach((card) => {
+              maxHeight = Math.max(maxHeight, card.offsetHeight);
+            });
+
+            // Apply max height to all cards
+            cards.forEach((card) => (card.style.height = `${maxHeight}px`));
+          });
+      }
+
+      // Run on load and resize
+      equalizeCardHeights();
+      window.addEventListener("resize", equalizeCardHeights);
+    });
+
+    // Scroll to top when clicked
+    backToTopButton.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    // Highlight active category in navigation
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        if (entry.isIntersecting) {
+          document.querySelectorAll(".sticky a").forEach((link) => {
+            link.classList.remove("bg-emerald-100", "text-emerald-800");
+          });
+          document
+            .querySelector(`.sticky a[href="#${id}"]`)
+            .classList.add("bg-emerald-100", "text-emerald-800");
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll("section > div[id]").forEach((section) => {
+      observer.observe(section);
+    });
+  });
+</script>

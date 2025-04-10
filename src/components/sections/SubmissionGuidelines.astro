@@ -1,0 +1,72 @@
+---
+import TabbedInterface from './TabbedInterface.jsx';
+
+interface Tab {
+  id: string;
+  title: string;
+  content: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  tabs: Tab[];
+}
+
+const {
+  title = "Author Guidelines",
+  subtitle = "Guidelines for submitting your research to ICPIES 2025",
+  tabs = [],
+} = Astro.props;
+---
+
+<TabbedInterface title={title} subtitle={subtitle} tabs={tabs} client:visible />
+
+<style>
+  .tab-button {
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .tab-button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #1A7A64;
+    transition: width 0.3s ease;
+  }
+
+  .tab-button:hover::after {
+    width: 100%;
+  }
+
+  .tab-button.active-tab {
+    color: #1A7A64;
+    border-bottom: 2px solid #1A7A64;
+  }
+
+  .prose h2 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    color: #2c3e50;
+    font-weight: 500;
+  }
+
+  .prose ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+  }
+
+  .prose ol {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+  }
+</style>

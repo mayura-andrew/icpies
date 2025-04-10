@@ -1,0 +1,145 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/primitives/Container.astro";
+import About from "@/components/sections/About.astro";
+
+const pageTitle = "About ICPIES 2025";
+const pageDescription = "Learn about the International Conference on Plastics, Innovations, and Environmental Sustainability (ICPIES) 2025, bringing together global experts to address plastic pollution and promote sustainable solutions.";
+
+// SEO metadata
+const seo = {
+  title: "About ICPIES 2025 | International Conference on Plastics, Innovations, and Environmental Sustainability",
+  description: "Learn about the International Conference on Plastics, Innovations, and Environmental Sustainability (ICPIES) 2025, bringing together global experts to address plastic pollution and promote sustainable solutions.",
+  openGraph: {
+    basic: {
+      title: "About ICPIES 2025",
+      type: "website",
+      image: "./about.png",
+    }
+  }
+};
+
+// Conference theme and objectives
+const aboutData = {
+  title: "ICPIES 2025",
+  subtitle: "International Conference on Plastics, Innovations, and Environmental Sustainability",
+  content: "The International Conference on Plastics, Innovations, and Environmental Sustainability (ICPIES) 2025 brings together experts, researchers, policymakers, industry leaders, and stakeholders to explore cutting-edge advancements in plastics science, sustainable innovations, and environmental solutions. This conference serves as a platform for sharing knowledge, pioneering technologies, and best practices to mitigate plastic pollution, promote circular economy strategies, and drive sustainable transformations in plastics recycling and waste management.<br/><br/>ICPIES 2025 aims to facilitate interdisciplinary dialogue and collaboration toward addressing the global challenges of plastic pollution. By convening diverse stakeholders from academia, industry, government, and civil society, the conference creates opportunities for knowledge exchange, networking, and partnerships that can drive meaningful progress toward environmental sustainability.<br/><br/>The conference will feature keynote speeches, panel discussions, research presentations, and interactive workshops covering a wide range of topics related to plastic pollution, innovative solutions, and policy frameworks. Participants will have the opportunity to showcase their research findings, learn about the latest developments in the field, and contribute to shaping the future of plastic management and sustainability."
+};
+
+// Conference objectives
+const servicesData = {
+  title: "About ICPIES 2025",
+  aboutTitle: "Conference Objectives",
+  aboutDescription: "ICPIES 2025 aims to address critical challenges related to plastics and environmental sustainability through collaborative efforts and knowledge sharing.",
+  aboutTheme: "Eco-Driven Innovations: Advancing Plastics, Circular Economy & Climate Action for a Sustainable Future",
+  aboutLogo: "/src/assets/pages/homepage/icpies_logo.png",
+  services: [
+    {
+      title: "Knowledge Exchange",
+      description: "Facilitate the exchange of scientific knowledge, technological advancements, and best practices in plastic management and environmental sustainability among researchers, industry professionals, and policymakers.",
+      icon: "ph:brain-light"
+    },
+    {
+      title: "Innovation Showcase",
+      description: "Provide a platform for showcasing innovative solutions, technologies, and approaches to address plastic pollution and promote sustainable alternatives.",
+      icon: "ph:lightbulb-light"
+    },
+    {
+      title: "Policy Development",
+      description: "Contribute to the development of evidence-based policies and regulatory frameworks for effective plastic waste management and pollution reduction.",
+      icon: "ph:note-pencil-light"
+    },
+    {
+      title: "Networking Opportunities",
+      description: "Create opportunities for networking and collaboration among researchers, industry stakeholders, policymakers, and civil society organizations working on plastic-related issues.",
+      icon: "ph:users-three-light"
+    },
+    {
+      title: "Capacity Building",
+      description: "Build capacity and raise awareness about plastic pollution challenges and sustainable solutions among participants and the wider community.",
+      icon: "ph:chart-line-up-light"
+    },
+    {
+      title: "Action Oriented",
+      description: "Catalyze concrete actions and initiatives to address plastic pollution and promote sustainable plastic management practices at local, national, and global levels.",
+      icon: "ph:flag-banner-light"
+    }
+  ]
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} seo={seo}>
+  <!-- Hero Section -->
+  <div class="relative bg-gradient-to-b from-[#1A7A64]/5 to-white ">
+    <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-4">
+        About ICPIES 2025
+      </h1>
+      <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-500 text-center">
+        International Conference on Plastics, Innovations, and Environmental Sustainability
+      </p>
+      <div class="mt-8 flex justify-center">
+        <div class="h-1 w-32 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <Container>
+    <About
+      title={aboutData.title}
+      subtitle={aboutData.subtitle}
+      content={aboutData.content}
+    />
+
+    <!-- Conference Objectives -->
+    <!-- <Services
+      title={servicesData.title}
+      aboutTitle={servicesData.aboutTitle}
+      aboutDescription={servicesData.aboutDescription}
+      aboutTheme={servicesData.aboutTheme}
+      aboutLogo={servicesData.aboutLogo}
+      services={servicesData.services}
+    /> -->
+  </Container>
+
+  <!-- Additional Info Section -->
+  <div class="bg-emerald-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Conference Theme</h2>
+        <p class="text-xl text-emerald-700 max-w-3xl mx-auto italic">
+          "Eco-Driven Innovations: Advancing Plastics, Circular Economy & Climate Action for a Sustainable Future"
+        </p>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-6">Key Focus Areas</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="border-l-4 border-emerald-500 pl-4">
+              <h4 class="font-medium text-lg text-emerald-800 mb-2">Plastic Pollution Mitigation</h4>
+              <p class="text-gray-600">Strategies and technologies for reducing plastic pollution in various environments, including marine, terrestrial, and atmospheric systems.</p>
+            </div>
+
+            <div class="border-l-4 border-emerald-500 pl-4">
+              <h4 class="font-medium text-lg text-emerald-800 mb-2">Sustainable Material Innovations</h4>
+              <p class="text-gray-600">Development of biodegradable, compostable, and environmentally friendly alternatives to conventional plastics.</p>
+            </div>
+
+            <div class="border-l-4 border-emerald-500 pl-4">
+              <h4 class="font-medium text-lg text-emerald-800 mb-2">Circular Economy Approaches</h4>
+              <p class="text-gray-600">Implementation of circular economy principles in plastic production, use, and recycling to minimize waste and maximize resource efficiency.</p>
+            </div>
+
+            <div class="border-l-4 border-emerald-500 pl-4">
+              <h4 class="font-medium text-lg text-emerald-800 mb-2">Policy and Regulatory Frameworks</h4>
+              <p class="text-gray-600">Analysis and development of effective policies, regulations, and governance mechanisms for addressing plastic pollution and promoting sustainability.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

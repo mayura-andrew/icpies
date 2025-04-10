@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Registration | ICPIES 2025" description="Registration information for ICPIES 2025 Conference">
+  <section class="py-32 bg-gradient-to-b from-[#0D3B66]/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+        Registration Fees
+      </h1>
+
+      <div class="w-32 h-1 bg-gradient-to-r from-[#0D3B66] to-[#4ECDC4] rounded-full mx-auto mb-10"></div>
+
+      <div class="py-8 px-4 text-center max-w-4xl mx-auto">
+        <!-- Registration Fees Section -->
+		<div class="mb-16">
+		  <div class="grid md:grid-cols-2 gap-8 mb-10">
+			<!-- Local Participants -->
+			<div class="rounded-xl shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-[#1A7A64]">
+			  <div class="p-6 bg-gradient-to-br  from-[#4ECDC4]/10 to-white rounded-lg border-l-4 border-[#4ECDC4]">
+				<h3 class="text-2xl font-semibold text-[#2C3E50] mb-4">Local Participants</h3>
+				<div class="space-y-4">
+				  <div class="flex justify-between items-center border-b border-[#1A7A64]/20 pb-3">
+					<span class="text-gray-700 font-medium">General Registration</span>
+					<span class="text-[#1A7A64] font-bold">5000 LKR</span>
+				  </div>
+				  <div class="flex justify-between items-center border-b border-[#1A7A64]/20 pb-3">
+					<span class="text-gray-700 font-medium">Early Bird Registration</span>
+					<span class="text-[#1A7A64] font-bold">3500 LKR</span>
+				  </div>
+				  <div class="flex justify-between items-center">
+					<span class="text-gray-700 font-medium">Students Registration</span>
+					<span class="text-[#1A7A64] font-bold">3000 LKR</span>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+			<!-- Foreign Participants -->
+			<div class="rounded-xl shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-[#0D3B66]">
+			  <div class="p-6 bg-gradient-to-br from-[#4ECDC4]/10 to-white rounded-lg border-l-4 border-[#4ECDC4]">
+				<h3 class="text-2xl font-semibold text-[#2C3E50] mb-4">Foreign Participants</h3>
+				<div class="space-y-4">
+				  <div class="flex justify-between items-center border-b border-[#0D3B66]/20 pb-3">
+					<span class="text-gray-700 font-medium">General Registration</span>
+					<span class="text-[#0D3B66] font-bold">200 USD</span>
+				  </div>
+				  <div class="flex justify-between items-center border-b border-[#0D3B66]/20 pb-3">
+					<span class="text-gray-700 font-medium">Early Bird Registration</span>
+					<span class="text-[#0D3B66] font-bold">100 USD</span>
+				  </div>
+				  <div class="flex justify-between items-center">
+					<span class="text-gray-700 font-medium">Online Participation</span>
+					<span class="text-[#0D3B66] font-bold">50 USD</span>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+
+        <!-- Coming Soon Section -->
+        <div class="relative mb-12">
+          <div class="w-24 h-24 rounded-full bg-[#0D3B66]/10 mx-auto flex items-center justify-center animate-pulse mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#0D3B66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012 2h2a2 2 0 012-2m-3 7h3m-3 4h3m-6-4h.01M6 16h.01" />
+            </svg>
+          </div>
+
+          <h2 class="text-3xl md:text-4xl font-bold text-[#2C3E50] mb-4">Registration Portal Coming Soon</h2>
+          <p class="text-xl text-[#2C3E50]/70 mb-8">
+            The registration portal for ICPIES 2025 will be opening soon. Please check back later for
+            the registration process details.
+          </p>
+
+          <div class="flex flex-col md:flex-row gap-6 justify-center mt-10">
+            <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-[#1A7A64] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#156954] transform hover:-translate-y-1 hover:shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+              </svg>
+              Back to Home
+            </a>
+          </div>
+        </div>
+
+        <!-- Important Dates Section -->
+        <div class="border-t border-gray-200 pt-12 mt-12">
+          <h3 class="text-2xl font-semibold text-[#2C3E50] mb-6">Important Dates</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-[#1A7A64] text-left">
+              <div class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1A7A64] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span><strong>Early Bird Registration:</strong> Until July 6, 2025</span>
+              </div>
+            </div>
+            <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-[#0D3B66] text-left">
+              <div class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0D3B66] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span><strong>Registration Deadline:</strong> July 18, 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>

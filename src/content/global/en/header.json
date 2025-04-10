@@ -1,0 +1,28 @@
+{
+	"logo": {
+		"imagePath": "/src/assets/global/navigation/logo.svg"
+	},
+	"pages": [
+		{
+			"title": "Home",
+			"link": "/"
+		},
+		{
+			"title": "About",
+			"link": "#about"
+		},
+		{
+			"title": "Conference Tracks",
+			"link": "#conference-tracks"
+		},
+		{
+			"title": "Committees",
+			"link": "#committees"
+		},
+		{
+			"title": "Contacts",
+			"link": "/contact"
+		}
+	],
+	"actions": []
+}

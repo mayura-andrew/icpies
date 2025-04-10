@@ -1,0 +1,226 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+interface CommitteeMember {
+    name: string;
+    title?: string;
+    affiliation?: string;
+    role?: string;
+    image?: string;
+    country?: string;
+    email?: string;
+    linkedin?: string;
+    category?: string;
+}
+
+const members: CommitteeMember[] = [
+    {
+        name: "Prof. Jane Smith",
+        title: "Professor of Environmental Science",
+        affiliation: "The Open University of Sri Lanka",
+        role: "Conference Chair",
+        image: "./committee/Ms.-J.-Kirushika.jpg",
+        country: "LK",
+        email: "jane.smith@ousl.lk",
+        category: "Conference Chair"
+    },
+    {
+        name: "Dr. John Doe",
+        title: "Associate Professor of Material Science",
+        affiliation: "University of Moratuwa",
+        role: "Technical Program Chair",
+        image: "./committee/Ms.-J.-Kirushika.jpg",
+        country: "LK",
+        email: "john.doe@uom.lk",
+        category: "Conference Co-Chairs"
+    },
+    {
+        name: "Prof. Robert Johnson",
+        title: "Professor of Environmental Engineering",
+        affiliation: "University of California",
+        role: "International Advisor",
+        image: "./committee/Ms.-J.-Kirushika.jpg",
+        country: "US",
+        email: "rjohnson@uc.edu",
+        category: "Advisory Committee"
+    },
+    {
+        name: "Dr. Emily Watson",
+        title: "Lecturer in Sustainable Development",
+        affiliation: "The Open University of Sri Lanka",
+        role: "Local Organizing Committee",
+        image: "./committee/Ms.-J.-Kirushika.jpg",
+        country: "LK",
+        email: "ewatson@ousl.lk",
+        category: "Organizing Committee"
+    },
+    {
+        name: "Dr. Michael Lee",
+        title: "Associate Professor of Environmental Policy",
+        affiliation: "University of Colombo",
+        role: "Policy Committee Chair",
+        image: "./committee/Ms.-J.-Kirushika.jpg",
+        country: "LK",
+        email: "mlee@cmb.ac.lk",
+        category: "Organizing Committee"
+    }
+];
+
+const groupedMembers = members.reduce((acc, member) => {
+    const category = member.category || 'Uncategorized';
+    if (!acc[category]) {
+        acc[category] = [];
+    }
+    acc[category].push(member);
+    return acc;
+}, {} as Record<string, CommitteeMember[]>);
+
+const categoryOrder = [
+    "Advisory Committee",
+    "Conference Chair",
+    "Conference Co-Chairs",
+    "Organizing Committee"
+];
+
+const sortedCategories = Object.keys(groupedMembers).sort((a, b) => {
+    const indexA = categoryOrder.indexOf(a);
+    const indexB = categoryOrder.indexOf(b);
+    return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+});
+
+const defaultAvatar = "./committee/default-avatar.jpg";
+
+function getImagePath(image?: string): string {
+    return image || defaultAvatar;
+}
+
+function getFlagEmoji(countryCode?: string): string {
+    if (!countryCode) return "";
+
+    // Convert country code to emoji flag
+    const codePoints = countryCode
+        .toUpperCase()
+        .split('')
+        .map(char => 127397 + char.charCodeAt(0));
+    return String.fromCodePoint(...codePoints);
+}
+
+const title = "ICPIES 2025 Organizing Committee";
+const description = "Meet the dedicated team behind ICPIES 2025, bringing together experts from academia, industry, and policy.";
+---
+
+<BaseLayout title={title} description={description}>
+    <!-- Hero section with a more modern gradient and subtle pattern -->
+    <section class="relative bg-gradient-to-r from-emerald-800 to-teal-900 py-24">
+        <div class="absolute inset-0 bg-[url('/images/pattern-bg.svg')] bg-repeat opacity-10"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h1 class="text-5xl font-bold text-white text-center leading-tight">
+                Organizing Committee
+            </h1>
+            <p class="text-xl text-emerald-100 mt-6 max-w-3xl mx-auto text-center">
+                {description}
+            </p>
+        </div>
+    </section>
+
+    <!-- Navigation tabs for different committee categories -->
+    <div class="bg-white sticky top-0 z-20 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex space-x-1 overflow-x-auto py-4 scrollbar-hide">
+                {sortedCategories.map((category) => (
+                    <a href={`#${category.toLowerCase().replace(/\s+/g, '-')}`}
+                       class="px-4 py-2 whitespace-nowrap rounded-full text-sm font-medium transition-colors
+                              hover:bg-emerald-100 hover:text-emerald-800 focus:outline-none focus:ring-2
+                              focus:ring-emerald-500 focus:ring-offset-2">
+                        {category}
+                    </a>
+                ))}
+            </div>
+        </div>
+    </div>
+
+    <!-- Committee members by category -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {sortedCategories.map((category) => (
+                <div id={category.toLowerCase().replace(/\s+/g, '-')} class="mb-20 scroll-mt-20">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 after:content-[''] after:block after:w-24 after:h-1 after:bg-emerald-500 after:mt-4">
+                        {category}
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {groupedMembers[category].map((member) => (
+                            <div class="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
+                                <div class="flex flex-col items-center pt-10 pb-6">
+                                    <div class="relative mb-6">
+                                        <div class="w-36 h-36 rounded-full overflow-hidden border-4 border-emerald-100 shadow-md transform group-hover:scale-105 transition-transform duration-300">
+                                            <img src={getImagePath(member.image)} alt={member.name} class="w-full h-full object-cover" />
+                                        </div>
+                                        {member.country && (
+                                            <span class="absolute bottom-0 right-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md text-lg">
+                                                {getFlagEmoji(member.country)}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <h3 class="text-xl font-bold text-gray-800">{member.name}</h3>
+
+                                    {member.role && (
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 mt-2">
+                                            {member.role}
+                                        </span>
+                                    )}
+
+                                    {member.title && <p class="text-emerald-700 mt-2 text-center">{member.title}</p>}
+
+                                    {member.affiliation && (
+                                        <p class="text-gray-600 text-sm mt-1 text-center flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                            </svg>
+                                            {member.affiliation}
+                                        </p>
+                                    )}
+
+                                    <div class="mt-6 flex space-x-3">
+                                        {member.email && (
+                                            <a href={`mailto:${member.email}`}
+                                               class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-emerald-100 transition-colors text-gray-700 hover:text-emerald-700"
+                                               title={member.email}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                </svg>
+                                            </a>
+                                        )}
+                                        {member.linkedin && (
+                                            <a href={member.linkedin} target="_blank" rel="noopener noreferrer"
+                                               class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 hover:bg-blue-100 transition-colors text-gray-700 hover:text-blue-700"
+                                               title="LinkedIn">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                                                </svg>
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .scrollbar-hide {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+</style>

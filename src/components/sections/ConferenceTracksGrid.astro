@@ -1,0 +1,235 @@
+---
+interface Topic {
+  name: string;
+  icon?: string;
+}
+
+interface Track {
+  title: string;
+  subtitle: string;
+  image: string;
+  description: string;
+  topics?: string[];
+  color?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  tracks: Track[];
+  viewAllLink?: string;
+  compact?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  tracks,
+  viewAllLink,
+  compact = false // Changed default to non-compact view
+} = Astro.props;
+
+// Define a set of colors for track cards if not specified
+const defaultColors = [
+  '#1A7A64', '#2E5EAA', '#9B4D85', '#D66853',
+  '#2B8C67', '#5E6CA2', '#946B2D', '#466365'
+];
+
+// Icons for topics (using Heroicons)
+const topicIcons = {
+  "Microplastic": "microscope",
+  "Detection": "magnifying-glass",
+  "Recycling": "arrow-path",
+  "Waste": "trash",
+  "Policy": "document-text",
+  "Climate": "globe-alt",
+  "Technology": "cpu-chip",
+  "Ecosystem": "sparkles",
+  "Material": "beaker",
+  "Education": "academic-cap",
+  "AI": "chip",
+  "Machine Learning": "variable",
+  "Digital": "computer-desktop",
+  "Environmental": "sun",
+  "Health": "heart",
+  "Biodegradable": "leaf",
+  "Innovation": "light-bulb",
+  "Sustainable": "check-badge",
+  "Smart": "bolt",
+  "Monitoring": "eye",
+  "Modeling": "chart-bar",
+  "Circular": "arrow-path",
+};
+
+function getIconForTopic(topic: string): string {
+  for (const [key, value] of Object.entries(topicIcons)) {
+    if (topic.toLowerCase().includes(key.toLowerCase())) {
+      return value;
+    }
+  }
+  return "tag"; // Default icon
+}
+---
+
+<div class="py-10" id="conference-tracks">
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- More compact title section -->
+    <div class="text-center mb-10">
+        <h2 class="text-[2.50rem] md:text-4xl font-bold text-gray-800 mb-3">{title}</h2>
+      {description &&
+        <p class="text-base text-gray-600 max-w-3xl mx-auto">
+          {description}
+        </p>
+      }
+    </div>
+
+    <!-- Grid layout for more compact presentation -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {tracks.map((track, index) => (
+        <div class="flex flex-row items-start gap-3 p-3 bg-white rounded-lg shadow-sm transition-all duration-300 hover:shadow-md border border-gray-100 group">
+          <!-- Smaller image - moved to align with top for more text space -->
+          <div class="flex-shrink-0 relative mt-1">
+            <div class="w-12 h-12 md:w-16 md:h-16 rounded-full overflow-hidden border-2" style={`border-color: ${track.color || defaultColors[index % defaultColors.length]}`}>
+              <img
+                src={track.image}
+                alt={track.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Smaller badge -->
+            <div
+              class="absolute -top-1 -right-1 w-5 h-5 md:w-6 md:h-6 text-xs md:text-sm rounded-full flex items-center justify-center text-white font-bold shadow-sm"
+              style={`background-color: ${track.color || defaultColors[index % defaultColors.length]}`}
+            >
+              {index + 1}
+            </div>
+          </div>
+
+          <!-- Track details - changed to align items at start -->
+          <div class="flex-1 flex flex-col min-w-0">
+            <!-- Title without truncate -->
+            <h3 class="text-base font-bold break-words"
+                style={`color: ${track.color || defaultColors[index % defaultColors.length]}`}>
+              {track.title}
+            </h3>
+
+            <!-- Compact topic pills inline with subtitle -->
+            <div class="flex items-center flex-wrap gap-x-2 mt-1">
+              {track.subtitle && (
+                <p class="text-xs text-gray-500 inline-block">
+                  {track.subtitle}
+                </p>
+              )}
+
+              {/* Show only dots for topics with hover to reveal */}
+              {track.topics && track.topics.length > 0 && (
+                <div class="flex items-center">
+                  <span class="inline-flex items-center h-5 group/tooltip relative">
+                    {track.topics.slice(0, Math.min(3, track.topics.length)).map((_, i) => (
+                      <span
+                        class="w-2 h-2 rounded-full mx-0.5 transition-transform hover:scale-125"
+                        style={`background-color: ${track.color || defaultColors[index % defaultColors.length]}`}
+                      ></span>
+                    ))}
+
+                    {/* If more than 3 topics */}
+                    {track.topics.length > 3 &&
+                      <span class="text-xs text-gray-500 ml-1">+{track.topics.length - 3}</span>
+                    }
+
+                    {/* Tooltip on hover */}
+                    <div class="absolute -top-2 left-0 transform -translate-y-full bg-white/95 backdrop-blur-sm p-2 rounded-md shadow-md border border-gray-200 w-48 opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-10">
+                      <div class="flex flex-wrap gap-1">
+                        {track.topics.slice(0, 5).map((topic) => (
+                          <span
+                            class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-medium"
+                            style={`background-color: ${track.color || defaultColors[index % defaultColors.length]}20; color: ${track.color || defaultColors[index % defaultColors.length]}`}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-2 w-2 mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                            </svg>
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Group hover effects */
+  .group {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .group::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .group:hover::after {
+    transform: scaleX(1);
+  }
+
+  .group:nth-child(1)::after { background-color: #1A7A64; }
+  .group:nth-child(2)::after { background-color: #2E5EAA; }
+  .group:nth-child(3)::after { background-color: #9B4D85; }
+  .group:nth-child(4)::after { background-color: #D66853; }
+  .group:nth-child(5)::after { background-color: #2B8C67; }
+  .group:nth-child(6)::after { background-color: #5E6CA2; }
+  .group:nth-child(7)::after { background-color: #946B2D; }
+  .group:nth-child(8)::after { background-color: #466365; }
+</style>
+
+<style>
+  /* Group hover effects */
+  .group {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .group::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .group:hover::after {
+    transform: scaleX(1);
+  }
+
+  .group:nth-child(1)::after { background-color: #1A7A64; }
+  .group:nth-child(2)::after { background-color: #2E5EAA; }
+  .group:nth-child(3)::after { background-color: #9B4D85; }
+  .group:nth-child(4)::after { background-color: #D66853; }
+  .group:nth-child(5)::after { background-color: #2B8C67; }
+  .group:nth-child(6)::after { background-color: #5E6CA2; }
+  .group:nth-child(7)::after { background-color: #946B2D; }
+  .group:nth-child(8)::after { background-color: #466365; }
+</style>

@@ -1,0 +1,93 @@
+---
+interface Template {
+  title: string;
+  description: string;
+  format: string;
+  icon: string;
+  url: string;
+  comingSoon?: boolean;
+  availableFrom?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  templates: Template[];
+}
+
+const { title, subtitle, templates } = Astro.props;
+---
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-[#2C3E50] mb-4">{title}</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] rounded-full mx-auto mb-6"></div>
+      {subtitle &&
+        <p class="text-lg text-[#2C3E50]/80 max-w-3xl mx-auto">{subtitle}</p>
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      {templates.map((template) => (
+        <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300">
+          <div class="p-6">
+            <div class="flex items-center justify-center mb-4">
+              {template.icon === 'word' ? (
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              ) : template.icon === 'pdf' ? (
+                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 3a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              ) : (
+                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              )}
+            </div>
+            <h3 class="text-lg font-semibold text-center mb-2 text-[#2C3E50]">{template.title}</h3>
+            <p class="text-sm text-gray-600 text-center mb-4">{template.description}</p>
+
+            {template.comingSoon ? (
+              <div class="mt-4">
+                <div class="bg-amber-50 border border-amber-200 rounded-md px-4 py-3">
+                  <div class="flex">
+                    <div class="flex-shrink-0">
+                      <svg class="h-5 w-5 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <div class="ml-3">
+                      <h3 class="text-sm font-medium text-amber-800">Coming Soon</h3>
+                      {template.availableFrom && (
+                        <div class="mt-2 text-sm text-amber-700">
+                          <p>Available from {template.availableFrom}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                href={template.url}
+                class="block w-full bg-[#1A7A64] hover:bg-[#156954] text-white text-center py-2 rounded-md transition-colors duration-300"
+                download
+              >
+                Download {template.format}
+              </a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

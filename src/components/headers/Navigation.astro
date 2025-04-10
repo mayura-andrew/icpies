@@ -1,0 +1,288 @@
+---
+import { Image } from "astro:assets";
+import { getLocalizedSettings } from "@/lib/localization-helpers";
+import { translatePath, unlocalizedUrl } from "@/lib/localization-helpers";
+import { defaultLocale, locales } from "site";
+import Logo from "/src/assets/pages/homepage/icpies_logo.png";
+
+const currentLocale = Astro.currentLocale;
+
+function getTranslatedUrl(locale: string): string {
+  const unlocalizedPath = unlocalizedUrl(Astro.url.pathname);
+  return translatePath(locale, unlocalizedPath);
+}
+
+function isActiveLocale(locale: string): boolean {
+  return locale === currentLocale;
+}
+
+const { header, contacts } = getLocalizedSettings(currentLocale);
+
+// Define the navigation items
+const navItems = [
+  { title: "Home", link: "/" },
+//   { title: "Registration", link: "/registration" },
+  { title: "Keynotes", link: "/keynotes" },
+  { title: "Important Dates", link: "/important-dates" },
+  { title: "Submissions", link: "/submissions" },
+{
+     title: "Committee",
+     dropdown: [      { title: "Organizing Committee", link: "/organizing-committee" },
+      { title: "Advisory Board", link: "/advisory-board" },
+    ],
+   },
+  { title: "Contact Us", link: "/contact-us" },
+];
+
+
+// Determine current page for active state
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed w-full z-30 bg-white/95 backdrop-blur-sm shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Top navigation bar with logo and menu -->
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a
+          href={translatePath(currentLocale ?? defaultLocale, "/")}
+          class="flex items-center"
+        >
+          <Image
+            src={Logo}
+            alt="ICPIES 2025 Logo"
+            class="h-14 w-auto"
+            width={160}
+            height={160}
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-1">
+        {navItems.map((item) => {
+          if (item.dropdown) {
+            return (
+              <div class="relative group">
+                <button class="px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-gray-700 hover:text-[#1A7A64] hover:bg-gray-50">
+                  {item.title}
+                </button>
+                <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden group-focus-within:block group-hover:block">
+                  <div class="py-1">
+                    {item.dropdown.map((dropdownItem) => (
+                      <a
+                        href={translatePath(
+                          currentLocale ?? defaultLocale,
+                          dropdownItem.link
+                        )}
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#1A7A64]"
+                        role="menuitem"
+                      >
+                        {dropdownItem.title}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          } else {
+            const isActive =
+              currentPath === item.link ||
+              (item.link !== "/" && currentPath.startsWith(item.link));
+            return (
+              <a
+                href={translatePath(currentLocale ?? defaultLocale, item.link)}
+                class:list={[
+                  "px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300",
+                  isActive
+                    ? "text-[#1A7A64] border-b-2 border-[#1A7A64]"
+                    : "text-gray-700 hover:text-[#1A7A64] hover:bg-gray-50",
+                ]}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {item.title}
+              </a>
+            );
+          }
+        })}
+      </nav>
+
+      <!-- Mobile menu button -->
+      <div class="flex lg:hidden">
+        <button
+          type="button"
+          id="mobile-menu-button"
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#1A7A64] hover:bg-gray-100 focus:outline-none"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Menu open icon -->
+          <svg
+            id="menu-open-icon"
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Menu close icon -->
+          <svg
+            id="menu-close-icon"
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state -->
+  <div
+    class="lg:hidden mobile-menu hidden transition-all duration-300 ease-in-out"
+    id="mobile-menu"
+  >
+    <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t shadow-lg">
+      {navItems.map((item) => {
+        if (item.dropdown) {
+          return (
+            <div>
+              <button class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-[#1A7A64]">
+                {item.title}
+              </button>
+              <div class="ml-4 space-y-1">
+                {item.dropdown.map((dropdownItem) => (
+                  <a
+                    href={translatePath(
+                      currentLocale ?? defaultLocale,
+                      dropdownItem.link
+                    )}
+                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-[#1A7A64]"
+                  >
+                    {dropdownItem.title}
+                  </a>
+                ))}
+              </div>
+            </div>
+          );
+        } else {
+          const isActive =
+            currentPath === item.link ||
+            (item.link !== "/" && currentPath.startsWith(item.link));
+          return (
+            <a
+              href={translatePath(currentLocale ?? defaultLocale, item.link)}
+              class:list={[
+                "block px-3 py-2 rounded-md text-base font-medium",
+                isActive
+                  ? "text-white bg-[#1A7A64]"
+                  : "text-gray-700 hover:bg-gray-50 hover:text-[#1A7A64]",
+              ]}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {item.title}
+            </a>
+          );
+        }
+      })}
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuOpenIcon = document.getElementById("menu-open-icon");
+    const menuCloseIcon = document.getElementById("menu-close-icon");
+
+    let isMenuOpen = false;
+
+    const toggleMenu = () => {
+      isMenuOpen = !isMenuOpen;
+      if (mobileMenu) {
+        mobileMenu.classList.toggle("hidden");
+      }
+      if (menuOpenIcon) {
+        menuOpenIcon.classList.toggle("hidden");
+      }
+      if (menuCloseIcon) {
+        menuCloseIcon.classList.toggle("hidden");
+      }
+      if (mobileMenuButton) {
+        mobileMenuButton.setAttribute("aria-expanded", String(isMenuOpen));
+      }
+    };
+
+    mobileMenuButton?.addEventListener("click", toggleMenu);
+
+    // Close mobile menu on window resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024 && isMenuOpen) {
+        toggleMenu();
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Smooth transition for navigation highlights */
+  header a {
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Add space below header to prevent content from being hidden */
+  header + * {
+    padding-top: 5rem;
+  }
+
+  /* Shadow transition for header on scroll */
+  header {
+    transition: box-shadow 0.3s ease;
+  }
+
+  header.shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Active menu link effect */
+  nav a[aria-current="page"] {
+    position: relative;
+  }
+
+  /* Mobile menu animation */
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  .mobile-menu.hidden {
+    max-height: 0;
+  }
+
+  .mobile-menu:not(.hidden) {
+    max-height: 600px;
+  }
+</style>

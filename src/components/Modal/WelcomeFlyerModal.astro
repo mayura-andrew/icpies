@@ -1,0 +1,269 @@
+---
+// Props for potential configuration options
+import Flyer from "/src/assets/pages/homepage/welcomeflyer.jpg";
+import { Image } from "astro:assets";
+
+interface Props {
+  delayInSeconds?: number; // Configurable delay
+  cookieExpiryDays?: number; // How long before showing again
+}
+
+const {
+  delayInSeconds = 5, // Default 5 second delay
+  cookieExpiryDays = 1, // Default to 1 day
+} = Astro.props;
+---
+
+<div id="flyerModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+  <div class="modal-content">
+    <!-- Close button only - removed minimize button for cleaner fullscreen experience -->
+    <button class="modal-close" aria-label="Close flyer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Centered flyer image with rounded border -->
+    <div class="modal-image-container">
+      <div class="image-border-wrapper">
+        <Image
+          src={Flyer}
+          alt="ICPIES 2025 Conference Details"
+          class="modal-image"
+          width={1000}
+          height={1500}
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ delayInSeconds, cookieExpiryDays }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById("flyerModal");
+    const closeButton = modal?.querySelector(".modal-close");
+
+    // Storage key
+    const STORAGE_KEY = 'flyerLastSeen';
+
+    // Check if modal should be shown
+    const shouldShowModal = () => {
+      const lastSeen = localStorage.getItem(STORAGE_KEY);
+      if (lastSeen) {
+        // Convert stored date string back to Date and compare
+        const lastDate = new Date(lastSeen);
+        const now = new Date();
+
+        // Calculate days difference
+        const diffTime = now - lastDate;
+        const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+        return diffDays > cookieExpiryDays;
+      }
+      return true; // Show if no record exists
+    };
+
+    // Close modal function
+    const closeModal = () => {
+      modal?.classList.add("modal-closing");
+
+      setTimeout(() => {
+        modal?.classList.add("hidden");
+        modal?.classList.remove("modal-closing");
+
+        // Store today's date when closing
+        localStorage.setItem(STORAGE_KEY, new Date().toISOString());
+      }, 300);
+    };
+
+    // Event listeners
+    closeButton?.addEventListener("click", closeModal);
+
+    // Handle overlay click to close
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Handle escape key press
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+
+    // Show modal after delay if conditions are met
+    if (shouldShowModal()) {
+      setTimeout(() => {
+        modal?.classList.remove("hidden");
+      }, delayInSeconds * 1000);
+    }
+  });
+</script>
+
+<style>
+  /* Modal animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  /* Base modal styles - fullscreen style */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Darker background for better contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 0; /* Remove padding for full-screen effect */
+    box-sizing: border-box;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .modal-content {
+    position: relative;
+    background: transparent; /* Transparent background */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Close button - positioned in corner with higher visibility */
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+    z-index: 1001;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+  }
+
+  /* Image container - maximized for full-screen display */
+  .modal-image-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 0;
+  }
+
+  /* Border wrapper for image */
+  .image-border-wrapper {
+    padding: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    background: transparent;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .modal-image {
+    max-width: 95%;
+    max-height: 85vh; /* Slightly reduced to account for border */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px; /* Inner rounded corners for image */
+  }
+
+  /* Utility classes */
+  .hidden {
+    display: none !important;
+  }
+
+  .modal-closing {
+    animation: fadeOut 0.3s ease-out forwards;
+    pointer-events: none;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .image-border-wrapper {
+      padding: 8px;
+      border-width: 2px;
+      border-radius: 12px;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 6px;
+    }
+
+    .modal-close {
+      top: 15px;
+      right: 15px;
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .image-border-wrapper {
+      padding: 6px;
+      border-radius: 10px;
+    }
+
+    .modal-image {
+      border-radius: 5px;
+    }
+
+    .modal-close {
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Orientation handling for mobile */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .modal-image {
+      max-height: 70vh;
+    }
+
+    .image-border-wrapper {
+      padding: 5px;
+      border-width: 2px;
+    }
+  }
+</style>

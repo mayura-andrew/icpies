@@ -1,0 +1,112 @@
+---
+title: Homepage
+subtitle: Homepage
+type: informational
+lastUpdateDate: 2024-03-09
+hideTitle: true
+seo:
+  title: ICPIES 2025 | Eco-Driven Innovations
+  description: The International Conference on Plastics, Innovations, and Environmental Sustainability (ICPIES) 2025 brings together experts, researchers, policymakers, industry leaders, and stakeholders to explore cutting-edge advancements in plastics science, sustainable innovations, and environmental solutions. This conference serves as a platform for sharing knowledge, pioneering technologies, and best practices to mitigate plastic pollution, promote circular economy strategies, and drive sustainable transformations in plastics recycling and waste management.
+  author: The Open University of Sri Lanka
+---
+
+{% Hero
+   headline="2nd International Conference on Plastics, Innovations and Environmental Sustainability (ICPIES) 2025"
+   title="Eco-Driven Innovations,"
+   subtitle="Advancing <u>Plastics</u>, Circular Economy & Climate Action for a <u>Sustainable Future</u> 🌎"
+   eventDate="2025-08-28T09:00:00"
+   buttons=[{title: "Register Now", href: "/registration", style: "button", icon: "iconamoon:arrow-top-right-1-thin"}] /%}
+
+{% Container %}
+
+
+{% Services
+   title="Organized by"
+   aboutTitle="About ICPIES 2025"
+   aboutDescription="The International Conference on Plastics, Innovations, and Environmental Sustainability (ICPIES) 2025 brings together experts, researchers, policymakers, industry leaders, and stakeholders to explore cutting-edge advancements in plastics science, sustainable innovations, and environmental solutions. This conference serves as a platform for sharing knowledge, pioneering technologies, and best practices to mitigate plastic pollution, promote circular economy strategies, and drive sustainable transformations in plastics recycling and waste management."
+   aboutTheme="Eco-Driven Innovations: Advancing Plastics, Circular Economy & Climate Action for a Sustainable Future"
+   aboutLogo="/src/assets/pages/homepage/icpies_logo.png"
+   logos={
+	ousl: "/src/assets/pages/homepage/logo_ousl.png",
+	cessd: "/src/assets/pages/homepage/cessd_logo.png",
+	uom: "/src/assets/pages/homepage/logo_uom.png",
+	srilanka: "/src/assets/pages/homepage/srilanka_logo.png"
+  }
+   services=[
+     {title: "Sustainable Plastics", description: "Exploring biodegradable alternatives, compostable materials, and innovations in plastic reduction strategies across industries.", icon: "/src/assets/pages/homepage/marketing-service.png"},
+     {title: "Circular Economy", description: "Promoting closed-loop systems, recycling technologies, and resource efficiency approaches that extend product lifecycles.", icon: "/src/assets/pages/homepage/socialmedia-service.png"},
+     {title: "Climate Action", description: "Addressing the intersection of plastics and climate change, including carbon footprint reduction strategies and policy frameworks.", icon: "/src/assets/pages/homepage/paidmedia-service.png"}
+   ] /%}
+
+
+   {% ImportantDates
+	title="Important Conference Dates"
+	subtitle="Mark your calendar for these key deadlines"
+	dates=[
+	  {event: "Call for Abstracts", date: "2025-03-15", isPassed: false, isHighlighted: true},
+	  {event: "Deadline for Abstracts Submission", date: "2025-05-20", isPassed: false, isHighlighted: false},
+	  {event: "Notification of Acceptance", date: "2025-06-30", isPassed: false},
+	  {event: "Deadline for Selected Full Papers Submission", date: "2025-07-07", isPassed: false, isHighlighted: false},
+	  {event: "Camera-ready Copy Submission", date: "2025-07-20", isPassed: false, isHighlighted: false},
+	  {event: "Early Bird Registration", date: "2025-08-06", isPassed: false, isHighlighted: false},
+	  {event: "Registration Deadline", date: "2025-08-18", isPassed: false, isHighlighted: false},
+	] /%}
+
+
+{% ConferenceTracksGrid
+    title="Conference Tracks"
+    subtitle="Explore our key research areas"
+    description="Join experts across these specialized tracks addressing the critical challenges in plastic pollution, circular economy, and environmental sustainability."
+    viewAllLink="/conference-tracks"
+    tracks=[
+        {
+            title: "Plastic Pollution and Health Impacts: Microplastics in Terrestrial and Marine Ecosystems",
+            image: "./tracks/track-pollution.png",
+            color: "#2E5EAA"
+        },
+        {
+            title: "Circular Economy Approaches to Plastic Waste Management",
+            image: "./tracks/track-circular.png",
+            color: "#2E5EAA"
+        },
+        {
+            title: "Alternatives for Plastics: Challenges and Opportunities",
+            image: "./tracks/track-alternatives.png",
+            color: "#2E5EAA"
+        },
+        {
+            title: "Policy and Regulatory Frameworks for Waste Management",
+            image: "./tracks/track-policy.png",
+            color: "#2E5EAA"
+        },
+        {
+            title: "Technological Innovations in Sustainable Environment",
+            image: "./tracks/track-tech.png",
+            color: "#2E5EAA"
+        },
+        {
+            title: "AI and Smart Technologies for Monitoring and Restoring Ecosystem Health",
+            image: "./tracks/track-ai.png",
+            color: "#2E5EAA"
+        },
+        {
+            title: "Climate Action and Computational Modelling for Environmental Sustainability",
+            image: "./tracks/track-climate.png",
+            color: "#2E5EAA"
+        },
+        {
+            title: "Public Awareness and Educational Initiatives",
+            image: "./tracks/track-education.png",
+            color: "#2E5EAA"
+        }
+    ]
+/%}
+
+{% WelcomeFlyer
+    title="Join Us at ICPIES 2025"
+    subtitle="Be part of the global conversation on plastic innovation and environmental sustainability"
+    ctaText="Register Now"
+    ctaLink="/registration"
+/%}
+
+{% /Container %}

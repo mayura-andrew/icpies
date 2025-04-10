@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import FlyerImage from "/src/assets/pages/homepage/welcomeflyer.jpg";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  altText?: string;
+}
+
+const {
+  title = "ICPIES 2025 Conference",
+  subtitle = "International Conference on Plastic Innovation and Environmental Sustainability",
+  altText = "ICPIES 2025 Conference Flyer"
+} = Astro.props;
+---
+
+<div class="py-16 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- {title && (
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">{title}</h2>
+        {subtitle && <p class="text-base text-gray-600 max-w-3xl mx-auto">{subtitle}</p>}
+      </div>
+    )} -->
+
+    <div class="flyer-container">
+      <Image
+        src={FlyerImage}
+        alt={altText}
+        class="flyer-image"
+        width={1200}
+        height={1800}
+      />
+    </div>
+  </div>
+</div>
+
+<style>
+  .flyer-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 3px solid #1A7A64;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .flyer-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .flyer-container {
+      border-width: 2px;
+    }
+  }
+</style>

@@ -1,0 +1,341 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "@/components/primitives/Container.astro";
+import Link from "@/components/primitives/Link.astro";
+
+interface Topic {
+  name: string;
+  icon?: string;
+}
+
+interface Track {
+  title: string;
+  description: string;
+  topics: string[];
+  image: string;
+  color?: string;
+}
+
+// Define conference tracks with detailed information
+const tracks: Track[] = [
+  {
+    title: "Plastic Pollution and Health Impacts: Microplastics in Terrestrial and Marine Ecosystems",
+    description: "This track explores the pervasive issue of plastic pollution, with a particular focus on microplastics and their impacts on ecosystems and human health. Research in this track examines detection methodologies, transport mechanisms, ecosystem effects, and public health implications of microplastics in various environments.",
+    topics: ["Microplastic Detection Methods", "Environmental Transport", "Ecosystem Impact Assessment", "Human Health Implications", "Toxicity Studies", "Marine Litter Management"],
+    image: "./tracks/track-pollution.png",
+    color: "#1A7A64"
+  },
+  {
+    title: "Circular Economy Approaches to Plastic Waste Management",
+    description: "This track focuses on circular economy principles and their application to plastic waste management. It covers innovative recycling technologies, business models that promote circularity, extended producer responsibility, and strategies for closing the loop in plastic value chains.",
+    topics: ["Recycling Technologies", "Extended Producer Responsibility", "Circularity Metrics", "Value Recovery", "Product Design", "Resource Efficiency"],
+    image: "./tracks/track-circular.png",
+    color: "#2E5EAA"
+  },
+  {
+    title: "Alternatives for Plastics: Challenges and Opportunities",
+    description: "Exploring the development and assessment of alternative materials to conventional plastics, this track addresses biodegradable plastics, bio-based materials, compostable solutions, and their life cycle impacts. It examines the technical, economic, and environmental factors affecting their adoption.",
+    topics: ["Biodegradable Materials", "Bio-based Plastics", "Compostable Solutions", "Material Science", "Life Cycle Assessment", "Scale-up Challenges"],
+    image: "./tracks/track-alternatives.png",
+    color: "#9B4D85"
+  },
+  {
+    title: "Policy and Regulatory Frameworks for Waste Management",
+    description: "This track examines policy instruments, regulatory frameworks, and governance mechanisms for effective plastic waste management. It includes analysis of existing policies, development of new approaches, and evaluation of implementation strategies across different jurisdictional levels.",
+    topics: ["Waste Policy Analysis", "International Agreements", "Regulatory Effectiveness", "Economic Instruments", "Governance Models", "Stakeholder Engagement"],
+    image: "./tracks/track-policy.png",
+    color: "#D66853"
+  },
+  {
+    title: "Technological Innovations in Sustainable Environment",
+    description: "Focusing on technological innovations for environmental sustainability, this track covers advancements in materials science, renewable energy integration with waste management, and emerging technologies that can help mitigate plastic pollution while promoting sustainable development.",
+    topics: ["Green Chemistry", "Sustainable Manufacturing", "Material Innovation", "Clean Technologies", "Renewable Integration", "Waste-to-Energy"],
+    image: "./tracks/track-tech.png",
+    color: "#2B8C67"
+  },
+  {
+    title: "AI and Smart Technologies for Monitoring and Restoring Ecosystem Health",
+    description: "This track explores the application of artificial intelligence, machine learning, remote sensing, and other smart technologies for monitoring plastic pollution, assessing ecosystem health, and developing restoration strategies in affected environments.",
+    topics: ["AI Applications", "Remote Sensing", "Predictive Modeling", "Smart Monitoring Systems", "Data Analytics", "Automated Cleanup Technologies"],
+    image: "./tracks/track-ai.png",
+    color: "#5E6CA2"
+  },
+  {
+    title: "Climate Action and Computational Modelling for Environmental Sustainability",
+    description: "This track addresses the intersection of climate action and plastic pollution, including computational modeling approaches to understand environmental impacts, predict outcomes, and develop evidence-based strategies for promoting sustainability.",
+    topics: ["Climate-Plastic Nexus", "Carbon Footprint", "Environmental Modeling", "Predictive Analytics", "Systems Thinking", "Sustainable Development Goals"],
+    image: "./tracks/track-climate.png",
+    color: "#946B2D"
+  },
+  {
+    title: "Public Awareness and Educational Initiatives",
+    description: "Focusing on the human and social dimensions of plastic pollution challenges, this track explores effective communication strategies, educational programs, behavior change interventions, and community engagement approaches to foster sustainable consumption and waste management practices.",
+    topics: ["Environmental Education", "Behavior Change", "Communication Strategies", "Social Innovation", "Community Engagement", "Consumer Awareness"],
+    image: "./tracks/track-education.png",
+    color: "#466365"
+  }
+];
+
+// Icons for topics (using Heroicons)
+const topicIcons = {
+  "Microplastic": "microscope",
+  "Detection": "magnifying-glass",
+  "Recycling": "arrow-path",
+  "Waste": "trash",
+  "Policy": "document-text",
+  "Climate": "globe-alt",
+  "Technology": "cpu-chip",
+  "Ecosystem": "sparkles",
+  "Material": "beaker",
+  "Education": "academic-cap",
+  "AI": "chip",
+  "Machine": "variable",
+  "Digital": "computer-desktop",
+  "Environmental": "sun",
+  "Health": "heart",
+  "Bio": "leaf",
+  "Innovation": "light-bulb",
+  "Sustainable": "check-badge",
+  "Smart": "bolt",
+  "Monitoring": "eye",
+  "Modeling": "chart-bar",
+  "Circular": "arrow-path",
+};
+
+function getIconForTopic(topic: string): string {
+  for (const [key, value] of Object.entries(topicIcons)) {
+    if (topic.toLowerCase().includes(key.toLowerCase())) {
+      return value;
+    }
+  }
+  return "tag"; // Default icon
+}
+---
+
+<BaseLayout
+  title="Conference Tracks | ICPIES 2025"
+  description="Explore the research tracks for the International Conference on Plastics, Innovations, and Environmental Sustainability (ICPIES) 2025."
+>
+  <section class="py-32 bg-gradient-to-b from-[#1A7A64]/5 to-white rounded-2xl mb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+        Conference Tracks
+	</h1>
+	<div class="w-32 h-1 bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] rounded-full mx-auto mb-10"></div>
+      <p class="text-xl text-[#2C3E50]/80 max-w-3xl mx-auto">
+        Explore our specialized research areas addressing critical challenges in plastic pollution,
+        innovation, and environmental sustainability
+      </p>
+    </div>
+  </section>
+
+  <Container>
+	<div class="mt-12 mb-20">
+	  <h2 class="text-3xl font-bold text-[#2C3E50] mb-8 text-center">Our Research Tracks</h2>
+
+	  <div class="space-y-6">
+		{tracks.map((track, index) => (
+		  <div class="flex flex-col md:flex-row items-start gap-6 p-6 bg-white rounded-xl shadow-sm transition-all duration-300 hover:shadow-md">
+			<!-- Left side with circular number and image -->
+			<div class="flex-shrink-0 relative mx-auto md:mx-0">
+			  <!-- Circular background -->
+			  <div class="w-24 h-24 rounded-full overflow-hidden border-4" style={`border-color: ${track.color}`}>
+				<img
+				  src={track.image}
+				  alt={track.title}
+				  class="w-full h-full object-cover"
+				/>
+			  </div>
+			  <div
+				class="absolute -top-3 -right-3 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xl"
+				style={`background-color: ${track.color}`}
+			  >
+				{index + 1}
+			  </div>
+			</div>
+
+			<!-- Right side with track details -->
+			<div class="flex-1">
+			  <h3 class="text-xl font-bold text-[#2C3E50] mb-2" style={`color: ${track.color}`}>
+				{track.title}
+			  </h3>
+
+			  <p class="text-[#2C3E50]/80 mb-4 text-base">
+				{track.description}
+			  </p>
+
+			  {/* <div class="flex flex-wrap gap-2">
+				{track.topics.slice(0, 4).map((topic) => (
+				  <span
+					class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium"
+					style={`background-color: ${track.color}20; color: ${track.color}`}
+				  >
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={
+						topic.toLowerCase().includes("micro") ? "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" :
+						topic.toLowerCase().includes("recycl") ? "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" :
+						topic.toLowerCase().includes("polic") ? "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" :
+						"M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+					  } />
+					</svg>
+					{topic}
+				  </span>
+				))}
+				{track.topics.length > 4 && (
+				  <span
+					class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-gray-100 text-gray-600 font-medium cursor-pointer hover:bg-gray-200"
+				  >
+					+{track.topics.length - 4} more
+				  </span>
+				)}
+			  </div> */}
+			</div>
+		  </div>
+		))}
+	  </div>
+	</div>
+
+    <!-- Submissions Section -->
+    <div class="my-20 py-8 bg-[#F7F7F7] rounded-xl border-l-4 border-[#1A7A64] shadow-md">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-semibold text-[#2C3E50] mb-6">Submit Your Research</h2>
+        <p class="text-lg text-[#2C3E50]/80 mb-8">
+          We welcome submissions across all conference tracks. Authors are encouraged to consider the scope
+          of each track when preparing their submissions. Interdisciplinary research that spans multiple
+          tracks is particularly valued.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-[#1A7A64] mb-4">Important Dates</h3>
+            <ul class="space-y-3 text-[#2C3E50]/80">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1A7A64] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span><strong>Abstract Submission Deadline:</strong> April 4, 2025</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1A7A64] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span><strong>Full Paper Submission:</strong> June 6, 2025</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1A7A64] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span><strong>Camera-Ready Submission:</strong> June 20, 2025</span>
+              </li>
+            </ul>
+            <div class="mt-6">
+              <Link
+                href="/important-dates"
+                style="text"
+                class="text-[#1A7A64] hover:text-[#4ECDC4] inline-flex items-center"
+              >
+                View all dates
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h3 class="text-xl font-semibold text-[#1A7A64] mb-4">Submission Guidelines</h3>
+            <ul class="space-y-3 text-[#2C3E50]/80">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1A7A64] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Abstracts should be 300-500 words</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1A7A64] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Full papers should follow the ICPIES template</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1A7A64] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>All submissions undergo double-blind peer review</span>
+              </li>
+            </ul>
+            <div class="mt-6">
+              <Link
+                href="/submissions"
+                style="button"
+                class="bg-[#1A7A64] hover:bg-[#156954] text-white py-2 px-4 rounded-lg inline-flex items-center"
+              >
+                Submit Your Research
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+
+  <style>
+    /* Card hover effects */
+    .track-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .group:hover .track-card {
+      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+
+    /* Staggered hover effect for grid items */
+    @media (min-width: 1024px) {
+      .grid > div:nth-child(3n+1):hover,
+      .grid > div:nth-child(3n+3):hover {
+        transform: translateY(-8px) rotate(-0.5deg);
+      }
+
+      .grid > div:nth-child(3n+2):hover {
+        transform: translateY(-8px) rotate(0.5deg);
+      }
+    }
+
+    /* Add subtle text shadow on hover for better readability while keeping text white */
+    .group-hover\:text-shadow-sm {
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Add a subtle line indicator at bottom of cards that animates on hover */
+    .track-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--card-color);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+      z-index: 25;
+    }
+
+    .group:hover .track-card::after {
+      transform: scaleX(1);
+    }
+
+    /* Animated tags */
+    span.inline-flex {
+      transition: all 0.3s ease;
+    }
+
+    span.inline-flex:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</>

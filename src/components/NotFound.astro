@@ -1,0 +1,48 @@
+---
+import Container from "@/components/primitives/Container.astro";
+import Link from "@/components/primitives/Link.astro";
+import Title from "@/components/primitives/Title.astro";
+---
+
+<Container tag="section" class="pt-32 pb-24 md:pb-32 md:pt-48">
+    <div class="mx-auto text-center flex flex-col max-w-xl gap-8">
+        <div class="flex flex-col gap-2">
+            <Title level={4} tag={2}>404</Title>
+            <Title level={3} tag={1}>
+                Oops! The page you're looking for could not be found.
+            </Title>
+        </div>
+        <div class="flex flex-col gap-2">
+            <p class="text-gray-500 dark:text-gray-400">
+                Here are some pages you might want to visit:
+            </p>
+            <ul
+                class="flex flex-wrap justify-center items-center gap-x-4 text-gray-500 dark:text-gray-400"
+            >
+                <li>
+                    <Link href="/">Home</Link>
+                </li>
+                <li>
+                    <Link href="/about">About</Link>
+                </li>
+                <li>
+                    <Link href="/submissions">Call for Papers</Link>
+                </li>
+                <li>
+                    <Link href="/conference-tracks">Conference Tracks</Link>
+                </li>
+                <li>
+                    <Link href="/organizing-committee">Committee</Link>
+                </li>
+                <li>
+                    <Link href="/contact-us">Contact Us</Link>
+                </li>
+            </ul>
+        </div>
+        <div class="mt-8">
+            <p class="text-sm text-gray-500">
+                If you believe this is an error, please <Link href="/contact-us" class="text-emerald-500 hover:underline">contact us</Link>.
+            </p>
+        </div>
+    </div>
+</Container>

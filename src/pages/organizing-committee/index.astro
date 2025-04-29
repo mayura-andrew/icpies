@@ -6,6 +6,7 @@ import CommitteeMemberCard, {
 import BaseLayout from "@/layouts/BaseLayout.astro";
 const categories = [
   "Conference Chairs",
+  "Programme Chair",
   "Conference Co-Chairs",
   "Technical Programme Committee (TPC) Chair",
   "Technical Program Committee (TPC) Co-Chairs",
@@ -95,13 +96,13 @@ const members: Member[] = [
   },
   {
     name: "Dr. Chamila Dias",
-    title: "Conference Chair",
+    title: "Programme Chair",
     affiliation: "The Open University of Sri Lanka",
-    role: "Conference Chair",
+    role: "Programme Chair",
     image: drChamila,
     country: "LK",
     email: "sndia@ou.ac.lk",
-    category: "Conference Chairs",
+    category: "Programme Chair",
   },
 
   {
@@ -630,15 +631,6 @@ const members: Member[] = [
     category: "Web Committee Chair",
   },
 
-{
-    name: "Mr. Mayura Alahakoon",
-    title: "Deputy Web Committee Lead",
-    affiliation: "The Open University of Sri Lanka",
-    role: "Deputy Web Committee Lead",
-    image: mrMayura,
-    country: "LK",
-    category: "Web Master",
-  },
 
   {
     name: "Eng. Zeena Weerabangsa",
@@ -671,8 +663,17 @@ const members: Member[] = [
     image: defaultAvatar,
     country: "LK",
     email: "wpcha@ou.ac.lk",
-    category: "Web Admin",
+    category: "Web Master",
   },
+  {
+    name: "Mr. Mayura Alahakoon",
+    title: "Deputy Web Committee Lead",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Deputy Web Committee Lead",
+    image: mrMayura,
+    country: "LK",
+    category: "Web Master",
+  }
 
 ];
 ---

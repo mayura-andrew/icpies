@@ -1,0 +1,370 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/primitives/Container.astro";
+
+// Define sponsorship tiers
+const sponsorshipTiers = [
+  {
+    name: "Bronze",
+    price: "LKR 75,000",
+    color: "#CD7F32",
+    bgColor: "from-amber-700/10 to-amber-600/5",
+    borderColor: "border-amber-700",
+    iconColor: "text-amber-700"
+  },
+  {
+    name: "Silver",
+    price: "LKR 150,000",
+    color: "#C0C0C0",
+    bgColor: "from-gray-300/20 to-gray-400/10",
+    borderColor: "border-gray-400",
+    iconColor: "text-gray-500"
+  },
+  {
+    name: "Gold",
+    price: "LKR 250,000",
+    color: "#FFD700",
+    bgColor: "from-yellow-400/20 to-amber-300/10",
+    borderColor: "border-yellow-500",
+    iconColor: "text-yellow-500"
+  },
+  {
+    name: "Platinum",
+    price: "LKR 500,000",
+    color: "#C0C0C0",
+    bgColor: "from-slate-300/20 to-slate-400/10",
+    borderColor: "border-slate-400",
+    iconColor: "text-slate-500",
+    isHighlighted: false
+  }
+];
+
+// Define benefits for comparison table
+const benefits = [
+  {
+    name: "Logo placement on Conference Package",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: true
+  },
+  {
+    name: "Company Promotional Video (2 min) at Inauguration Session Refreshment Break",
+    platinum: true,
+    gold: false,
+    silver: false,
+    bronze: false
+  },
+  {
+    name: "Free Vendor Table",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: true
+  },
+  {
+    name: "Promotional Light Box",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: false
+  },
+  {
+    name: "Promotional Poster/Banner",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: true
+  },
+  {
+    name: "Announcement of the Sponsorship In Social Media",
+    platinum: true,
+    gold: true,
+    silver: false,
+    bronze: false
+  },
+  {
+    name: "Logo in the event website",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: true
+  },
+  {
+    name: "Mention at the beginning of every conference day",
+    platinum: true,
+    gold: true,
+    silver: true,
+    bronze: false
+  },
+  {
+    name: "A full colour ad in Digital Conference Programme Book (one page)",
+    platinum: true,
+    gold: false,
+    silver: false,
+    bronze: false
+  },
+  {
+    name: "Company Logo in backdrop at Conference main stage",
+    platinum: true,
+    gold: true,
+    silver: false,
+    bronze: false
+  },
+  {
+    name: "Included registrations",
+    platinum: "5",
+    gold: "3",
+    silver: "2",
+    bronze: "2",
+    isNumeric: true
+  },
+  {
+    name: "Extra Registrations at 50% off",
+    platinum: "8",
+    gold: "6",
+    silver: "2",
+    bronze: "0",
+    isNumeric: true
+  }
+];
+
+// SEO props for the page
+const seo = {
+  title: "Sponsorships | ICPIES 2025",
+  description: "Become a sponsor for ICPIES 2025 and showcase your brand to industry experts and researchers."
+};
+---
+
+<BaseLayout seo={seo}>
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-b from-[#1A7A64]/5 to-white pt-24 pb-12">
+    <Container>
+      <div class="text-center max-w-4xl mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+          Sponsorship Opportunities
+        </h1>
+        <div class="h-1 w-32 bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] rounded-full mx-auto mb-8"></div>
+        <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+          Take advantage of the best way to promote your products and services to
+          the Industry! Our Sponsorship Packages will give you many opportunities
+          to make your brand stand out and join an event that will bring you many
+          opportunities. Be a sponsor and join with ICPIES 2025.
+        </p>
+      </div>
+    </Container>
+  </div>
+
+  <!-- Sponsorship Tiers Section -->
+  <section class="py-16">
+    <Container>
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-[#2C3E50] mb-4">
+          Choose Your Sponsorship Tier
+        </h2>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          Select the sponsorship package that best fits your organization's goals and budget.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {sponsorshipTiers.map(tier => (
+          <div class={`relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-t-4 ${tier.borderColor} h-full flex flex-col`}>
+            {tier.isHighlighted && (
+              <div class="absolute top-0 right-0">
+                <div class="bg-[#1A7A64] text-white text-xs font-bold py-1 px-3 rounded-bl-lg shadow-md">
+                  MOST POPULAR
+                </div>
+              </div>
+            )}
+            <div class={`p-6 bg-gradient-to-br ${tier.bgColor} flex-grow`}>
+              <h3 class="text-2xl font-bold mb-2" style={`color: ${tier.color}`}>
+                {tier.name}
+              </h3>
+              <div class="text-3xl font-bold text-[#2C3E50] mb-6">
+                {tier.price}
+              </div>
+              <div class={`w-12 h-1 ${tier.borderColor} rounded-full mb-6`}></div>
+              <ul class="text-gray-700 mb-8 space-y-3">
+                <li class="flex items-center">
+                  <svg class={`w-5 h-5 ${tier.iconColor} mr-2`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  Promotional Materials
+                </li>
+                <li class="flex items-center">
+                  <svg class={`w-5 h-5 ${tier.iconColor} mr-2`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  Brand Visibility
+                </li>
+                <li class="flex items-center">
+                  <svg class={`w-5 h-5 ${tier.iconColor} mr-2`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  Networking Opportunities
+                </li>
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Benefits Comparison Section -->
+  <section class="py-16 bg-gray-50">
+    <Container>
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-[#2C3E50] mb-4">
+          Sponsorship Benefits
+        </h2>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          Compare the benefits of each sponsorship tier to find the perfect fit for your organization.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto shadow-lg rounded-lg">
+        <table class="min-w-full bg-white">
+          <thead>
+            <tr>
+              <th class="w-1/3 bg-[#F9FAFB] py-4 px-6 text-left text-lg font-semibold text-gray-700 border-b">Benefits</th>
+              <th class="bg-amber-700/10 py-4 px-6 text-center font-semibold text-amber-800 border-b">
+                Bronze
+                <div class="text-sm font-normal text-amber-700">LKR 75,000</div>
+              </th>
+              <th class="bg-gray-300/20 py-4 px-6 text-center font-semibold text-gray-700 border-b">
+                Silver
+                <div class="text-sm font-normal text-gray-600">LKR 150,000</div>
+              </th>
+              <th class="bg-yellow-400/20 py-4 px-6 text-center font-semibold text-yellow-800 border-b">
+                Gold
+                <div class="text-sm font-normal text-yellow-700">LKR 250,000</div>
+              </th>
+              <th class="bg-slate-300/20 py-4 px-6 text-center font-semibold text-slate-800 border-b">
+                Platinum
+                <div class="text-sm font-normal text-slate-700">LKR 500,000</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {benefits.map((benefit, index) => (
+              <tr class={index % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                <td class="py-3 px-6 text-left font-medium text-gray-800 border-b">{benefit.name}</td>
+                <td class="py-3 px-6 text-center border-b">
+                  {benefit.isNumeric ?
+                    <span class="text-amber-700 font-medium">{benefit.bronze}</span> :
+                    (benefit.bronze ?
+                      <svg class="w-6 h-6 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg> :
+                      <svg class="w-6 h-6 text-red-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    )
+                  }
+                </td>
+                <td class="py-3 px-6 text-center border-b">
+                  {benefit.isNumeric ?
+                    <span class="text-gray-600 font-medium">{benefit.silver}</span> :
+                    (benefit.silver ?
+                      <svg class="w-6 h-6 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg> :
+                      <svg class="w-6 h-6 text-red-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    )
+                  }
+                </td>
+                <td class="py-3 px-6 text-center border-b">
+                  {benefit.isNumeric ?
+                    <span class="text-yellow-700 font-medium">{benefit.gold}</span> :
+                    (benefit.gold ?
+                      <svg class="w-6 h-6 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg> :
+                      <svg class="w-6 h-6 text-red-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    )
+                  }
+                </td>
+                <td class="py-3 px-6 text-center border-b">
+                  {benefit.isNumeric ?
+                    <span class="text-slate-700 font-medium">{benefit.platinum}</span> :
+                    (benefit.platinum ?
+                      <svg class="w-6 h-6 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg> :
+                      <svg class="w-6 h-6 text-red-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    )
+                  }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="py-16">
+    <Container>
+      <div class="bg-gradient-to-r from-[#1A7A64] to-[#0D3B66] rounded-xl overflow-hidden shadow-xl">
+        <div class="p-8 md:p-12 text-center">
+          <h2 class="text-3xl font-bold text-white mb-4">Become a Sponsor Today</h2>
+          <p class="text-white/90 max-w-2xl mx-auto mb-8">
+            Join us in advancing the future of plastic innovation and environmental sustainability.
+            Contact us today to secure your sponsorship and showcase your brand at ICPIES 2025.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- FAQ Section -->
+  <!-- <section class="py-16 bg-gray-50">
+    <Container>
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-[#2C3E50] mb-4">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-gray-600 max-w-3xl mx-auto">
+          Common questions about our sponsorship opportunities.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <div class="space-y-6">
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-semibold text-[#2C3E50] mb-2">How do I become a sponsor?</h3>
+            <p class="text-gray-700">Contact our sponsorship team through the contact form or directly via email at icpies@ou.ac.lk with your interest, and we'll guide you through the process.</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-semibold text-[#2C3E50] mb-2">What is the deadline for securing a sponsorship?</h3>
+            <p class="text-gray-700">We recommend securing your sponsorship at least 2 months before the conference to ensure maximum exposure and benefit fulfillment.</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-lg font-semibold text-[#2C3E50] mb-2">Can we customize a sponsorship package?</h3>
+            <p class="text-gray-700">Yes, we're open to discussing customized sponsorship packages that align with your specific marketing objectives and budget. Contact us to explore options.</p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section> -->
+</BaseLayout>
+
+<style>
+  /* Additional styles for the sponsorship page */
+  @media (max-width: 768px) {
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+</style>

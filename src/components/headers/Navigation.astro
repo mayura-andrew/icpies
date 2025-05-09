@@ -20,18 +20,19 @@ const { header, contacts } = getLocalizedSettings(currentLocale);
 
 // Define the navigation items
 const navItems = [
-  { title: "Home", link: "/" },
-//   { title: "Registration", link: "/registration" },
-  { title: "Keynotes", link: "/keynotes" },
-  { title: "Important Dates", link: "/important-dates" },
-  { title: "Submissions", link: "/submissions" },
-{
-     title: "Committee",
-     dropdown: [      { title: "Organizing Committee", link: "/organizing-committee" },
-      { title: "Advisory Board", link: "/advisory-board" },
+	{ title: "Home", link: "/" },
+	//   { title: "Registration", link: "/registration" },
+	{ title: "Keynotes", link: "/keynotes" },
+	{ title: "Important Dates", link: "/important-dates" },
+	{ title: "Submissions", link: "/submissions" },
+	{
+		title: "Committee",
+		dropdown: [      { title: "Organizing Committee", link: "/organizing-committee" },
+		{ title: "Advisory Board", link: "/advisory-board" },
     ],
-   },
-  { title: "Contact Us", link: "/contact-us" },
+},
+{ title: "Contact Us", link: "/contact-us" },
+{	title: "Become a Sponsor", link: "/sponsorships"},
 ];
 
 
@@ -90,6 +91,21 @@ const currentPath = Astro.url.pathname;
             const isActive =
               currentPath === item.link ||
               (item.link !== "/" && currentPath.startsWith(item.link));
+
+            // Special styling for "Become a Sponsor" link
+            if (item.title === "Become a Sponsor") {
+              return (
+                <a
+                  href={translatePath(currentLocale ?? defaultLocale, item.link)}
+                  class="sponsor-highlight px-4 py-2 ml-2 rounded-md text-sm font-medium text-white bg-gradient-to-r from-[#1A7A64] to-[#2A9D8F] shadow-md hover:shadow-lg transform hover:scale-105 transition duration-300"
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {item.title}
+                </a>
+              );
+            }
+
+            // Regular link styling
             return (
               <a
                 href={translatePath(currentLocale ?? defaultLocale, item.link)}
@@ -189,6 +205,20 @@ const currentPath = Astro.url.pathname;
           const isActive =
             currentPath === item.link ||
             (item.link !== "/" && currentPath.startsWith(item.link));
+
+          // Special styling for "Become a Sponsor" link in mobile menu
+          if (item.title === "Become a Sponsor") {
+            return (
+              <a
+                href={translatePath(currentLocale ?? defaultLocale, item.link)}
+                class="sponsor-highlight block px-3 py-2 my-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-[#1A7A64] to-[#2A9D8F] shadow-sm"
+                aria-current={isActive ? "page" : undefined}
+              >
+                {item.title}
+              </a>
+            );
+          }
+
           return (
             <a
               href={translatePath(currentLocale ?? defaultLocale, item.link)}
@@ -284,5 +314,52 @@ const currentPath = Astro.url.pathname;
 
   .mobile-menu:not(.hidden) {
     max-height: 600px;
+  }
+
+  /* Sponsor link animation */
+  .sponsor-highlight {
+    animation: pulse 2s infinite;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(26, 122, 100, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(26, 122, 100, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(26, 122, 100, 0);
+    }
+  }
+
+  .sponsor-highlight::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100%;
+    }
+    20% {
+      left: 100%;
+    }
+    100% {
+      left: 100%;
+    }
   }
 </style>

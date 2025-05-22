@@ -1,62 +1,85 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from "../../components/primitives/Container.astro";
+import { Image } from "astro:assets";
+
+// Import speaker images
+// Replace these imports with actual images when available
+import vijayapalaImage from "/src/assets/speakers/default-avatar.png"; // Replace with actual image path
+import sharleneImage from "/src/assets/speakers/sharlene.svg"; // Replace with actual image path
+
+const speakers = [
+  {
+    name: "Mr. Vijayapala Sinnathamby",
+    title: "County Team Leader - UNOPS",
+    image: vijayapalaImage,
+    bio: "Mr. Vijayapala Sinnathamby serves as the County Team Leader at UNOPS (United Nations Office for Project Services), bringing extensive expertise in sustainable development and environmental management to ICPIES 2025.",
+  },
+  {
+    name: "Mrs. Sharlene Brown",
+    title: "2024-2025 Chair, IEEE Region 3 Professional Activities",
+    image: sharleneImage,
+    bio: "Mrs. Sharlene Brown is the 2024-2025 Chair of IEEE Region 3 Professional Activities, with significant experience in technological innovation and professional development in the engineering field.",
+  }
+];
 ---
 
-<BaseLayout title="Keynotes | ICPIES 2025" description="Information about keynote speakers for ICPIES 2025 Conference">
+<BaseLayout title="Keynote Speakers | ICPIES 2025" description="Meet our distinguished keynote speakers for ICPIES 2025 Conference">
   <section class="py-32 bg-gradient-to-b from-[#1A7A64]/5 to-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
-        Keynote Speakers
-      </h1>
+    <Container>
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+          Keynote Speakers
+        </h1>
 
-      <div class="w-32 h-1 bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] rounded-full mx-auto mb-10"></div>
+        <div class="w-32 h-1 bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] rounded-full mx-auto mb-10"></div>
 
-      <div class="py-16 px-4 text-center max-w-3xl mx-auto">
-        <div class="relative mb-12">
-          <div class="w-24 h-24 rounded-full bg-[#1A7A64]/10 mx-auto flex items-center justify-center animate-pulse mb-8">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#1A7A64]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-
-          <h2 class="text-3xl md:text-4xl font-bold text-[#2C3E50] mb-4">Coming Soon</h2>
-          <p class="text-xl text-[#2C3E50]/70 mb-8">
-            We're in the process of confirming distinguished keynote speakers for ICPIES 2025.
-            Please check back later for updates on our lineup of experts in the fields of plastics,
-            innovation, and environmental sustainability.
-          </p>
-
-          <div class="flex flex-col md:flex-row gap-6 justify-center mt-10">
-            <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-[#1A7A64] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#156954] transform hover:-translate-y-1 hover:shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-              </svg>
-              Back to Home
-            </a>
-            <!-- <a href="#contact-us" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#1A7A64] text-[#1A7A64] font-medium rounded-lg transition-all duration-300 hover:bg-[#1A7A64]/5 transform hover:-translate-y-1">
-              Contact Us
-            </a> -->
-          </div>
-        </div>
-
-        <!-- Optional: Tentative Schedule Section -->
-        
+        <p class="max-w-3xl mx-auto text-lg text-[#2C3E50]/70 mb-16">
+          We are honored to present our distinguished keynote speakers who will share their insights, expertise, and vision on plastic innovation and environmental sustainability.
+        </p>
       </div>
-    </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+        {speakers.map((speaker, index) => (
+          <div class="flex flex-col items-center lg:flex-row gap-8 bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="w-full lg:w-2/5 aspect-square overflow-hidden">
+              <Image
+                src={speaker.image}
+                alt={`Photo of ${speaker.name}`}
+                class="w-full h-full object-cover"
+                width={400}
+                height={400}
+              />
+            </div>
+
+            <div class="p-6 lg:p-8 lg:w-3/5">
+              <h2 class="text-2xl font-bold text-[#2C3E50] mb-2">{speaker.name}</h2>
+              <p class="text-[#1A7A64] font-medium mb-4">{speaker.title}</p>
+              <div class="w-20 h-1 bg-[#1A7A64]/20 mb-4 rounded-full"></div>
+              <p class="text-[#2C3E50]/80">{speaker.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-20">
+        <p class="text-[#2C3E50]/70 italic">
+          More keynote speakers to be announced soon. Stay tuned!
+        </p>
+
+        <div class="flex flex-col md:flex-row gap-6 justify-center mt-10">
+          <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-[#1A7A64] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#156954] transform hover:-translate-y-1 hover:shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </Container>
   </section>
 </BaseLayout>
 
 <style>
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 1;
-    }
-  }
-
-  .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
+  /* Add any additional styling if needed */
 </style>

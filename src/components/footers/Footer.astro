@@ -221,43 +221,14 @@ const currentYear = new Date().getFullYear();
             Eco-Driven Innovations
           </div>
         </div>
+		<div class="flex flex-col md:flex-row justify-center text-center items-center pt-4 border-t border-[#2C3E50]/10">
+		  <div class="text-sm text-[#2C3E50]/60 mb-4 md:mb-0">
+			&copy; {currentYear} ICPIES 2025. All rights reserved. Hosted by The Open University of Sri Lanka.
+		  </div>
+		</div>
       </div>
 
       <!-- Footer bottom section -->
-      <div class="flex flex-col md:flex-row justify-between items-center pt-4 border-t border-[#2C3E50]/10">
-        <div class="text-sm text-[#2C3E50]/60 mb-4 md:mb-0">
-          &copy; {currentYear} ICPIES 2025. All rights reserved. Hosted by The Open University of Sri Lanka.
-        </div>
-
-        <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <a href="/privacy-policy" class="text-sm text-[#2C3E50]/60 hover:text-[#1A7A64] transition-colors">
-            Privacy Policy
-          </a>
-          <a href="/terms" class="text-sm text-[#2C3E50]/60 hover:text-[#1A7A64] transition-colors">
-            Terms of Use
-          </a>
-          <a href="/sitemap" class="text-sm text-[#2C3E50]/60 hover:text-[#1A7A64] transition-colors">
-            Sitemap
-          </a>
-
-          <!-- Language selector -->
-          <div class="flex items-center border-l border-[#2C3E50]/20 pl-4 ml-2">
-            {locales.map((locale) => (
-              <a
-                href={getTranslatedUrl(locale)}
-                class:list={[
-                  "px-2 py-1 text-sm transition-colors",
-                  isActiveLocale(locale)
-                    ? "bg-[#1A7A64]/10 text-[#1A7A64] rounded"
-                    : "text-[#2C3E50]/60 hover:text-[#1A7A64]"
-                ]}
-              >
-                {locale.toUpperCase()}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
     </div>
   </Container>
 

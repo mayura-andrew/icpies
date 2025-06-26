@@ -9,7 +9,7 @@ jobs:
   deploy:
     name: Deploy to Production Server
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -53,25 +53,25 @@ jobs:
           script: |
             # Navigate to the project directory
             cd /home/administrator/apps/icpies
-            
+
             # Pull latest code from git
             git pull origin main
-            
+
             # Install dependencies
             pnpm install
-            
+
             # Build the project
             pnpm build
-            
+
             # Stop existing PM2 process if running
             pm2 stop icpies || true
-            
+
             # Start the application with PM2
             pm2 start ecosystem.config.cjs
-            
+
             # Save PM2 configuration
             pm2 save
-            
+
             # Show status
             pm2 status
 

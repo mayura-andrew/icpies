@@ -51,6 +51,24 @@ export default defineConfig({
 		robotsTxt({
 			policy: [{ userAgent: "*", allow: "/" }],
 		}),
+		icon({
+      include: {
+        heroicons: ['*'], // Include all heroicons
+        // or specify only the ones you need:
+        // heroicons: [
+        //   'document-text',
+        //   'minus',
+        //   'plus',
+        //   'arrows-pointing-out',
+        //   'arrow-down-tray',
+        //   'exclamation-triangle',
+        //   'device-phone-mobile',
+        //   'chevron-left',
+        //   'chevron-right',
+        //   'arrow-top-right-on-square'
+        // ]
+      }
+    }),
 		AstroPWA({
 			mode: import.meta.env.PROD ? "production" : "development",
 			base: "/",

@@ -27,7 +27,7 @@ const defaultButtons: ButtonProps[] = [
   },
 ];
 
-const defaultEventDate = "2025-08-28T09:00:00";
+const defaultEventDate = "2025-09-24T09:00:00";
 const {
   headline = '2<span class="superscript-text">nd</span> International Conference on Plastics, Innovations and Environmental Sustainability (ICPIES) 2025',
   title,
@@ -87,29 +87,13 @@ const {
       <!-- Text content below image -->
       <div class="w-full max-w-6xl mx-auto text-center px-4">
 
-        <!-- Organized by section - Add this new section -->
-        <!-- <div data-hero-reveal class="mb-6 md:mb-8 flex flex-col items-center justify-center">
-          <p class="text-gray-600 text-sm md:text-base mb-2">Organized by</p>
-          <div class="flex items-center justify-center">
-            <Image
-              src={CESSD}
-              alt="Centre for Environmental Studies & Sustainable Development"
-              class="h-16 md:h-20 w-auto object-contain"
-              width={200}
-              height={80}
-            />
-          </div>
-          <p class="text-gray-700 font-medium text-sm mt-2">Centre for Environmental Studies & Sustainable Development</p>
-          <p class="text-gray-600 text-xs">The Open University of Sri Lanka</p>
-        </div> -->
-
         <!-- Countdown Timer - more compact for mobile -->
         <div data-hero-reveal class="mb-6 md:mb-8 max-w-full md:max-w-xl mx-auto">
           <Countdown eventDate={eventDate} />
         </div>
 
         <!-- Action buttons - mobile optimized -->
-        <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4" data-hero-reveal>
+        <!-- <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4" data-hero-reveal>
           {buttons.map((button, i) => (
             <Link
               href={button.href}
@@ -123,7 +107,7 @@ const {
               {button.title}
             </Link>
           ))}
-        </div>
+        </div> -->
       </div>
     </div>
   </Container>

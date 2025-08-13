@@ -23,13 +23,13 @@ const categories = [
   "Special Session Co-Chair",
   "CMT Chair",
   "Workshop Chair",
-  "Indexing Committee Chair",
+  "Indexing Committee Chairs",
   "Awards Chair",
   "Awards Co-Chairs",
   "Local Organizing Chairs",
   "Publicity Committee",
   "Conference Secretaries",
-  "Web Committee Chair",
+  "Web Committee Chairs",
   "Web Admin",
   "Web Committee"
 
@@ -84,7 +84,10 @@ import rushanth from "@/assets/committee/rushanth.svg"
 import morais from "@/assets/committee/morais.svg"
 import shiromi from "@/assets/committee/shiromi.svg"
 import pradeep from "@/assets/committee/pradeep.svg"
-
+import mrInya from "@/assets/committee/mrInya.svg"
+import drMohamed from "@/assets/committee/drMohamed.svg"
+import libThushara from "@/assets/committee/libThushara.svg"
+import engHensa from "@/assets/committee/engHensa.svg"
 const members: Member[] = [
   // Conference Chairs
   {
@@ -178,16 +181,18 @@ const members: Member[] = [
     email: "mgyma@ou.ac.lk",
     category: "Conference Co-Chairs",
   },
-	{
-    name: "Eng. Rushanth Chandrabose",
-    title: "Conference Co-Chairs",
-    affiliation: "The Open University of Sri Lanka",
+  {
+    name: "Dr. Ibrahim Mohamed",
+    title: "Conference Co-Chair",
+    affiliation: "Maldives National University",
     role: "Conference Co-Chair",
-    image: rushanth,
+    image: drMohamed,
     country: "LK",
-    email: "mgyma@ou.ac.lk",
+    email: "udithaw@ou.ac.lk",
     category: "Conference Co-Chairs",
   },
+
+
 // //
   //TPC Chair
   {
@@ -332,28 +337,6 @@ const members: Member[] = [
     email: "hmcal@ou.ac.lk",
     category: "Organizing Committee",
   },
-  // Programme Co-Chairs
-  {
-    name: "Dr. Lochandaka Ranathunga",
-    title: "Programme Co-Chair",
-    affiliation: "University of Moratuwa",
-    role: "Programme Co-Chair",
-    image: defaultAvatar,
-    country: "LK",
-    email: "lochandaka@uom.lk",
-    category: "Programme Committee",
-  },
-//   // Publication Chair & Co-Chairs
-//   {
-//     name: "Prof. Meththika Vithanage",
-//     title: "Publication Chair",
-//     affiliation: "University of Sri Jayewardenepura",
-//     role: "Publication Chair",
-//     image: profMetththika,
-//     country: "LK",
-//     email: "meththika@sjp.ac.lk",
-//     category: "Publication Chairs",
-//   },
   {
     name: "Prof. Shiromi Karunaratne",
     title: "Publication Chair",
@@ -382,26 +365,6 @@ const members: Member[] = [
     image: hasintha,
     country: "LK",
     email: "pradeepkalansooriya@kdu.ac.lk",
-    category: "Publication Co-Chairs",
-  },
-//   {
-//     name: "Dr. Pradeep Gajanayake",
-//     title: "Publication Co-Chair",
-//     affiliation: "University of Sri Jayewardenepura",
-//     role: "Publication Co-Chair",
-//     image: defaultAvatar,
-//     country: "LK",
-//     email: "pradeepkalansooriya@kdu.ac.lk",
-//     category: "Publication Co-Chairs",
-//   },
-  {
-    name: "Dr. Supunmalie Ahangama",
-    title: "Publication Co-Chair",
-    affiliation: "University of Moratuwa",
-    role: "Publication Co-Chair",
-    image: drSupunmalie,
-    country: "LK",
-    email: "supunmali@ou.ac.lk",
     category: "Publication Co-Chairs",
   },
   {
@@ -487,16 +450,16 @@ const members: Member[] = [
     email: "sndia@ou.ac.lk",
     category: "International Relations Chairs",
   },
-// 	{
-//     name: "Dr. Chandana Jayawardena",
-//     title: "International Relation Chair",
-//     affiliation: "The Open University of Sri Lanka",
-//     role: "International Relation Chair",
-//     image: drJayawardana,
-//     country: "LK",
-//     email: "dawic@ou.ac.lk",
-//     category: "International Relations Chairs",
-//   },
+	{
+    name: "Ms. Inaya",
+    title: "International Relation Chair",
+    affiliation: "Maldives National University",
+    role: "International Relation Chair",
+    image: mrInya,
+    country: "LK",
+    email: "dawic@ou.ac.lk",
+    category: "International Relations Chairs",
+  },
   {
     name: "Prof. Madhubashini Hewage",
     title: "Publicity Chair",
@@ -541,16 +504,16 @@ const members: Member[] = [
     category: "Special Session Chairs",
   },
 
-  {
-    name: "Dr. Achintha Madushanka",
-    title: "Special Session Co-Chair",
-    affiliation: "The Open University of Sri Lanka",
-    role: "Special Session Chair",
-    image: drAchintha,
-    country: "LK",
-    email: "ddran@ou.ac.lk",
-    category: "Special Session Co-Chair",
-  },
+//   {
+//     name: "Dr. Achintha Madushanka",
+//     title: "Special Session Co-Chair",
+//     affiliation: "The Open University of Sri Lanka",
+//     role: "Special Session Chair",
+//     image: drAchintha,
+//     country: "LK",
+//     email: "ddran@ou.ac.lk",
+//     category: "Special Session Co-Chair",
+//   },
 
   {
     name: "Dr. Rukshima Dabare",
@@ -584,8 +547,19 @@ const members: Member[] = [
     image: drParanavithana,
     country: "LK",
     email: "gnpar@ou.ac.lk",
-    category: "Indexing Committee Chair",
+    category: "Indexing Committee Chairs",
   },
+     {
+    name: "Thushara Abeysekara",
+    title: "Indexing Committee Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Indexing Committee Chair",
+    image: libThushara,
+    country: "LK",
+    email: "gnpar@ou.ac.lk",
+    category: "Indexing Committee Chairs",
+  },
+
 {
     name: "Prof. Uthpala Jayawardena",
     title: "Awards Chair",
@@ -623,9 +597,9 @@ const members: Member[] = [
   {
     name: "Eng. Hansa De Soysa",
     title: "Awards Co-Chair",
-    affiliation: "",
+    affiliation: "EMACE Foundation",
     role: "Awards Co-Chair",
-    image: defaultAvatar,
+    image: engHensa,
     country: "LK",
     email: "hpasq@ou.ac.lk",
     category: "Awards Co-Chairs",
@@ -662,6 +636,17 @@ const members: Member[] = [
     image: mrKasun,
     country: "LK",
     email: "kdara@ou.ac.lk",
+    category: "Local Organizing Chairs",
+  },
+
+  {
+    name: "J. Kirushika",
+    title: "Local Organizing Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Local Organizing Chair",
+    image: msKirushika,
+    country: "LK",
+    email: "jkiru@ou.ac.lk",
     category: "Local Organizing Chairs",
   },
 
@@ -725,7 +710,17 @@ const members: Member[] = [
     image: engSampath,
     country: "LK",
     email: "dswic@ou.ac.lk",
-    category: "Web Committee Chair",
+    category: "Web Committee Chairs",
+  },
+   {
+    name: "Saliya Wickramasinghe",
+    title: "Web Committee Chair",
+    affiliation: "The Open University of Sri Lanka",
+    role: "Web Committee Member",
+    image: mrSaliya,
+    country: "LK",
+    email: "dswic@ou.ac.lk",
+    category: "Web Committee Chairs",
   },
 
 

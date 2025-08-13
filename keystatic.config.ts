@@ -27,7 +27,7 @@ export default config({
 	},
 	ui: {
 		brand: {
-			name: "Your Company",
+			name: "The Open University fo Sri  Lanka",
 			mark: BrandMarkComponent,
 		},
 	},

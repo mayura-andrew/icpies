@@ -1,106 +1,502 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Registration | ICPIES 2025" description="Registration information for ICPIES 2025 Conference">
+<BaseLayout
+  title="Registration | ICPIES 2025"
+  description="Register for ICPIES 2025 Conference"
+>
   <section class="py-32 bg-gradient-to-b from-[#0D3B66]/5 to-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
-        Registration Fees
-      </h1>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+          ICPIES 2025 Registration
+        </h1>
+        <div
+          class="w-32 h-1 bg-gradient-to-r from-[#0D3B66] to-[#4ECDC4] rounded-full mx-auto mb-8"
+        >
+        </div>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Please follow the instructions below for completing your ICPIES 2025
+          registration. Only online payments via the official payment gateway
+          are accepted.
+        </p>
+      </div>
 
-      <div class="w-32 h-1 bg-gradient-to-r from-[#0D3B66] to-[#4ECDC4] rounded-full mx-auto mb-10"></div>
-
-      <div class="py-8 px-4 text-center max-w-4xl mx-auto">
-        <!-- Registration Fees Section -->
-		<div class="mb-16">
-		  <div class="grid md:grid-cols-2 gap-8 mb-10">
-			<!-- Local Participants -->
-			<div class="rounded-xl shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-[#1A7A64]">
-			  <div class="p-6 bg-gradient-to-br  from-[#4ECDC4]/10 to-white rounded-lg border-l-4 border-[#4ECDC4]">
-				<h3 class="text-2xl font-semibold text-[#2C3E50] mb-4">Local Participants</h3>
-				<div class="space-y-4">
-				  <div class="flex justify-between items-center border-b border-[#1A7A64]/20 pb-3">
-					<span class="text-gray-700 font-medium">General Registration</span>
-					<span class="text-[#1A7A64] font-bold">5000 LKR</span>
-				  </div>
-				  <div class="flex justify-between items-center border-b border-[#1A7A64]/20 pb-3">
-					<span class="text-gray-700 font-medium">Early Bird Registration</span>
-					<span class="text-[#1A7A64] font-bold">3500 LKR</span>
-				  </div>
-				  <div class="flex justify-between items-center">
-					<span class="text-gray-700 font-medium">Students Registration</span>
-					<span class="text-[#1A7A64] font-bold">3000 LKR</span>
-				  </div>
-				</div>
-			  </div>
-			</div>
-
-			<!-- Foreign Participants -->
-			<div class="rounded-xl shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-[#0D3B66]">
-			  <div class="p-6 bg-gradient-to-br from-[#4ECDC4]/10 to-white rounded-lg border-l-4 border-[#4ECDC4]">
-				<h3 class="text-2xl font-semibold text-[#2C3E50] mb-4">Foreign Participants</h3>
-				<div class="space-y-4">
-				  <div class="flex justify-between items-center border-b border-[#0D3B66]/20 pb-3">
-					<span class="text-gray-700 font-medium">General Registration</span>
-					<span class="text-[#0D3B66] font-bold">200 USD</span>
-				  </div>
-				  <div class="flex justify-between items-center border-b border-[#0D3B66]/20 pb-3">
-					<span class="text-gray-700 font-medium">Early Bird Registration</span>
-					<span class="text-[#0D3B66] font-bold">100 USD</span>
-				  </div>
-				  <div class="flex justify-between items-center">
-					<span class="text-gray-700 font-medium">Online Participation</span>
-					<span class="text-[#0D3B66] font-bold">50 USD</span>
-				  </div>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-
-        <!-- Coming Soon Section -->
-        <div class="relative mb-12">
-          <div class="w-24 h-24 rounded-full bg-[#0D3B66]/10 mx-auto flex items-center justify-center animate-pulse mb-8">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-[#0D3B66]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012 2h2a2 2 0 012-2m-3 7h3m-3 4h3m-6-4h.01M6 16h.01" />
-            </svg>
-          </div>
-
-          <h2 class="text-3xl md:text-4xl font-bold text-[#2C3E50] mb-4">Registration Portal Coming Soon</h2>
-          <p class="text-xl text-[#2C3E50]/70 mb-8">
-            The registration portal for ICPIES 2025 will be opening soon. Please check back later for
-            the registration process details.
-          </p>
-
-          <div class="flex flex-col md:flex-row gap-6 justify-center mt-10">
-            <a href="/" class="inline-flex items-center gap-2 px-6 py-3 bg-[#1A7A64] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#156954] transform hover:-translate-y-1 hover:shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Section 1: Payment Guidelines -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+            <h2
+              class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center"
+            >
+              <svg
+                class="w-6 h-6 text-[#1A7A64] mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
               </svg>
-              Back to Home
-            </a>
+              Payment Guidelines
+            </h2>
+
+            <!-- Registration Includes -->
+            <div
+              class="mb-6 p-4 bg-[#1A7A64]/5 rounded-lg border-l-4 border-[#1A7A64]"
+            >
+              <h3 class="text-lg font-semibold text-[#1A7A64] mb-3">
+                Registration Includes
+              </h3>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li class="flex items-start">
+                  <svg
+                    class="w-4 h-4 text-[#1A7A64] mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Access to all sessions
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-4 h-4 text-[#1A7A64] mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Conference proceedings publication
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-4 h-4 text-[#1A7A64] mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Conference attendance e-certificate
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-4 h-4 text-[#1A7A64] mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Digital conference materials
+                </li>
+                <li class="flex items-start">
+                  <svg
+                    class="w-4 h-4 text-[#1A7A64] mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  Networking opportunities
+                </li>
+              </ul>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-[#2C3E50] mb-4">
+                1. Payment Method
+              </h3>
+              <div
+                class="p-4 bg-[#0D3B66]/5 rounded-lg border-l-4 border-[#0D3B66]"
+              >
+                <h4 class="font-medium text-[#0D3B66] mb-2">
+                  Debit/Credit Card (Online Gateway)
+                </h4>
+                <ul class="space-y-1 text-sm text-gray-700">
+                  <li>• Currency: Local and Foreign</li>
+                  <li>• Bank Service Fee may be applicable</li>
+                  <li>• Exchange Rate: 1 USD = LKR 305 (subject to change)</li>
+                  <li>• Upload proof via registration form after payment</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Registration Fees -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-[#2C3E50] mb-4">
+                Registration Fees
+              </h3>
+
+              <!-- Local Participants -->
+              <div
+                class="mb-4 p-4 bg-[#1A7A64]/5 rounded-lg border-l-4 border-[#1A7A64]"
+              >
+                <h4 class="font-medium text-[#1A7A64] mb-2">
+                  Local Participants
+                </h4>
+                <div class="space-y-1 text-sm">
+                  <div class="flex justify-between">
+                    <span>General Registration:</span>
+                    <span class="font-semibold">LKR 5,000</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Early Bird:</span>
+                    <span class="font-semibold">LKR 3,500</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Students:</span>
+                    <span class="font-semibold">LKR 3,000</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Foreign Participants -->
+              <div
+                class="mb-4 p-4 bg-[#0D3B66]/5 rounded-lg border-l-4 border-[#0D3B66]"
+              >
+                <h4 class="font-medium text-[#0D3B66] mb-2">
+                  Foreign Participants
+                </h4>
+                <div class="space-y-1 text-sm">
+                  <div class="flex justify-between">
+                    <span>General Registration:</span>
+                    <span class="font-semibold">USD 200</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Early Bird:</span>
+                    <span class="font-semibold">USD 100</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Online Participation:</span>
+                    <span class="font-semibold">USD 50</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post-Payment Process -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-[#2C3E50] mb-4">
+                2. Post-Payment
+              </h3>
+              <div class="space-y-2 text-sm text-gray-700">
+                <div class="flex items-start">
+                  <span class="w-2 h-2 bg-[#4ECDC4] rounded-full mr-2 mt-2"
+                  ></span>
+                  <span>Upload payment proof via registration form</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="w-2 h-2 bg-[#4ECDC4] rounded-full mr-2 mt-2"
+                  ></span>
+                  <span>Receive formal email confirmation of registration</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Important Notes -->
+            <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+              <div class="flex items-start">
+                <svg
+                  class="w-5 h-5 text-amber-600 mr-2 mt-0.5 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <div class="text-sm">
+                  <p class="font-medium text-amber-800 mb-1">
+                    3. Important Notes
+                  </p>
+                  <ul class="text-amber-700 space-y-1">
+                    <li>• Online payment is the only accepted method</li>
+                    <li>
+                      • Payments must be completed by the registration deadline
+                    </li>
+                    <li>
+                      • Keep a copy of the confirmation and receipt for your
+                      records
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Important Dates Section -->
-        <div class="border-t border-gray-200 pt-12 mt-12">
-          <h3 class="text-2xl font-semibold text-[#2C3E50] mb-6">Important Dates</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-[#1A7A64] text-left">
-              <div class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#1A7A64] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        <!-- Section 2: Registration Steps -->
+        <div class="lg:col-span-2">
+          <div class="space-y-8">
+            <!-- Step 1: Online Payment Form -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+              <h2
+                class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center"
+              >
+                <span
+                  class="w-8 h-8 bg-[#1A7A64] text-white rounded-full flex items-center justify-center text-sm font-bold mr-3"
+                  >1</span
+                >
+                Online Payment Process
+              </h2>
+
+              <div
+                class="text-center py-12 bg-gradient-to-r from-[#1A7A64]/5 to-[#4ECDC4]/5 rounded-lg border-2 border-dashed border-[#1A7A64]/30"
+              >
+                <svg
+                  class="w-16 h-16 text-[#1A7A64] mx-auto mb-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                  ></path>
                 </svg>
-                <span><strong>Early Bird Registration:</strong> Until September 5, 2025</span>
+                <h3 class="text-lg font-semibold text-[#2C3E50] mb-2">
+                  Secure Payment Gateway
+                </h3>
+                <p class="text-gray-600 mb-6">
+                  Complete your registration fee payment securely online
+                </p>
+                <a
+                  href="registration/payment">
+                  <button
+                  id="payment-btn"
+                  class="bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] text-white font-semibold py-3 px-8 rounded-lg hover:from-[#156954] hover:to-[#3bb8b0] transform hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex items-center mx-auto"
+                >
+                  <svg
+                    class="w-5 h-5 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                    ></path>
+                  </svg>
+                  Proceed to Payment Gateway
+				</div>
+			</a>
+            </div>
+
+          
+          </div>
+
+          <!-- Step 2: Registration Form -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2
+              class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center"
+            >
+              <span
+                class="w-8 h-8 bg-[#0D3B66] text-white rounded-full flex items-center justify-center text-sm font-bold mr-3"
+                >2</span
+              >
+              Registration Form
+            </h2>
+
+            <div
+              class="text-center py-12 bg-gradient-to-r from-[#0D3B66]/5 to-[#1A7A64]/5 rounded-lg border-2 border-dashed border-[#0D3B66]/30"
+            >
+              <svg
+                class="w-16 h-16 text-[#0D3B66] mx-auto mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+              <h3 class="text-lg font-semibold text-[#2C3E50] mb-2">
+                Google Registration Form
+              </h3>
+              <p class="text-gray-600 mb-6">
+                Complete your registration details and upload payment proof
+              </p>
+              <a
+                href="https://forms.gle/xAsyrJA1LDHVC4Zr8"
+                target="_blank"
+                class="bg-gradient-to-r from-[#0D3B66] to-[#1A7A64] text-white font-semibold py-3 px-8 rounded-lg hover:from-[#0a2d52] hover:to-[#156954] transform hover:-translate-y-1 hover:shadow-lg transition-all duration-300 inline-flex items-center"
+              >
+                <svg
+                  class="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-10a2 2 0 00-2-2h-4M14 4v8m0 0l3-3m-3 3L11 9"
+                  ></path>
+                </svg>
+                Open Registration Form
+              </a>
+            </div>
+          </div>
+
+          <!-- Registration Instructions -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2
+              class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center"
+            >
+              <svg
+                class="w-6 h-6 text-[#4ECDC4] mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              Registration Instructions
+            </h2>
+
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <span
+                  class="w-8 h-8 bg-[#1A7A64] text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 mt-1"
+                  >1</span
+                >
+                <div>
+                  <h3 class="font-semibold text-[#2C3E50] mb-2">
+                    Fill out the Online Form
+                  </h3>
+                  <p class="text-gray-600">
+                    Complete all fields and upload the required documents using
+                    the Google Form above.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <span
+                  class="w-8 h-8 bg-[#0D3B66] text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 mt-1"
+                  >2</span
+                >
+                <div>
+                  <h3 class="font-semibold text-[#2C3E50] mb-2">Payment</h3>
+                  <p class="text-gray-600">
+                    Make the payment using the online payment gateway above.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <span
+                  class="w-8 h-8 bg-[#4ECDC4] text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 mt-1"
+                  >3</span
+                >
+                <div>
+                  <h3 class="font-semibold text-[#2C3E50] mb-2">
+                    Upload Proof of Payment
+                  </h3>
+                  <p class="text-gray-600">
+                    Upload your proof of payment to the online registration
+                    form, regardless of the payment method you choose.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <span
+                  class="w-8 h-8 bg-[#F39C12] text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 mt-1"
+                  >4</span
+                >
+                <div>
+                  <h3 class="font-semibold text-[#2C3E50] mb-2">
+                    Confirmation
+                  </h3>
+                  <p class="text-gray-600">
+                    Once registered, you will receive an email confirmation.
+                    Please retain this email for your records.
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-[#0D3B66] text-left">
-              <div class="flex items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#0D3B66] mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <span><strong>Registration Deadline:</strong> September 10, 2025</span>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2
+              class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center"
+            >
+              <svg
+                class="w-6 h-6 text-[#1A7A64] mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+              Need Assistance?
+            </h2>
+
+            <p class="text-gray-600 mb-6">
+              For further inquiries or assistance with registration, please
+              contact us at:
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div
+                class="p-4 bg-[#1A7A64]/5 rounded-lg border-l-4 border-[#1A7A64]"
+              >
+                <h3 class="font-semibold text-[#1A7A64] mb-2">Email</h3>
+                <a
+                  href="mailto:icpies2025@ousl.lk"
+                  class="text-[#1A7A64] hover:underline">icpies@ou.ac.lk</a
+                >
+              </div>
+
+              <div
+                class="p-4 bg-[#0D3B66]/5 rounded-lg border-l-4 border-[#0D3B66]"
+              >
+                <h3 class="font-semibold text-[#0D3B66] mb-2">Phone</h3>
+                <a
+                  href="tel:+94112881000"
+                  class="text-[#0D3B66] hover:underline">+94 11 2881423</a
+                >
               </div>
             </div>
           </div>
@@ -110,17 +506,146 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   </section>
 </BaseLayout>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Fee Calculator
+    const countrySelect = document.getElementById("calc-country");
+    const typeSelect = document.getElementById("calc-type");
+    const feeResult = document.getElementById("fee-result");
+    const calculatedFee = document.getElementById("calculated-fee");
+    const feeNote = document.getElementById("fee-note");
+
+    function calculateFee() {
+      const country = countrySelect.value;
+      const type = typeSelect.value;
+
+      if (!country || !type) {
+        feeResult.classList.add("hidden");
+        return;
+      }
+
+      let fee = "";
+      let note = "";
+      let feeAmount = 0;
+
+      if (country === "LK") {
+        switch (type) {
+          case "early":
+            fee = "LKR 3,500";
+            feeAmount = 3500;
+            note = "Early Bird Rate (Until September 5, 2025)";
+            break;
+          case "student":
+            fee = "LKR 3,000";
+            feeAmount = 3000;
+            note = "Student Rate (Valid student ID required)";
+            break;
+          case "general":
+            fee = "LKR 5,000";
+            feeAmount = 5000;
+            note = "General Registration Rate";
+            break;
+        }
+      } else {
+        switch (type) {
+          case "early":
+            fee = "USD 100";
+            feeAmount = 100;
+            note =
+              "Early Bird Rate (Until September 5, 2025) ≈ LKR " +
+              (100 * 305).toLocaleString();
+            break;
+          case "online":
+            fee = "USD 50";
+            feeAmount = 50;
+            note = "Online Participation ≈ LKR " + (50 * 305).toLocaleString();
+            break;
+          case "general":
+            fee = "USD 200";
+            feeAmount = 200;
+            note =
+              "General Registration Rate ≈ LKR " + (200 * 305).toLocaleString();
+            break;
+          case "student":
+            fee = "Not Available";
+            note = "Student rates are only available for local participants";
+            break;
+        }
+      }
+
+      if (fee !== "Not Available") {
+        calculatedFee.textContent = fee;
+        feeNote.textContent = note + " (Bank service fees may apply)";
+        feeResult.classList.remove("hidden");
+      } else {
+        feeResult.classList.add("hidden");
+      }
+    }
+
+    countrySelect.addEventListener("change", calculateFee);
+    typeSelect.addEventListener("change", calculateFee);
+
+    // Payment button click handler
+    document
+      .getElementById("payment-btn")
+      .addEventListener("click", function () {
+        // Here you would integrate with your actual payment gateway
+        window.location.href = "http://localhost:4321/registration/payment";
+      });
+
+    // Update type options based on country selection
+    countrySelect.addEventListener("change", function () {
+      const country = this.value;
+      const typeOptions = typeSelect.options;
+
+      // Clear current selection
+      typeSelect.value = "";
+
+      // Show/hide options based on country
+      for (let i = 0; i < typeOptions.length; i++) {
+        const option = typeOptions[i];
+        if (country === "LK") {
+          // Local participants - show all except online
+          option.style.display = option.value === "online" ? "none" : "block";
+        } else if (country === "OTHER") {
+          // Foreign participants - hide student option
+          option.style.display = option.value === "student" ? "none" : "block";
+        } else {
+          // No country selected - show all
+          option.style.display = "block";
+        }
+      }
+
+      calculateFee();
+    });
+  });
+</script>
+
 <style>
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 0.6;
-    }
-    50% {
-      opacity: 1;
-    }
+  /* Smooth transitions for all interactive elements */
+  button,
+  a,
+  select {
+    transition: all 0.2s ease-in-out;
   }
 
-  .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  /* Focus styles */
+  select:focus {
+    outline: none;
+  }
+
+  /* Step number animations */
+  .step-number {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
   }
 </style>

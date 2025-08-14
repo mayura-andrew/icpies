@@ -1,0 +1,118 @@
+---
+import RegistrationForm from '@/components/payment/Payment';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Registration | ICPIES 2025" description="Register for ICPIES 2025 Conference">
+  <section class="py-32 bg-gradient-to-b from-[#0D3B66]/5 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+          ICPIES 2025 Registration
+        </h1>
+        <div class="w-32 h-1 bg-gradient-to-r from-[#0D3B66] to-[#4ECDC4] rounded-full mx-auto mb-8"></div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Section 1: Registration Guidelines -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-xl shadow-lg p-6 sticky top-24">
+            <h2 class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center">
+              <svg class="w-6 h-6 text-[#1A7A64] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+              Guidelines
+            </h2>
+
+            <!-- Registration Fees -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-[#2C3E50] mb-4">Conference Registration Fees</h3>
+
+              <!-- Local Participants -->
+              <div class="mb-4 p-4 bg-[#1A7A64]/5 rounded-lg border-l-4 border-[#1A7A64]">
+                <h4 class="font-medium text-[#1A7A64] mb-2">Local Participants</h4>
+                <div class="space-y-1 text-sm">
+                  <div class="flex justify-between">
+                    <span>General Registration:</span>
+                    <span class="font-semibold">LKR 5,000</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Early Bird:</span>
+                    <span class="font-semibold">LKR 3,500</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Students:</span>
+                    <span class="font-semibold">LKR 3,000</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Foreign Participants -->
+              <div class="mb-4 p-4 bg-[#0D3B66]/5 rounded-lg border-l-4 border-[#0D3B66]">
+                <h4 class="font-medium text-[#0D3B66] mb-2">Foreign Participants</h4>
+                <div class="space-y-1 text-sm">
+                  <div class="flex justify-between">
+                    <span>General Registration:</span>
+                    <span class="font-semibold">USD 200</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Early Bird:</span>
+                    <span class="font-semibold">USD 100</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Online Participation:</span>
+                    <span class="font-semibold">USD 50</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Important Dates -->
+            <div class="mb-6">
+              <h3 class="text-lg font-semibold text-[#2C3E50] mb-4">Important Dates</h3>
+              <div class="space-y-3 text-sm">
+                <div class="flex items-start">
+                  <svg class="w-4 h-4 text-[#1A7A64] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span><strong>Early Bird:</strong> Until September 5, 2025</span>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-4 h-4 text-[#0D3B66] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span><strong>Registration Deadline:</strong> September 10, 2025</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Notice -->
+            <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+              <div class="flex items-start">
+                <svg class="w-5 h-5 text-amber-600 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                </svg>
+                <div class="text-sm">
+                  <p class="font-medium text-amber-800 mb-1">Payment Notice</p>
+                  <p class="text-amber-700">American Express credit card payments are not allowed. Transaction convenience fees will be added.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: React Registration Form -->
+        <div class="lg:col-span-2">
+          <RegistrationForm
+            client:load
+            onSubmit={(data) => {
+              console.log('Form submitted:', data);
+              // Handle form submission here
+              alert('Registration data collected successfully! Redirecting to payment gateway...');
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

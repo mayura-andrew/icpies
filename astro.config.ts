@@ -90,7 +90,7 @@ export default defineConfig({
 				globIgnores: ["**/_worker.js/**/*", "_worker.js"],
 				navigateFallbackDenylist: [/^\/keystatic/, /^\/api/],
 				skipWaiting: true,
-				maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+				maximumFileSizeToCacheInBytes: 30 * 1024 * 1024,
 			},
 			devOptions: {
 				enabled: false,

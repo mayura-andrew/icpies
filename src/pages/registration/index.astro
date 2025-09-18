@@ -240,6 +240,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                       • Keep a copy of the confirmation and receipt for your
                       records
                     </li>
+                    <li
+                      class="font-semibold text-amber-900 bg-amber-100 px-2 py-1 rounded border-l-2 border-amber-600"
+                    >
+                      📸 Keep a screenshot of the confirmation for your records
+                      and upload it to the Registration Form
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -247,290 +253,322 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
         </div>
 
-       		<!-- Section 2: Registration Steps -->
-		<div class="lg:col-span-2">
-		  <div class="space-y-8">
-			<!-- Step 1: Online Payment Form -->
-			<div class="bg-white rounded-xl shadow-lg p-8">
-			  <h2 class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center">
-				<span class="w-8 h-8 bg-[#1A7A64] text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">1</span>
-				Online Payment Process
-			  </h2>
+        <!-- Section 2: Registration Steps -->
+        <div class="lg:col-span-2">
+          <div class="space-y-8">
+            <!-- Step 1: Online Payment Form -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+              <h2
+                class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center"
+              >
+                <span
+                  class="w-8 h-8 bg-[#1A7A64] text-white rounded-full flex items-center justify-center text-sm font-bold mr-3"
+                  >1</span
+                >
+                Online Payment Process
+              </h2>
 
-			  <!-- Coming Soon Section -->
-			  <div class="text-center py-12 bg-gradient-to-r from-[#F39C12]/5 to-[#E67E22]/5 rounded-lg border-2 border-dashed border-[#F39C12]/30 mb-6">
-				<svg class="w-16 h-16 text-[#F39C12] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-				</svg>
-				<h3 class="text-xl font-bold text-[#F39C12] mb-2">
-				  Online Payment Gateway
-				</h3>
-				<p class="text-lg font-semibold text-[#E67E22] mb-2">
-				  Coming Soon!
-				</p>
-				<p class="text-gray-600 mb-4">
-				  Our secure online payment system will be available shortly. Please check back soon.
-				</p>
-				<div class="inline-flex items-center px-4 py-2 bg-[#F39C12]/10 rounded-full">
-				  <svg class="w-4 h-4 text-[#F39C12] mr-2" fill="currentColor" viewBox="0 0 20 20">
-					<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-				  </svg>
-				  <span class="text-sm font-medium text-[#F39C12]">Expected Launch: September 2025</span>
-				</div>
-			  </div>
-			  <!-- Disabled Payment Button -->
-			  <div class="mt-6 text-center">
-				<button
-				  disabled
-				  class="bg-gray-400 text-white font-semibold py-3 px-8 rounded-lg cursor-not-allowed opacity-60 flex items-center mx-auto"
-				>
-				  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-				  </svg>
-				  Payment Gateway (Coming Soon)
-				</button>
-			  </div>
-			</div>
+              <!-- Active Payment Section -->
+              <div
+                class="text-center py-12 bg-gradient-to-r from-[#1A7A64]/5 to-[#4ECDC4]/5 rounded-lg border-2 border-solid border-[#1A7A64]/30 mb-6"
+              >
+                <div class="text-center">
+                  <a
+                    href="https://icpies.ou.ac.lk/payment/"
+                    target="_blank"
+                    class="bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] text-white font-semibold py-4 px-8 rounded-lg hover:from-[#156954] hover:to-[#3bb8b0] transform hover:-translate-y-1 hover:shadow-lg transition-all duration-300 inline-flex items-center"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                      ></path>
+                    </svg>
+                    Proceed to Payment Gateway
+                  </a>
+                  <p class="text-sm text-gray-600 mt-3">
+                    <strong>Note:</strong> You will be redirected to our secure payment
+                    portal
+                  </p>
+                </div>
+              </div>
+            </div>
 
-			<!-- Step 2: Registration Form - Updated Priority -->
-			<div class="bg-white rounded-xl shadow-lg p-8 border-2 border-[#1A7A64]">
-			  <h2 class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center">
-				<span class="w-8 h-8 bg-[#0D3B66] text-white rounded-full flex items-center justify-center text-sm font-bold mr-3">2</span>
-				Registration Form
-			  </h2>
+            <!-- Step 2: Registration Form - Updated Priority -->
+            <div
+              class="bg-white rounded-xl shadow-lg p-8 border-2 border-[#1A7A64]"
+            >
+              <h2
+                class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center"
+              >
+                <span
+                  class="w-8 h-8 bg-[#0D3B66] text-white rounded-full flex items-center justify-center text-sm font-bold mr-3"
+                  >2</span
+                >
+                Registration Form
+              </h2>
 
-			  <!-- Coming Soon Section for Registration Form -->
-			  <div class="text-center py-12 bg-gradient-to-r from-[#F39C12]/5 to-[#E67E22]/5 rounded-lg border-2 border-dashed border-[#F39C12]/30">
-				<svg class="w-16 h-16 text-[#F39C12] mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-				</svg>
-				<p class="text-lg font-semibold text-[#E67E22] mb-2">
-				  Coming Soon!
-				</p>
-				<div class="inline-flex items-center px-4 py-2 bg-[#F39C12]/10 rounded-full">
-				  <svg class="w-4 h-4 text-[#F39C12] mr-2" fill="currentColor" viewBox="0 0 20 20">
-					<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
-				  </svg>
-				  <span class="text-sm font-medium text-[#F39C12]">Expected Launch: September 2025</span>
-				</div>
-			  </div>
-			</div>
+              <!-- Active Registration Form Section -->
+              <div
+                class="text-center py-12 bg-gradient-to-r from-[#0D3B66]/5 to-[#1A7A64]/5 rounded-lg border-2 border-solid border-[#0D3B66]/30"
+              >
+                <div class="text-center">
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSf8-mLy-j6gemAo4qOJVVrKXLEt7X8bgQt2kvZ_jsWDGi5lkg/viewform?usp=send_form"
+                    target="_blank"
+                    class="bg-gradient-to-r from-[#0D3B66] to-[#1A7A64] text-white font-semibold py-4 px-8 rounded-lg hover:from-[#0a2d52] hover:to-[#156954] transform hover:-translate-y-1 hover:shadow-lg transition-all duration-300 inline-flex items-center"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-10a2 2 0 00-2-2h-4M14 4v8m0 0l3-3m-3 3L11 9"
+                      ></path>
+                    </svg>
+                    Complete Registration Form
+                  </a>
+                  <p class="text-sm text-gray-600 mt-3">
+                    <strong>Note:</strong> You will be redirected to our secure registration
+                    form
+                  </p>
+                </div>
+              </div>
+            </div>
 
-			<!-- Updated Registration Instructions -->
-			<div class="bg-white rounded-xl shadow-lg p-8">
-			  <h2 class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center">
-				<svg class="w-6 h-6 text-[#4ECDC4] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-				</svg>
-				Registration Process
-			  </h2>
+            <!-- Contact Information -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+              <h2
+                class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center"
+              >
+                <svg
+                  class="w-6 h-6 text-[#1A7A64] mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+                Need Assistance?
+              </h2>
 
-			  <div class="space-y-6">
-				<div class="flex items-start">
-				  <span class="w-8 h-8 bg-[#1A7A64] text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 mt-1">1</span>
-				  <div>
-					<h3 class="font-semibold text-[#2C3E50] mb-2">Complete Registration Form</h3>
-					<p class="text-gray-600">Fill out the online registration form with all required information and documents.</p>
-				  </div>
-				</div>
+              <p class="text-gray-600 mb-6">
+                For further inquiries or assistance with registration and
+                payment, please contact us at:
+              </p>
 
-				<div class="flex items-start">
-				  <span class="w-8 h-8 bg-[#0D3B66] text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 mt-1">2</span>
-				  <div>
-					<h3 class="font-semibold text-[#2C3E50] mb-2">Receive Payment Instructions</h3>
-					<p class="text-gray-600">Our team will contact you with detailed payment instructions within 24 hours.</p>
-				  </div>
-				</div>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div
+                  class="p-4 bg-[#1A7A64]/5 rounded-lg border-l-4 border-[#1A7A64]"
+                >
+                  <h3 class="font-semibold text-[#1A7A64] mb-2">Email</h3>
+                  <a
+                    href="mailto:icpies@ou.ac.lk"
+                    class="text-[#1A7A64] hover:underline">icpies@ou.ac.lk</a
+                  >
+                </div>
 
-				<div class="flex items-start">
-				  <span class="w-8 h-8 bg-[#4ECDC4] text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 mt-1">3</span>
-				  <div>
-					<h3 class="font-semibold text-[#2C3E50] mb-2">Complete Payment</h3>
-					<p class="text-gray-600">Make payment using the provided instructions (bank transfer or alternative methods).</p>
-				  </div>
-				</div>
-
-				<div class="flex items-start">
-				  <span class="w-8 h-8 bg-[#F39C12] text-white rounded-full flex items-center justify-center text-sm font-bold mr-4 mt-1">4</span>
-				  <div>
-					<h3 class="font-semibold text-[#2C3E50] mb-2">Upload Payment Proof & Confirmation</h3>
-					<p class="text-gray-600">Submit payment proof and receive your official registration confirmation.</p>
-				  </div>
-				</div>
-			  </div>
-			</div>
-
-			<!-- Contact Information -->
-			<div class="bg-white rounded-xl shadow-lg p-8">
-			  <h2 class="text-2xl font-bold text-[#2C3E50] mb-6 flex items-center">
-				<svg class="w-6 h-6 text-[#1A7A64] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-				</svg>
-				Need Assistance?
-			  </h2>
-
-			  <p class="text-gray-600 mb-6">
-				For further inquiries or assistance with registration and payment, please contact us at:
-			  </p>
-
-			  <div class="grid md:grid-cols-2 gap-6">
-				<div class="p-4 bg-[#1A7A64]/5 rounded-lg border-l-4 border-[#1A7A64]">
-				  <h3 class="font-semibold text-[#1A7A64] mb-2">Email</h3>
-				  <a href="mailto:icpies@ou.ac.lk" class="text-[#1A7A64] hover:underline">icpies@ou.ac.lk</a>
-				</div>
-
-				<div class="p-4 bg-[#0D3B66]/5 rounded-lg border-l-4 border-[#0D3B66]">
-				  <h3 class="font-semibold text-[#0D3B66] mb-2">Phone</h3>
-				  <a href="tel:+94112881423" class="text-[#0D3B66] hover:underline">+94 11 2881111</a>
-				</div>
-			  </div>
-			</div>
-		  </div>
-		</div>
+                <div
+                  class="p-4 bg-[#0D3B66]/5 rounded-lg border-l-4 border-[#0D3B66]"
+                >
+                  <h3 class="font-semibold text-[#0D3B66] mb-2">Phone</h3>
+                  <a
+                    href="tel:+94112881423"
+                    class="text-[#0D3B66] hover:underline">+94 11 2881111</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-</BaseLayout>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Fee Calculator
-    const countrySelect = document.getElementById("calc-country");
-    const typeSelect = document.getElementById("calc-type");
-    const feeResult = document.getElementById("fee-result");
-    const calculatedFee = document.getElementById("calculated-fee");
-    const feeNote = document.getElementById("fee-note");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Fee Calculator
+      const countrySelect = document.getElementById(
+        "calc-country"
+      ) as HTMLSelectElement | null;
+      const typeSelect = document.getElementById(
+        "calc-type"
+      ) as HTMLSelectElement | null;
+      const feeResult = document.getElementById(
+        "fee-result"
+      ) as HTMLElement | null;
+      const calculatedFee = document.getElementById(
+        "calculated-fee"
+      ) as HTMLElement | null;
+      const feeNote = document.getElementById("fee-note") as HTMLElement | null;
 
-    function calculateFee() {
-      const country = countrySelect.value;
-      const type = typeSelect.value;
+      function calculateFee() {
+        if (
+          !countrySelect ||
+          !typeSelect ||
+          !feeResult ||
+          !calculatedFee ||
+          !feeNote
+        )
+          return;
 
-      if (!country || !type) {
-        feeResult.classList.add("hidden");
-        return;
-      }
+        const country = countrySelect.value;
+        const type = typeSelect.value;
 
-      let fee = "";
-      let note = "";
-      let feeAmount = 0;
-
-      if (country === "LK") {
-        switch (type) {
-          case "early":
-            fee = "LKR 3,500";
-            feeAmount = 3500;
-            note = "Early Bird Rate (Until September 5, 2025)";
-            break;
-          case "student":
-            fee = "LKR 3,000";
-            feeAmount = 3000;
-            note = "Student Rate (Valid student ID required)";
-            break;
-          case "general":
-            fee = "LKR 5,000";
-            feeAmount = 5000;
-            note = "General Registration Rate";
-            break;
+        if (!country || !type) {
+          feeResult.classList.add("hidden");
+          return;
         }
-      } else {
-        switch (type) {
-          case "early":
-            fee = "USD 100";
-            feeAmount = 100;
-            note =
-              "Early Bird Rate (Until September 5, 2025) ≈ LKR " +
-              (100 * 305).toLocaleString();
-            break;
-          case "online":
-            fee = "USD 50";
-            feeAmount = 50;
-            note = "Online Participation ≈ LKR " + (50 * 305).toLocaleString();
-            break;
-          case "general":
-            fee = "USD 200";
-            feeAmount = 200;
-            note =
-              "General Registration Rate ≈ LKR " + (200 * 305).toLocaleString();
-            break;
-          case "student":
-            fee = "Not Available";
-            note = "Student rates are only available for local participants";
-            break;
-        }
-      }
 
-      if (fee !== "Not Available") {
-        calculatedFee.textContent = fee;
-        feeNote.textContent = note + " (Bank service fees may apply)";
-        feeResult.classList.remove("hidden");
-      } else {
-        feeResult.classList.add("hidden");
-      }
-    }
+        let fee = "";
+        let note = "";
+        let feeAmount = 0;
 
-    countrySelect.addEventListener("change", calculateFee);
-    typeSelect.addEventListener("change", calculateFee);
-
-    // Payment button click handler
-    document
-      .getElementById("payment-btn")
-      .addEventListener("click", function () {
-        // Here you would integrate with your actual payment gateway
-        window.location.href = "http://localhost:4321/registration/payment";
-      });
-
-    // Update type options based on country selection
-    countrySelect.addEventListener("change", function () {
-      const country = this.value;
-      const typeOptions = typeSelect.options;
-
-      // Clear current selection
-      typeSelect.value = "";
-
-      // Show/hide options based on country
-      for (let i = 0; i < typeOptions.length; i++) {
-        const option = typeOptions[i];
         if (country === "LK") {
-          // Local participants - show all except online
-          option.style.display = option.value === "online" ? "none" : "block";
-        } else if (country === "OTHER") {
-          // Foreign participants - hide student option
-          option.style.display = option.value === "student" ? "none" : "block";
+          switch (type) {
+            case "early":
+              fee = "LKR 3,500";
+              feeAmount = 3500;
+              note = "Early Bird Rate (Until September 5, 2025)";
+              break;
+            case "student":
+              fee = "LKR 3,000";
+              feeAmount = 3000;
+              note = "Student Rate (Valid student ID required)";
+              break;
+            case "general":
+              fee = "LKR 5,000";
+              feeAmount = 5000;
+              note = "General Registration Rate";
+              break;
+          }
         } else {
-          // No country selected - show all
-          option.style.display = "block";
+          switch (type) {
+            case "early":
+              fee = "USD 100";
+              feeAmount = 100;
+              note =
+                "Early Bird Rate (Until September 5, 2025) ≈ LKR " +
+                (100 * 305).toLocaleString();
+              break;
+            case "online":
+              fee = "USD 50";
+              feeAmount = 50;
+              note =
+                "Online Participation ≈ LKR " + (50 * 305).toLocaleString();
+              break;
+            case "general":
+              fee = "USD 200";
+              feeAmount = 200;
+              note =
+                "General Registration Rate ≈ LKR " +
+                (200 * 305).toLocaleString();
+              break;
+            case "student":
+              fee = "Not Available";
+              note = "Student rates are only available for local participants";
+              break;
+          }
+        }
+
+        if (fee !== "Not Available") {
+          calculatedFee.textContent = fee;
+          feeNote.textContent = note + " (Bank service fees may apply)";
+          feeResult.classList.remove("hidden");
+        } else {
+          feeResult.classList.add("hidden");
         }
       }
 
-      calculateFee();
+      if (countrySelect && typeSelect) {
+        countrySelect.addEventListener("change", calculateFee);
+        typeSelect.addEventListener("change", calculateFee);
+
+        // Update type options based on country selection
+        countrySelect.addEventListener("change", function () {
+          const country = this.value;
+          const typeOptions = typeSelect.options;
+
+          // Clear current selection
+          typeSelect.value = "";
+
+          // Show/hide options based on country
+          for (let i = 0; i < typeOptions.length; i++) {
+            const option = typeOptions[i] as HTMLOptionElement;
+            if (country === "LK") {
+              // Local participants - show all except online
+              option.style.display =
+                option.value === "online" ? "none" : "block";
+            } else if (country === "OTHER") {
+              // Foreign participants - hide student option
+              option.style.display =
+                option.value === "student" ? "none" : "block";
+            } else {
+              // No country selected - show all
+              option.style.display = "block";
+            }
+          }
+
+          calculateFee();
+        });
+      }
+
+      // Payment button click handler
+      const paymentBtn = document.getElementById(
+        "payment-btn"
+      ) as HTMLButtonElement | null;
+      if (paymentBtn) {
+        paymentBtn.addEventListener("click", function () {
+          // Here you would integrate with your actual payment gateway
+          window.location.href = "http://localhost:4321/registration/payment";
+        });
+      }
     });
-  });
-</script>
+  </script>
 
-<style>
-  /* Smooth transitions for all interactive elements */
-  button,
-  a,
-  select {
-    transition: all 0.2s ease-in-out;
-  }
-
-  /* Focus styles */
-  select:focus {
-    outline: none;
-  }
-
-  /* Step number animations */
-  .step-number {
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 1;
+  <style>
+    /* Smooth transitions for all interactive elements */
+    button,
+    a,
+    select {
+      transition: all 0.2s ease-in-out;
     }
-    50% {
-      opacity: 0.7;
+
+    /* Focus styles */
+    select:focus {
+      outline: none;
     }
-  }
-</style>
+
+    /* Step number animations */
+    .step-number {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+  </style>
+</BaseLayout>

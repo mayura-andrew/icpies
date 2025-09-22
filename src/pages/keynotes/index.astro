@@ -132,7 +132,7 @@ const keynoteSpeakers = [
   },
   {
     name: "Prof. P.G. Rathnasiri",
-    affiliation: "University of Sri Lanka",
+    affiliation: "University of Moratuwa",
     image: rathnasiri,
     type: "panel",
   },
@@ -167,6 +167,16 @@ const honoraryGuests = [
 const panels = [
   {
     title: "Panel Discussion — Session 1",
+    moderator: keynoteSpeakers.find((s) => s.name.includes("Mahesh Jayaweera")),
+    members: [
+      keynoteSpeakers.find((s) => s.name.includes("Prashani Illangasekara")),
+      keynoteSpeakers.find((s) => s.name.includes("Heminda Jayaweera")),
+      keynoteSpeakers.find((s) => s.name.includes("Buddhika Batheegama")),
+      keynoteSpeakers.find((s) => s.name.includes("Mr. Pasan Senadheera")), // duplicate allowed if needed
+    ].filter(Boolean),
+  },
+  {
+    title: "Panel Discussion — Session 2",
     moderator: keynoteSpeakers.find((s) => s.name.includes("Jagath Manatunge")),
     members: [
       keynoteSpeakers.find((s) => s.name.includes("Palinda Perera")),
@@ -175,16 +185,6 @@ const panels = [
       keynoteSpeakers.find((s) => s.name.includes("Dr. Prasad Senadheera")),
 	keynoteSpeakers.find((s) => s.name.includes("Prof. P.G. Rathnasiri")),
 
-    ].filter(Boolean),
-  },
-  {
-    title: "Panel Discussion — Session 2",
-    moderator: keynoteSpeakers.find((s) => s.name.includes("Mahesh Jayaweera")),
-    members: [
-      keynoteSpeakers.find((s) => s.name.includes("Prashani Illangasekara")),
-      keynoteSpeakers.find((s) => s.name.includes("Heminda Jayaweera")),
-      keynoteSpeakers.find((s) => s.name.includes("Buddhika Batheegama")),
-      keynoteSpeakers.find((s) => s.name.includes("Mr. Pasan Senadheera")), // duplicate allowed if needed
     ].filter(Boolean),
   },
 ];

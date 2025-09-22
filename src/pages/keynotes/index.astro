@@ -9,7 +9,7 @@ import speaker3 from "/src/assets/panel/speaker3.svg";
 import speaker4 from "/src/assets/panel/speaker4.svg";
 import speaker5 from "/src/assets/panel/speaker5.svg";
 import speaker6 from "/src/assets/panel/speaker6.svg";
-import speaker7 from "/src/assets/panel/speaker7.svg";
+import rathnasiri from "/src/assets/panel/rathnasiri.svg";
 import speaker8 from "/src/assets/panel/speaker8.svg";
 import speaker9 from "/src/assets/panel/speaker9.svg";
 import speaker10 from "/src/assets/panel/speaker10.svg";
@@ -21,10 +21,12 @@ import speaker15 from "/src/assets/panel/speaker15.svg";
 import speaker16 from "/src/assets/panel/speaker16.svg";
 import speaker17 from "/src/assets/committee/profJagath.svg";
 import speaker18 from "/src/assets/panel/speaker18.svg";
-
+import prasad from "/src/assets/panel/prasad.svg"
+import lalith from "/src/assets/panel/Lalith.svg"
+import pasan from "/src/assets/panel/pasan.svg"
 
 const keynoteSpeakers = [
-{
+  {
     name: "Prof. Wang Yawei",
     affiliation:
       "Office of the Overseas Center for Environmental Science and Technology Cooperation, Chinese Academy of Sciences",
@@ -39,12 +41,12 @@ const keynoteSpeakers = [
   },
   {
     name: "Dr. Moussa Baalbaki",
-    affiliation: "INSEE Cement",
+    affiliation: "Director - Products and Solutions Portfolio, INSEE Cement",
     image: speaker4,
     type: "keynote",
   },
   {
-    name: "Mr. S. Vijayapala",
+    name: "Vijayapala Sinnathamby",
     affiliation: "United Nations Office for Project Services",
     image: speaker8,
     type: "keynote",
@@ -128,13 +130,70 @@ const keynoteSpeakers = [
     image: speaker11,
     type: "panel",
   },
+  {
+    name: "Prof. P.G. Rathnasiri",
+    affiliation: "University of Sri Lanka",
+    image: rathnasiri,
+    type: "panel",
+  },
+  {
+    name: "Dr. Prasad Senadheera",
+    affiliation: "Sri Lanka Country Director CIFOR-ICRAF",
+    image: prasad,
+    type: "panel",
+  },
+  {
+    name: "Prof. Lalith Rajapakse",
+    affiliation: "University of Moratuwa",
+    image: lalith,
+    type: "panel",
+  },
+  {
+    name: "Mr. Pasan Senadheera",
+    affiliation: "Assistant Manager Plasticcycle Operations, John Keells Group",
+    image: pasan,
+    type: "panel",
+  },
 ];
 
-const panelMembers = keynoteSpeakers.filter(
-  (speaker) => speaker.type === "panel"
-);
-const keynoteOnly = keynoteSpeakers.filter(
-  (speaker) => speaker.type === "keynote"
+// New structured groups (explicit ordering)
+const honoraryGuests = [
+  keynoteSpeakers.find((s) => s.name.includes("Wang Yawei")),
+  keynoteSpeakers.find((s) => s.name.includes("Norbu Wangchuk")),
+  keynoteSpeakers.find((s) => s.name.includes("Moussa Baalbaki")),
+  keynoteSpeakers.find((s) => s.name.includes("Vijayapala Sinnathamby")),
+].filter(Boolean);
+
+const panels = [
+  {
+    title: "Panel Discussion — Session 1",
+    moderator: keynoteSpeakers.find((s) => s.name.includes("Jagath Manatunge")),
+    members: [
+      keynoteSpeakers.find((s) => s.name.includes("Palinda Perera")),
+      keynoteSpeakers.find((s) => s.name.includes("Ibrahim Mohammed")),
+      keynoteSpeakers.find((s) => s.name.includes("Prof. Lalith Rajapakse")),
+      keynoteSpeakers.find((s) => s.name.includes("Dr. Prasad Senadheera")),
+	keynoteSpeakers.find((s) => s.name.includes("Prof. P.G. Rathnasiri")),
+
+    ].filter(Boolean),
+  },
+  {
+    title: "Panel Discussion — Session 2",
+    moderator: keynoteSpeakers.find((s) => s.name.includes("Mahesh Jayaweera")),
+    members: [
+      keynoteSpeakers.find((s) => s.name.includes("Prashani Illangasekara")),
+      keynoteSpeakers.find((s) => s.name.includes("Heminda Jayaweera")),
+      keynoteSpeakers.find((s) => s.name.includes("Buddhika Batheegama")),
+      keynoteSpeakers.find((s) => s.name.includes("Mr. Pasan Senadheera")), // duplicate allowed if needed
+    ].filter(Boolean),
+  },
+];
+
+const remainingSpeakers = keynoteSpeakers.filter(
+  (s) =>
+    !honoraryGuests.includes(s) &&
+    !panels.some((p) => p.moderator === s) &&
+    !panels.some((p) => p.members.includes(s))
 );
 ---
 
@@ -142,12 +201,12 @@ const keynoteOnly = keynoteSpeakers.filter(
   title="Keynote Speakers & Agenda | ICPIES 2025"
   description="Meet our distinguished keynote speakers and view the conference agenda for ICPIES 2025"
 >
-
   <!-- Keynote Speakers Section -->
   <section class="py-32 bg-gradient-to-b from-[#1A7A64]/5 to-white">
     <Container>
       <div class="text-center mb-12">
-		<h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">          Keynote Speakers & Panel Members
+        <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+          Keynote Speakers & Panel Members
         </h1>
         <p class="text-[#2C3E50]/70 max-w-2xl mx-auto">
           Meet our distinguished keynote speakers and expert panel members who
@@ -155,47 +214,142 @@ const keynoteOnly = keynoteSpeakers.filter(
         </p>
       </div>
 
-      <!-- All Speakers Grid -->
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-      >
-		{
-		  keynoteSpeakers.map((speaker, index) => (
-			<div class="relative group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
-			  <div class="relative aspect-square overflow-hidden bg-gradient-to-br from-[#1A7A64]/10 to-[#4ECDC4]/10">
-				<span
-				  class={
-					speaker.type === "keynote"
-					  ? "absolute top-3 left-3 inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold text-white bg-[#1A7A64] shadow-sm"
-					  : "absolute top-3 left-3 inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold text-white bg-[#0D3B66] shadow-sm"
-				  }
-				  aria-hidden="false"
-				>
-				  {speaker.type === "keynote" ? "Keynote" : "Panel"}
-				</span>
-
-				<Image
-				  src={speaker.image}
-				  alt={`Photo of ${speaker.name}`}
-				  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-				  width={300}
-				  height={300}
-				/>
-			  </div>
-
-			  <div class="p-4">
-				<h3 class="text-lg font-bold text-[#2C3E50] mb-1 line-clamp-2">
-				  {speaker.name}
-				</h3>
-				<p class="text-[#2C3E50]/60 text-xs mb-3 line-clamp-2">
-				  {speaker.affiliation}
-				</p>
-			  </div>
-			</div>
-		  ))
-		}
-
+      <!-- Honorary Guests (prominent, ordered) -->
+      <div class="mb-12">
+        <!-- <h2 class="text-2xl font-semibold text-[#2C3E50] mb-6">
+          Address by Honorary Guest
+        </h2> -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {
+            honoraryGuests.map((g) => (
+              <article class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-[#1A7A64]/10 to-[#4ECDC4]/10">
+                  <Image
+                    src={g.image}
+                    alt={`Photo of ${g.name}`}
+                    class="w-full h-full object-cover"
+                    width={600}
+                    height={450}
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-lg font-bold text-[#2C3E50]">{g.name}</h3>
+                  <p class="text-sm text-[#2C3E50]/70 mt-1">{g.affiliation}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
       </div>
+
+      <!-- Panels: each panel shows moderator then members -->
+      {
+        panels.map((panel) => (
+          <section class="mb-10 bg-white rounded-xl p-6 border border-[#E6F4EF]">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-xl font-semibold text-[#2C3E50]">
+                {panel.title}
+              </h3>
+              <span class="text-sm text-[#2C3E50]/60">Moderated session</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Moderator - emphasized */}
+              <div class="md:col-span-1 flex items-stretch">
+                <article class="w-full bg-gradient-to-br from-[#F1F7F5] to-white border border-[#E6F4EF] rounded-lg p-4 flex flex-col items-center text-center">
+                  <div class="w-36 h-36 rounded-full overflow-hidden mb-4 ring-2 ring-[#1A7A64]/15">
+                    <Image
+                      src={panel.moderator.image}
+                      alt={`Photo of ${panel.moderator.name}`}
+                      class="w-full h-full object-cover"
+                      width={300}
+                      height={300}
+                    />
+                  </div>
+                  <span class="inline-block px-3 py-1 mb-2 text-xs font-semibold rounded-full bg-[#1A7A64] text-white">
+                    Moderator
+                  </span>
+                  <h4 class="text-md font-bold text-[#2C3E50]">
+                    {panel.moderator.name}
+                  </h4>
+                  <p class="text-xs text-[#2C3E50]/70 mt-1">
+                    {panel.moderator.affiliation}
+                  </p>
+                </article>
+              </div>
+
+              {/* Members */}
+              <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {panel.members.map((member) => (
+                  <article class="bg-white rounded-lg border border-gray-100 p-3 flex items-start gap-3">
+                    <div class="w-24 h-24 rounded-md overflow-hidden flex-shrink-0">
+                      <Image
+                        src={member.image}
+                        alt={`Photo of ${member.name}`}
+                        class="w-full h-full object-cover"
+                        width={96}
+                        height={96}
+                      />
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-sm text-[#2C3E50]">
+                        {member.name}
+                      </h5>
+                      <p class="text-xs text-[#2C3E50]/70 mt-1">
+                        {member.affiliation}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        ))
+      }
+
+      <!-- Remaining speakers (other keynotes / panelists) -->
+      <!-- {
+        remainingSpeakers.length > 0 && (
+          <div class="mt-8">
+            <h3 class="text-xl font-semibold text-[#2C3E50] mb-4">
+              Other Speakers
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {remainingSpeakers.map((s) => (
+                <div class="relative group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
+                  <div class="relative aspect-square overflow-hidden bg-gradient-to-br from-[#1A7A64]/10 to-[#4ECDC4]/10">
+                    <span
+                      class={
+                        s.type === "keynote"
+                          ? "absolute top-3 left-3 inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold text-white bg-[#1A7A64] shadow-sm"
+                          : "absolute top-3 left-3 inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold text-white bg-[#0D3B66] shadow-sm"
+                      }
+                      aria-hidden="false"
+                    >
+                      {s.type === "keynote" ? "Keynote" : "Panel"}
+                    </span>
+                    <Image
+                      src={s.image}
+                      alt={`Photo of ${s.name}`}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      width={300}
+                      height={300}
+                    />
+                  </div>
+                  <div class="p-4">
+                    <h3 class="text-lg font-bold text-[#2C3E50] mb-1 line-clamp-2">
+                      {s.name}
+                    </h3>
+                    <p class="text-[#2C3E50]/60 text-xs mb-3 line-clamp-2">
+                      {s.affiliation}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      } -->
     </Container>
   </section>
 

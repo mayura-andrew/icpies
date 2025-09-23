@@ -21,11 +21,10 @@ import speaker15 from "/src/assets/panel/speaker15.svg";
 import speaker16 from "/src/assets/panel/speaker16.svg";
 import speaker17 from "/src/assets/committee/profJagath.svg";
 import speaker18 from "/src/assets/panel/speaker18.svg";
-import prasad from "/src/assets/panel/prasad.svg"
-import lalith from "/src/assets/panel/Lalith.svg"
-import pasan from "/src/assets/panel/pasan.svg"
+import prasad from "/src/assets/panel/prasad.svg";
+import lalith from "/src/assets/panel/Lalith.svg";
+import pasan from "/src/assets/panel/pasan.svg";
 import vijayapalaImage from "/src/assets/speakers/vijayapala.svg"; // Replace with actual image path
-
 
 const keynoteSpeakers = [
   {
@@ -128,7 +127,8 @@ const keynoteSpeakers = [
   },
   {
     name: "Mr. Palinda Perera",
-    affiliation: "Specialist, Corporate Responsibility, Rockland Distilleries (Pvt) Ltd",
+    affiliation:
+      "Specialist, Corporate Responsibility, Rockland Distilleries (Pvt) Ltd",
     image: speaker11,
     type: "panel",
   },
@@ -185,8 +185,7 @@ const panels = [
       keynoteSpeakers.find((s) => s.name.includes("Ibrahim Mohammed")),
       keynoteSpeakers.find((s) => s.name.includes("Prof. Lalith Rajapakse")),
       keynoteSpeakers.find((s) => s.name.includes("Dr. Prasad Senadheera")),
-	keynoteSpeakers.find((s) => s.name.includes("Prof. P.G. Rathnasiri")),
-
+      keynoteSpeakers.find((s) => s.name.includes("Prof. P.G. Rathnasiri")),
     ].filter(Boolean),
   },
 ];
@@ -432,6 +431,113 @@ const remainingSpeakers = keynoteSpeakers.filter(
                 src="/Agenda-Inauguration-ICPIES-2025.pdf"
                 class="w-full h-full border-0"
                 title="Conference Agenda Preview"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Technical Session Plan Section -->
+  <section class="py-20 bg-white">
+    <Container>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-[#2C3E50] mb-4">
+          Technical Session Plan
+        </h2>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <div
+          class="bg-gradient-to-r from-[#4ECDC4]/5 to-[#1A7A64]/5 rounded-xl p-8 border border-[#4ECDC4]/10"
+        >
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-[#2C3E50] mb-2">
+                ICPIES 2025 — Technical Sessions Overview
+              </h3>
+              <p class="text-[#2C3E50]/70 mb-4">
+                Detailed plan for technical tracks: session topics, presenters,
+                timings and rooms. Use the preview below or download the full
+                PDF.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="/TECHNICAL-SESSION-PLAN.pdf"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 px-4 py-2 bg-[#4ECDC4] text-white font-medium rounded-lg hover:bg-[#1A7A64] transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    ></path>
+                  </svg>
+                  View Online
+                </a>
+
+                <a
+                  href="/TECHNICAL-SESSION-PLAN.pdf"
+                  download
+                  class="inline-flex items-center gap-2 px-4 py-2 border border-[#4ECDC4] text-[#4ECDC4] font-medium rounded-lg hover:bg-[#4ECDC4] hover:text-white transition-colors"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    ></path>
+                  </svg>
+                  Download PDF
+                </a>
+
+                <!-- small meta (optional) -->
+                <span
+                  class="inline-flex items-center gap-2 px-3 py-1 text-xs text-[#2C3E50]/60 rounded-md ml-2"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3M3 11h18M5 21h14a2 2 0 002-2V7H3v12a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                  PDF • 6 pages
+                </span>
+              </div>
+            </div>
+
+            <div
+              class="w-full md:w-80 h-64 bg-gray-100 rounded-lg overflow-hidden"
+            >
+              <iframe
+                src="/TECHNICAL-SESSION-PLAN.pdf"
+                class="w-full h-full border-0"
+                title="Technical Session Plan Preview"></iframe>
             </div>
           </div>
         </div>

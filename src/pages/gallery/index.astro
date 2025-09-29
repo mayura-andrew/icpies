@@ -1,0 +1,210 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/primitives/Container.astro";
+import Link from "@/components/primitives/Link.astro";
+
+// Import gallery images as Astro assets
+import image from "@/assets/gallery/image.jpg";
+import image1 from "@/assets/gallery/image2.jpg";
+import image2 from "@/assets/gallery/image3.jpg";
+import image3 from "@/assets/gallery/image4.jpg";
+import image4 from "@/assets/gallery/image5.jpg";
+import image5 from "@/assets/gallery/image6.jpg";
+import image6 from "@/assets/gallery/image7.jpg";
+import image7 from "@/assets/gallery/image8.jpg";
+import image8 from "@/assets/gallery/image9.jpg";
+import image9 from "@/assets/gallery/image10.jpg";
+import image10 from "@/assets/gallery/image11.jpg";
+import image11 from "@/assets/gallery/image12.jpg";
+import image12 from "@/assets/gallery/image13.jpg";
+import image13 from "@/assets/gallery/image14.jpg";
+import image14 from "@/assets/gallery/image15.jpg";
+import image15 from "@/assets/gallery/image.jpg";
+
+
+
+// Add more imports as needed
+
+const galleryImages = [
+  { src: image, alt: "Conference Opening Ceremony" },
+  { src: image1, alt: "Conference Opening Ceremony" },
+  { src: image2, alt: "Conference Opening Ceremony" },
+  { src: image3, alt: "Conference Opening Ceremony" },
+  { src: image4, alt: "Conference Opening Ceremony" },
+  { src: image5, alt: "Conference Opening Ceremony" },
+  { src: image6, alt: "Conference Opening Ceremony" },
+  { src: image7, alt: "Conference Opening Ceremony" },
+  { src: image8, alt: "Conference Opening Ceremony" },
+  { src: image9, alt: "Conference Opening Ceremony" },
+  { src: image10, alt: "Conference Opening Ceremony" },
+  { src: image11, alt: "Conference Opening Ceremony" },
+  { src: image12, alt: "Conference Opening Ceremony" },
+  { src: image13, alt: "Conference Opening Ceremony" },
+  { src: image14, alt: "Conference Opening Ceremony" },
+  { src: image15, alt: "Conference Opening Ceremony" },
+  // Add more images as needed
+];
+
+// SEO props for the page
+const seo = {
+  title: "Conference Gallery | ICPIES 2025",
+  description: "Relive the highlights from the 2nd International Conference on Plastics, Innovations and Environmental Sustainability (ICPIES) 2025."
+};
+---
+
+<BaseLayout seo={seo}>
+  <div class="py-16 pb-32">
+    <!-- Header Section - Consistent with Important Dates page -->
+    <section class="py-16 bg-gradient-to-b from-[#1A7A64]/5 to-white rounded-2xl">
+      <Container>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 class="text-4xl md:text-5xl font-bold text-[#2C3E50] mb-6">
+            Conference Gallery
+          </h1>
+          <div class="w-32 h-1 bg-gradient-to-r from-[#1A7A64] to-[#4ECDC4] rounded-full mx-auto mb-8"></div>
+          <p class="text-lg text-[#2C3E50]/80 max-w-2xl mx-auto mb-8">
+            Relive the highlights from ICPIES 2025
+          </p>
+          <Link href="/" style="outline" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#1A7A64] text-[#1A7A64] hover:bg-[#1A7A64] hover:text-white transition-colors">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+            Back to Home
+          </Link>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-16">
+      <Container>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryImages.map((image, index) => (
+            <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" data-index={index}>
+              <img
+                src={image.src.src || image.src}
+                alt={image.alt}
+                class="w-full h-64 object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex items-center justify-center">
+      <button id="lightbox-close" class="absolute top-4 right-4 text-white text-3xl hover:text-gray-300">&times;</button>
+      <button id="lightbox-prev" class="absolute left-4 text-white text-3xl hover:text-gray-300">&larr;</button>
+      <button id="lightbox-next" class="absolute right-4 text-white text-3xl hover:text-gray-300">&rarr;</button>
+      <div id="lightbox-image" class="max-w-full max-h-full">
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain" />
+      </div>
+    </div>
+
+    <script>
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxPrev = document.getElementById('lightbox-prev');
+      const lightboxNext = document.getElementById('lightbox-next');
+      let currentIndex = 0;
+
+      // Open lightbox
+      galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          currentIndex = index;
+          showImage(currentIndex);
+          lightbox.classList.remove('hidden');
+        });
+      });
+
+      // Show image in lightbox
+      function showImage(index) {
+        const image = galleryItems[index];
+        const imgSrc = image.querySelector('img').src;
+        const imgAlt = image.querySelector('img').alt;
+        lightboxImg.src = imgSrc;
+        lightboxImg.alt = imgAlt;
+      }
+
+      // Close lightbox
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.add('hidden');
+      });
+
+      // Navigate images
+      lightboxPrev.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        showImage(currentIndex);
+      });
+
+      lightboxNext.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        showImage(currentIndex);
+      });
+
+      // Close on overlay click
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.add('hidden');
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('hidden')) {
+          if (e.key === 'Escape') lightbox.classList.add('hidden');
+          if (e.key === 'ArrowLeft') lightboxPrev.click();
+          if (e.key === 'ArrowRight') lightboxNext.click();
+        }
+      });
+    </script>
+
+    <style>
+      /* Custom styles for gallery */
+      .gallery-item img {
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Consistent hover and shadow effects */
+      .gallery-item {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      #lightbox {
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+          grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </div>
+</BaseLayout>
+

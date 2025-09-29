@@ -3,7 +3,6 @@ import type { ButtonProps } from "@/components/primitives/Button.astro";
 import Container from "@/components/primitives/Container.astro";
 import Link from "@/components/primitives/Link.astro";
 import Blob from "@/components/sections/Blob.astro";
-import Countdown from "@/components/primitives/Countdown.astro";
 import icpies from "@/assets/icpies-optimized.svg";
 import { Image } from "astro:assets";
 import CESSD from "@/assets/pages/homepage/cessd_logo.png"
@@ -81,15 +80,27 @@ const {
   </div>
 
   <!-- Conference info section -->
- <!-- Conference info section -->
   <Container>
     <div class="flex flex-col items-center">
       <!-- Text content below image -->
       <div class="w-full max-w-6xl mx-auto text-center px-4">
 
-        <!-- Countdown Timer - more compact for mobile -->
-        <div data-hero-reveal class="mb-6 md:mb-8 max-w-full md:max-w-xl mx-auto">
-          <Countdown eventDate={eventDate} />
+        <!-- Conference Completed UI -->
+        <div data-hero-reveal class="mb-6 md:mb-8 max-w-full md:max-w-xl mx-auto flex flex-col items-center">
+          <span class="conference-completed-badge mb-3 px-4 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-[#1A7A64] to-[#0D3B66] shadow-lg animate-pop">
+            Conference Completed!
+          </span>
+          <div class="text-lg md:text-xl font-medium text-[#1A7A64] mb-2">
+            Thank you for joining us at ICPIES 2025.<br>
+            Explore the event highlights in our gallery.
+          </div>
+          <a
+            href="/gallery"
+            class="gallery-btn mt-4 px-6 py-3 rounded-lg font-bold text-white bg-[#FF9F1C] hover:bg-[#FFB84C] shadow-lg transition-all duration-200 flex items-center gap-2"
+          >
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" class="inline-block"><circle cx="11" cy="11" r="9"/><path d="M7 14l2-2 2 2 4-4"/></svg>
+            View Event Gallery
+          </a>
         </div>
 
         <!-- Action buttons - mobile optimized -->
@@ -285,6 +296,31 @@ const {
   }
   .animation-delay-6000 {
     animation-delay: 6s;
+  }
+
+  .conference-completed-badge {
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    box-shadow: 0 2px 8px rgba(26,122,100,0.12);
+    animation: pop 0.7s cubic-bezier(.17,.67,.83,.67);
+  }
+  @keyframes pop {
+    0% { transform: scale(0.7); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  .gallery-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    background: linear-gradient(90deg, #FF9F1C 0%, #FFB84C 100%);
+    box-shadow: 0 4px 16px rgba(255,159,28,0.15);
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .gallery-btn:hover {
+    background: linear-gradient(90deg, #FFB84C 0%, #FF9F1C 100%);
+    box-shadow: 0 6px 24px rgba(255,159,28,0.22);
   }
 </style>
 

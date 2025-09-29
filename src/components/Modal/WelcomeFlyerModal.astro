@@ -1,46 +1,82 @@
 ---
 // Props for potential configuration options
-import Flyer from "/src/assets/pages/homepage/welcomeFlyer.jpeg";
 import { Image } from "astro:assets";
 
 interface Props {
   delayInSeconds?: number; // Configurable delay
   cookieExpiryDays?: number; // How long before showing again
+  galleryImages?: string[]; // Array of image paths for carousel
 }
 
 const {
   delayInSeconds = 5, // Default 5 second delay
   cookieExpiryDays = 1, // Default to 1 day
+  galleryImages = [
+    "/src/assets/gallery/image1.jpg",
+    "/src/assets/gallery/image2.jpg",
+    "/src/assets/gallery/image3.jpg",
+    "/src/assets/gallery/image4.jpg"
+  ], // Default gallery images (replace with actual paths)
 } = Astro.props;
 ---
 
 <div id="flyerModal" class="modal-overlay hidden" role="dialog" aria-modal="true">
   <div class="modal-content">
-    <!-- Close button only - removed minimize button for cleaner fullscreen experience -->
-    <button class="modal-close" aria-label="Close flyer">
+    <!-- Close button -->
+    <button class="modal-close" aria-label="Close gallery preview">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
 
-    <!-- Centered flyer image with rounded border -->
-    <div class="modal-image-container">
-      <div class="image-border-wrapper">
-        <Image
-          src={Flyer}
-          alt="ICPIES 2025 Conference Details"
-          class="modal-image"
-          width={1000}
-          height={1500}
-          loading="eager"
-        />
-      </div>
+    <!-- Header for context -->
+    <div class="modal-header">
+      <h2 class="modal-title">Conference Highlights</h2>
+      <p class="modal-subtitle">Relive the moments from ICPIES 2025</p>
     </div>
+
+    <!-- Carousel container -->
+    <div class="carousel-container">
+      <button class="carousel-nav carousel-prev" aria-label="Previous image">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15,18 9,12 15,6"></polyline>
+        </svg>
+      </button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack">
+          {galleryImages.map((img, index) => (
+            <div class="carousel-slide" data-slide={index}>
+              <Image
+                src={img}
+                alt={`Gallery image ${index + 1}`}
+                class="carousel-image"
+                width={800}
+                height={600}
+                loading="eager"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <button class="carousel-nav carousel-next" aria-label="Next image">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9,18 15,12 9,6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- View All Gallery button -->
+    <a href="/gallery" class="gallery-btn">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" class="inline-block">
+        <circle cx="11" cy="11" r="9"/><path d="M7 14l2-2 2 2 4-4"/>
+      </svg>
+      View All Gallery
+    </a>
   </div>
 </div>
 
-<script define:vars={{ delayInSeconds, cookieExpiryDays }}>
+<script define:vars={{ delayInSeconds, cookieExpiryDays, galleryImages }}>
   document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("flyerModal");
     const closeButton = modal?.querySelector(".modal-close");
@@ -101,6 +137,56 @@ const {
         modal?.classList.remove("hidden");
       }, delayInSeconds * 1000);
     }
+
+    // Add carousel functionality
+    let currentSlide = 0;
+    const track = document.getElementById('carouselTrack');
+    const slides = track?.children;
+    const totalSlides = galleryImages.length;
+
+    const updateCarousel = () => {
+      if (track) {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+    };
+
+    const nextSlide = () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    };
+
+    const prevSlide = () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    };
+
+    // Auto-slide every 4 seconds
+    let autoSlide = setInterval(nextSlide, 4000);
+
+    // Event listeners for nav buttons
+    document.querySelector('.carousel-next')?.addEventListener('click', () => {
+      clearInterval(autoSlide);
+      nextSlide();
+      autoSlide = setInterval(nextSlide, 4000);
+    });
+
+    document.querySelector('.carousel-prev')?.addEventListener('click', () => {
+      clearInterval(autoSlide);
+      prevSlide();
+      autoSlide = setInterval(nextSlide, 4000);
+    });
+
+    // Touch/swipe support for mobile
+    let startX = 0;
+    track?.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    track?.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) nextSlide();
+      if (endX - startX > 50) prevSlide();
+    });
   });
 </script>
 
@@ -170,39 +256,116 @@ const {
     transform: scale(1.1);
   }
 
-  /* Image container - maximized for full-screen display */
-  .modal-image-container {
+  /* Modal header */
+  .modal-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #1a7a64 0%, #0d3b66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .modal-subtitle {
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+
+  /* Carousel styles */
+  .carousel-container {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    padding: 0;
+    max-width: 800px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   }
 
-  /* Border wrapper for image */
-  .image-border-wrapper {
-    padding: 10px;
-    border: 3px solid rgba(255, 255, 255, 0.7);
-    border-radius: 15px;
-    background: transparent;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .carousel-wrapper {
+    width: 100%;
     overflow: hidden;
   }
 
-  .modal-image {
-    max-width: 95%;
-    max-height: 85vh; /* Slightly reduced to account for border */
-    width: auto;
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .carousel-image {
+    width: 100%;
     height: auto;
-    object-fit: contain;
-    border-radius: 8px; /* Inner rounded corners for image */
+    max-height: 60vh;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1002;
+  }
+
+  .carousel-nav:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .carousel-prev {
+    left: 10px;
+  }
+
+  .carousel-next {
+    right: 10px;
+  }
+
+  /* Gallery button */
+  .gallery-btn {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(90deg, #FF9F1C 0%, #FFB84C 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 16px rgba(255,159,28,0.15);
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+
+  .gallery-btn:hover {
+    background: linear-gradient(90deg, #FFB84C 0%, #FF9F1C 100%);
+    box-shadow: 0 6px 24px rgba(255,159,28,0.22);
   }
 
   /* Utility classes */
@@ -217,23 +380,22 @@ const {
 
   /* Responsive adjustments */
   @media (max-width: 768px) {
-    .image-border-wrapper {
-      padding: 8px;
-      border-width: 2px;
-      border-radius: 12px;
+    .carousel-nav {
+      width: 40px;
+      height: 40px;
     }
 
-    .modal-image {
-      max-width: 100%;
-      max-height: 80vh;
-      border-radius: 6px;
+    .carousel-image {
+      max-height: 50vh;
     }
 
-    .modal-close {
-      top: 15px;
-      right: 15px;
-      width: 36px;
-      height: 36px;
+    .modal-title {
+      font-size: 1.25rem;
+    }
+
+    .gallery-btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
     }
   }
 

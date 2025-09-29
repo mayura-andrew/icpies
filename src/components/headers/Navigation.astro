@@ -20,8 +20,10 @@ const { header, contacts } = getLocalizedSettings(currentLocale);
 
 // Define the navigation items
 const navItems = [
+	{ title: "Home", link: "/" },
+	{ title: "Gallery", link: "/gallery" },
+
 	{ title: "Keynotes", link: "/keynotes" },
-  { title: "Home", link: "/" },
   { title: "Registration", link: "/registration" },
   { title: "Important Dates", link: "/important-dates" },
 //   { title: "Submissions", link: "/submissions" },
@@ -112,7 +114,7 @@ const currentPath = Astro.url.pathname;
               }
 
               // Special styling for "Keynotes" link
-              if (item.title === "Keynotes") {
+              if (item.title === "Gallery") {
                 return (
                   <a
                     href={translatePath(

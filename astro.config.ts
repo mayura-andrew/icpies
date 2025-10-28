@@ -81,9 +81,8 @@ export default defineConfig({
 				short_name: siteTitle,
 				theme_color: "#ffffff",
 			},
-			pwaAssets: {
-				config: true,
-			},
+			// Disable automatic pwa asset generation (avoids native `sharp` requirement during build)
+			pwaAssets: { config: false },
 			workbox: {
 				navigateFallback: "/",
 				globPatterns: ["**/*.{css,js,html,svg,png,ico,txt}"],

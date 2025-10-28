@@ -975,5 +975,60 @@ export default config({
 				}),
 			},
 		}),
+		gallery: collection({
+			label: "Gallery",
+			slugField: "title",
+			path: "src/content/gallery/*",
+			columns: ["title", "year", "category"],
+			schema: {
+				title: fields.slug({
+					name: {
+						label: "Title",
+						validation: { isRequired: true }
+					}
+				}),
+				year: fields.number({
+					label: "Conference Year",
+					validation: { isRequired: true }
+				}),
+				category: fields.select({
+					label: "Category",
+					options: [
+						{ label: "Opening Ceremony", value: "opening" },
+						{ label: "Keynote Sessions", value: "keynote" },
+						{ label: "Panel Discussions", value: "panel" },
+						{ label: "Networking", value: "networking" },
+						{ label: "Awards", value: "awards" },
+						{ label: "General", value: "general" }
+					],
+					defaultValue: "general"
+				}),
+				images: fields.array(
+					fields.object({
+						image: fields.image({
+							label: "Image",
+							directory: "src/assets/gallery",
+							publicPath: "/src/assets/gallery/"
+						}),
+						caption: fields.text({
+							label: "Caption",
+							multiline: true
+						}),
+						alt: fields.text({
+							label: "Alt Text",
+							validation: { isRequired: true }
+						})
+					}),
+					{
+						label: "Images",
+						itemLabel: (props) => props.fields.caption.value || "Image"
+					}
+				),
+				featured: fields.checkbox({
+					label: "Featured",
+					description: "Show in homepage gallery preview"
+				})
+			}
+		}),
 	},
 });

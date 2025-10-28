@@ -1,0 +1,335 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  pdfUrl: string;
+  year: number;
+}
+
+const { title, pdfUrl, year } = Astro.props;
+---
+
+<div class="bg-white rounded-lg shadow-lg overflow-hidden border">
+  <!-- PDF Controls -->
+  <div class="bg-gray-50 px-4 py-3 border-b flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <Icon name="heroicons:document-text" class="w-5 h-5 text-[#1A7A64]" />
+      <h2 class="font-semibold text-gray-900">{title}</h2>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button id="zoom-out" class="p-2 rounded hover:bg-gray-200 transition-colors" title="Zoom Out">
+        <Icon name="heroicons:minus" class="w-4 h-4" />
+      </button>
+      <span id="zoom-level" class="text-sm font-medium min-w-[60px] text-center">100%</span>
+      <button id="zoom-in" class="p-2 rounded hover:bg-gray-200 transition-colors" title="Zoom In">
+        <Icon name="heroicons:plus" class="w-4 h-4" />
+      </button>
+
+      <button id="fullscreen" class="p-2 rounded hover:bg-gray-200 transition-colors" title="Fullscreen">
+        <Icon name="heroicons:arrows-pointing-out" class="w-4 h-4" />
+      </button>
+
+      <a
+        href={pdfUrl}
+        download
+        class="flex items-center gap-2 bg-[#1A7A64] text-white px-4 py-2 rounded hover:bg-[#145a4a] transition-colors"
+      >
+        <Icon name="heroicons:arrow-down-tray" class="w-4 h-4" />
+        <span class="hidden sm:inline">Download</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- PDF Container -->
+  <div id="pdf-container" class="relative bg-gray-100" data-pdf-url={pdfUrl}>
+    <div id="loading" class="flex items-center justify-center py-32">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1A7A64]"></div>
+      <span class="ml-3 text-gray-600">Loading PDF...</span>
+    </div>
+
+    <div id="pdf-viewer" class="hidden">
+      <canvas id="pdf-canvas" class="w-full h-auto mx-auto block"></canvas>
+    </div>
+
+    <div id="pdf-error" class="hidden text-center py-32">
+      <Icon name="heroicons:exclamation-triangle" class="w-16 h-16 text-red-500 mx-auto mb-4" />
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Failed to load PDF</h3>
+      <p class="text-gray-600 mb-4">There was an error loading the PDF document.</p>
+      <button id="retry-btn" class="bg-[#1A7A64] text-white px-6 py-2 rounded hover:bg-[#145a4a] transition-colors">
+        Try Again
+      </button>
+    </div>
+
+    <div id="mobile-fallback" class="hidden md:hidden text-center py-16 px-4">
+      <Icon name="heroicons:device-phone-mobile" class="w-16 h-16 text-gray-400 mx-auto mb-4" />
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Mobile View</h3>
+      <p class="text-gray-600 mb-6">For the best experience on mobile, download the PDF to view.</p>
+      <a href={pdfUrl} download class="inline-flex items-center gap-2 bg-[#1A7A64] text-white px-6 py-3 rounded-lg hover:bg-[#145a4a] transition-colors">
+        <Icon name="heroicons:arrow-down-tray" class="w-5 h-5" />
+        Download PDF
+      </a>
+    </div>
+  </div>
+
+  <!-- Page Navigation -->
+  <div id="page-controls" class="hidden bg-gray-50 px-4 py-3 border-t flex items-center justify-between">
+    <button id="prev-page" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+      <Icon name="heroicons:chevron-left" class="w-4 h-4" />
+      Previous
+    </button>
+
+    <div class="flex items-center gap-4">
+      <span>Page</span>
+      <input id="page-input" type="number" min="1" value="1" class="w-16 px-2 py-1 border rounded text-center" />
+      <span>of <span id="total-pages">0</span></span>
+    </div>
+
+    <button id="next-page" class="flex items-center gap-2 px-4 py-2 rounded hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+      Next
+      <Icon name="heroicons:chevron-right" class="w-4 h-4" />
+    </button>
+  </div>
+</div>
+
+<script>
+  // Safe DOM-ready helper
+  const onReady = (fn) => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  };
+
+  // PDF.js state
+  let pdfDoc = null;
+  let pageNum = 1;
+  let pageRendering = false;
+  let pageNumPending = null;
+  let scale = 1.0;
+  let canvas = null;
+  let ctx = null;
+  let pdfUrl = '';
+
+  function showError() {
+    const loadingEl = document.getElementById('loading');
+    const errorEl = document.getElementById('pdf-error');
+    if (loadingEl) loadingEl.classList.add('hidden');
+    if (errorEl) errorEl.classList.remove('hidden');
+  }
+
+  function renderPage(num) {
+    if (!pdfDoc) return;
+    if (pageRendering) {
+      pageNumPending = num;
+      return;
+    }
+    pageRendering = true;
+
+    pdfDoc.getPage(num).then(function(page) {
+      const viewport = page.getViewport({ scale: scale });
+      if (!canvas) canvas = document.getElementById('pdf-canvas');
+      if (!canvas) return;
+      ctx = canvas.getContext('2d');
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      const renderContext = { canvasContext: ctx, viewport };
+      const renderTask = page.render(renderContext);
+
+      renderTask.promise.then(function() {
+        pageRendering = false;
+        pageNum = num; // update global current page
+        if (pageNumPending !== null) {
+          renderPage(pageNumPending);
+          pageNumPending = null;
+        }
+      }).catch((err) => {
+        console.error('Render error', err);
+        showError();
+      });
+    }).catch((err) => {
+      console.error('Get page error', err);
+      showError();
+    });
+
+    const pageInput = document.getElementById('page-input');
+    if (pageInput) pageInput.value = num;
+
+    const prevBtn = document.getElementById('prev-page');
+    const nextBtn = document.getElementById('next-page');
+    if (prevBtn) prevBtn.disabled = (num <= 1);
+    if (nextBtn && pdfDoc) nextBtn.disabled = (num >= pdfDoc.numPages);
+  }
+
+  async function initPDFViewer() {
+    try {
+      // Set pdfUrl from DOM
+      const container = document.getElementById('pdf-container');
+      pdfUrl = container?.getAttribute('data-pdf-url') || '';
+      if (!pdfUrl) {
+        throw new Error('No PDF URL provided');
+      }
+
+      // Try to find pdfjs on window under common globals
+      const pdfjs = window['pdfjs-dist/build/pdf'] || window.pdfjsLib || null;
+      if (!pdfjs) {
+        // should not happen because we ensure it's loaded before calling init
+        throw new Error('PDF.js not available');
+      }
+
+      pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        const mobileFallback = document.getElementById('mobile-fallback');
+        const loadingEl = document.getElementById('loading');
+        if (mobileFallback) mobileFallback.classList.remove('hidden');
+        if (loadingEl) loadingEl.classList.add('hidden');
+        return;
+      }
+
+      const loadingTask = pdfjs.getDocument(pdfUrl);
+      pdfDoc = await loadingTask.promise;
+
+      const totalPagesEl = document.getElementById('total-pages');
+      if (totalPagesEl) totalPagesEl.textContent = String(pdfDoc.numPages);
+
+      canvas = document.getElementById('pdf-canvas');
+      if (!canvas) throw new Error('Canvas not found');
+      ctx = canvas.getContext('2d');
+
+      const viewer = document.getElementById('pdf-viewer');
+      const loadingEl = document.getElementById('loading');
+      const pageControls = document.getElementById('page-controls');
+      if (viewer) viewer.classList.remove('hidden');
+      if (pageControls) pageControls.classList.remove('hidden');
+      if (loadingEl) loadingEl.classList.add('hidden');
+
+      // set initial zoom label
+      const zoomLevel = document.getElementById('zoom-level');
+      if (zoomLevel) zoomLevel.textContent = Math.round(scale * 100) + '%';
+
+      renderPage(pageNum);
+    } catch (err) {
+      console.error('Error loading PDF:', err);
+      showError();
+    }
+  }
+
+  onReady(function() {
+    // Ensure PDF.js is loaded (load from CDN if not present)
+    const alreadyLoaded = !!(window['pdfjs-dist/build/pdf'] || window.pdfjsLib);
+    if (!alreadyLoaded) {
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+      script.onload = () => {
+        // Some CDN builds export pdfjsLib; map it to the expected name if needed
+        if (window.pdfjsLib && !window['pdfjs-dist/build/pdf']) {
+          window['pdfjs-dist/build/pdf'] = window.pdfjsLib;
+        }
+        initPDFViewer();
+      };
+      script.onerror = (e) => {
+        console.error('Failed to load PDF.js', e);
+        showError();
+      };
+      document.head.appendChild(script);
+    } else {
+      initPDFViewer();
+    }
+
+    // Helper to safely wire listeners
+    const add = (id, evt, fn) => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener(evt, fn);
+    };
+
+    add('prev-page', 'click', function() {
+      if (pageNum <= 1) return;
+      pageNum--;
+      renderPage(pageNum);
+    });
+
+    add('next-page', 'click', function() {
+      if (!pdfDoc || pageNum >= pdfDoc.numPages) return;
+      pageNum++;
+      renderPage(pageNum);
+    });
+
+    add('page-input', 'change', function() {
+      const input = document.getElementById('page-input');
+      if (!input || !pdfDoc) return;
+      const newPage = parseInt(input.value, 10);
+      if (newPage > 0 && newPage <= pdfDoc.numPages) {
+        pageNum = newPage;
+        renderPage(pageNum);
+      } else {
+        input.value = pageNum;
+      }
+    });
+
+    add('zoom-in', 'click', function() {
+      scale = Math.min(scale + 0.25, 3.0);
+      const zl = document.getElementById('zoom-level');
+      if (zl) zl.textContent = Math.round(scale * 100) + '%';
+      renderPage(pageNum);
+    });
+
+    add('zoom-out', 'click', function() {
+      scale = Math.max(scale - 0.25, 0.5);
+      const zl = document.getElementById('zoom-level');
+      if (zl) zl.textContent = Math.round(scale * 100) + '%';
+      renderPage(pageNum);
+    });
+
+    add('fullscreen', 'click', function() {
+      const container = document.getElementById('pdf-container');
+      if (!container) return;
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+      } else if (container.mozRequestFullScreen) {
+        container.mozRequestFullScreen();
+      }
+    });
+
+    add('retry-btn', 'click', function() {
+      const errorEl = document.getElementById('pdf-error');
+      const loadingEl = document.getElementById('loading');
+      if (errorEl) errorEl.classList.add('hidden');
+      if (loadingEl) loadingEl.classList.remove('hidden');
+      initPDFViewer();
+    });
+
+    // Responsive handling
+    window.addEventListener('resize', function() {
+      if (window.innerWidth < 768) {
+        const viewer = document.getElementById('pdf-viewer');
+        const pageControls = document.getElementById('page-controls');
+        const mobileFallback = document.getElementById('mobile-fallback');
+        if (viewer) viewer.classList.add('hidden');
+        if (pageControls) pageControls.classList.add('hidden');
+        if (mobileFallback) mobileFallback.classList.remove('hidden');
+      } else if (pdfDoc) {
+        const viewer = document.getElementById('pdf-viewer');
+        const pageControls = document.getElementById('page-controls');
+        const mobileFallback = document.getElementById('mobile-fallback');
+        if (viewer) viewer.classList.remove('hidden');
+        if (pageControls) pageControls.classList.remove('hidden');
+        if (mobileFallback) mobileFallback.classList.add('hidden');
+      }
+    });
+  });
+</script>
+
+<style>
+  #pdf-container { min-height: 600px; }
+  #pdf-canvas { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); max-width: 100%; height: auto; }
+  @media (max-width: 768px) { #pdf-container { min-height: 400px; } }
+  #pdf-container:fullscreen { background: white; display: flex; align-items: center; justify-content: center; }
+  #pdf-container:fullscreen #pdf-canvas { max-height: 100vh; max-width: 100vw; }
+</style>

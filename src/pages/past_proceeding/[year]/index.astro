@@ -1,0 +1,77 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Container from "@/components/primitives/Container.astro";
+import PDFViewer from "@/components/PDFViewer.astro";
+import { Icon } from "astro-icon/components";
+import { proceedingsData, getProceedingsByYear, getAllYears } from "@/data/proceedings";
+
+export async function getStaticPaths() {
+  return getAllYears().map((year) => ({
+    params: { year: year.toString() }
+  }));
+}
+
+const { year } = Astro.params;
+const proceeding = getProceedingsByYear(parseInt(year));
+
+if (!proceeding) {
+  return Astro.redirect('/past_proceeding');
+}
+
+const seo = {
+  title: `${proceeding.title} | ICPIES`,
+  description: proceeding.description || `View the proceedings from ICPIES ${proceeding.year}`
+};
+---
+
+<BaseLayout seo={seo}>
+  <Container>
+    <div class="py-24">
+      <!-- Header Section -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          {proceeding.title}
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          {proceeding.description}
+        </p>
+      </div>
+
+      <!-- PDF Viewer -->
+      <div class="max-w-6xl mx-auto">
+        <PDFViewer title={proceeding.title} pdfUrl={proceeding.pdfUrl} year={proceeding.year} />
+
+        <!-- Additional Information -->
+        <div class="mt-8 grid md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow border">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">About This Publication</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li><strong>Conference:</strong> ICPIES {proceeding.year}</li>
+              <li><strong>Date:</strong> {proceeding.date}</li>
+              <li><strong>Pages:</strong> {proceeding.pages}</li>
+              <li><strong>Format:</strong> PDF</li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 rounded-lg shadow border">
+            <h3 class="text-lg font-semibold text-gray-900 mb-3">Access Options</h3>
+            <div class="space-y-3">
+              <a href={proceeding.pdfUrl} target="_blank" class="flex items-center gap-2 text-[#1A7A64] hover:underline">
+                <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
+                Open in New Tab
+              </a>
+              <a href={proceeding.pdfUrl} download class="flex items-center gap-2 text-[#1A7A64] hover:underline">
+                <Icon name="heroicons:arrow-down-tray" class="w-4 h-4" />
+                Download PDF
+              </a>
+              <a href="/past_proceeding" class="flex items-center gap-2 text-[#1A7A64] hover:underline">
+                <Icon name="heroicons:arrow-left" class="w-4 h-4" />
+                View All Proceedings
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</BaseLayout>
